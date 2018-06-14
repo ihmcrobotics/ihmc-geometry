@@ -1,6 +1,6 @@
 package us.ihmc.geometry.polytope;
 
-import us.ihmc.robotics.lists.RecyclingArrayList;
+import us.ihmc.commons.lists.RecyclingArrayList;
 
 public class ExpandingPolytopeEdgeList
 {
