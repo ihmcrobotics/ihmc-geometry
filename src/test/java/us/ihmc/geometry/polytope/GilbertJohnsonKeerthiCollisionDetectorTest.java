@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import us.ihmc.commons.MutationTestFacilitator;
 import us.ihmc.commons.RandomNumbers;
-import us.ihmc.continuousIntegration.ContinuousIntegrationAnnotations.ContinuousIntegrationTest;
 import us.ihmc.euclid.geometry.LineSegment3D;
 import us.ihmc.euclid.tools.EuclidCoreRandomTools;
 import us.ihmc.euclid.tools.EuclidCoreTestTools;
@@ -20,7 +19,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
 {
    private static boolean VERBOSE = false;
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testComputeSupportPointOnMinkowskiDifference()
    {
@@ -49,7 +47,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 2.0, 0.0), supportPoint, 1e-7);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testIsIntersecting()
    {
@@ -96,7 +93,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       polytope.applyTransform(transform);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testIntersectingOnARotatingCube()
    {
@@ -134,7 +130,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       }
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 13.9)
    @Test(timeout = 70000)
    public void testExtensivelyPointToPolytope()
    {
@@ -305,7 +300,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       //      System.out.println("numberOutside = " + numberOutside);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 3.9)
    @Test(timeout = 30000)
    public void testExtensivelyPolytopeToPolytope()
    {
@@ -409,7 +403,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       assertTrue("numberNotColliding = " + numberNotColliding, numberNotColliding > 1000);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 6.8)
    @Test (timeout = 34000)
    public void testExtensivelyCylinderToPolytope()
    {
@@ -552,7 +545,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       }
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testTroublesomePointToLineSegments()
    {
@@ -594,7 +586,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
 
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testTroublesomePointToTriangle()
    {
@@ -606,7 +597,6 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       doPointToTriangleProjectionTest(trianglePointA, trianglePointB, trianglePointC, pointToProject, false);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testTroublesomePointToTetragon()
    {

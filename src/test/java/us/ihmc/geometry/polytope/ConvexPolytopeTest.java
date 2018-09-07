@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import us.ihmc.commons.MutationTestFacilitator;
-import us.ihmc.continuousIntegration.ContinuousIntegrationAnnotations.ContinuousIntegrationTest;
 import us.ihmc.euclid.geometry.BoundingBox3D;
 import us.ihmc.euclid.tools.EuclidCoreTestTools;
 import us.ihmc.euclid.transform.RigidBodyTransform;
@@ -17,7 +16,6 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 public class ConvexPolytopeTest
 {
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testConvexPolytopeWithAUnitCube()
    {
@@ -102,7 +100,6 @@ public class ConvexPolytopeTest
       assertTrue(supportingVertex == vertexThree.getPosition());
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testPolytopeConstructor()
    {
@@ -114,7 +111,6 @@ public class ConvexPolytopeTest
       assertEquals(12, edges.size());
    }
    
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testBoundingBoxes()
    {
