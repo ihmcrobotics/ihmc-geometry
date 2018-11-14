@@ -3,10 +3,10 @@ package us.ihmc.geometry.polytope;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import gnu.trove.map.hash.THashMap;
+import us.ihmc.commons.lists.RecyclingArrayList;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
-import gnu.trove.map.hash.THashMap;
-import us.ihmc.robotics.lists.RecyclingArrayList;
 
 public class ExpandingPolytopeAlgorithm
 {

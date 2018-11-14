@@ -9,6 +9,6 @@ public interface FrameSimplex extends SimplexBasics, ReferenceFrameHolder
    default FrameSimplex getSmallestSimplexMemberReference(FramePoint3D point)
    {
       checkReferenceFrameMatch(point);
-      return (FrameSimplex) getSmallestSimplexMemberReference(point.getPoint());
+      return (FrameSimplex) getSmallestSimplexMemberReference(point);
    }
 }

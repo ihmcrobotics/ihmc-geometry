@@ -10,6 +10,6 @@ public interface FrameSupportingVertexHolder extends SupportingVertexHolder, Ref
    default void getSupportingVertex(FrameVector3D supportDirection, FramePoint3D supportingVertexToPack)
    {
       checkReferenceFrameMatch(supportDirection);
-      supportingVertexToPack.setIncludingFrame(getReferenceFrame(), getSupportingVertex(supportDirection.getVector()));
+      supportingVertexToPack.setIncludingFrame(getReferenceFrame(), getSupportingVertex(supportDirection));
    }
 }

@@ -43,6 +43,6 @@ public class FramePolytopeVertexBuilder implements PolytopeVertexProvider<FrameP
    
    public FramePolytopeVertex getVertex(FramePoint3D vertexToAdd)
    {
-      return new FramePolytopeVertex(vertexToAdd.getReferenceFrame(), vertexToAdd.getPoint());
+      return new FramePolytopeVertex(vertexToAdd.getReferenceFrame(), vertexToAdd);
    }
 }

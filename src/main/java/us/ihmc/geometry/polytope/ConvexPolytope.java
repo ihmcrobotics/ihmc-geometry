@@ -6,6 +6,7 @@ import us.ihmc.euclid.geometry.BoundingBox3D;
 import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 public class ConvexPolytope implements SupportingVertexHolder
 {
@@ -210,7 +211,7 @@ public class ConvexPolytope implements SupportingVertexHolder
    }
 
    @Override
-   public Point3D getSupportingVertex(Vector3D supportDirection)
+   public Point3D getSupportingVertex(Vector3DReadOnly supportDirection)
    {
       // Naive implementation. Just search through all of them.
       // TODO: Smart downhill march along edges. But will require always having the edges...

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 public class PolytopeVertex
 {
@@ -58,7 +59,7 @@ public class PolytopeVertex
       transform.transform(position);
    }
 
-   public double dot(Vector3D vector)
+   public double dot(Vector3DReadOnly vector)
    {
       return position.getX() * vector.getX() + position.getY() * vector.getY() + position.getZ() * vector.getZ();
    }

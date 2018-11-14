@@ -545,8 +545,8 @@ public class ConvexPolytopeTest
       cylinder = new ExtendedConvexPolytope();
       for (int i = 0; i < numberOfPoints; i++)
       {
-         Point3D pointToAdd = new Point3D(EuclidCoreRandomTools.generateRandomDouble(random, 10.0), EuclidCoreRandomTools.generateRandomDouble(random, 10.0),
-                                          EuclidCoreRandomTools.generateRandomDouble(random, 10.0));
+         Point3D pointToAdd = new Point3D(EuclidCoreRandomTools.nextDouble(random, 10.0), EuclidCoreRandomTools.nextDouble(random, 10.0),
+                                          EuclidCoreRandomTools.nextDouble(random, 10.0));
          projectToInteriorOfCylinder(cylinderHeight, cylinderRadius, pointToAdd);
          cylinder.addVertex(pointToAdd, EPSILON);
          checkPolytopeConsistency(cylinder);

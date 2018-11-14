@@ -555,7 +555,7 @@ public abstract class ConvexPolytopeFaceBasics<V extends PolytopeVertexBasics<V,
    }
 
    @Override
-   public Point3D getSupportingVertex(Vector3D supportVector)
+   public Point3D getSupportingVertex(Vector3DReadOnly supportVector)
    {
       V bestVertex = edges.get(0).getOriginVertex();
       double maxDot = bestVertex.dot(supportVector);

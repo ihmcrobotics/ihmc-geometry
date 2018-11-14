@@ -85,7 +85,7 @@ public class PolytopeVertexTest
    {
       Random random = new Random(123l);
       ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.1241252, -15.12415, 86.12536);
-      Point3D point = EuclidCoreRandomTools.generateRandomPoint3D(random);
+      Point3D point = EuclidCoreRandomTools.nextPoint3D(random);
       assertTrue(vertex.getShortestDistanceTo(point) == point.distance(vertex));
    }
 
@@ -93,7 +93,7 @@ public class PolytopeVertexTest
    public void testGetSupportVectorDirectionTo()
    {
       Random random = new Random(1254l);
-      Point3D somePoint = EuclidCoreRandomTools.generateRandomPoint3D(random);
+      Point3D somePoint = EuclidCoreRandomTools.nextPoint3D(random);
       ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(random.nextDouble(), random.nextDouble(), random.nextDouble());
       Vector3D supportVectorToPack = new Vector3D();
       vertex.getSupportVectorDirectionTo(somePoint, supportVectorToPack);

@@ -695,7 +695,7 @@ public abstract class ConvexPolytopeBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    @Override
-   public Point3D getSupportingVertex(Vector3D supportDirection)
+   public Point3D getSupportingVertex(Vector3DReadOnly supportDirection)
    {
       V bestVertex = faces.get(0).getEdge(0).getOriginVertex();
       tempVector.set(bestVertex);
