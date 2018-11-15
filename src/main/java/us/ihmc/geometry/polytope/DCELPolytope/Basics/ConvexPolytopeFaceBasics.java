@@ -104,7 +104,7 @@ public abstract class ConvexPolytopeFaceBasics
     * 
     * @param edgeList array of edges to be copied
     */
-   public ConvexPolytopeFaceBasics(PolytopeHalfEdgeReadOnly[] edgeListArray)
+   public ConvexPolytopeFaceBasics(HalfEdge3DReadOnly[] edgeListArray)
    {
       this.copyEdgeList(edgeListArray);
    }
@@ -115,14 +115,14 @@ public abstract class ConvexPolytopeFaceBasics
     * 
     * @param edgeList
     */
-   public void copyEdgeList(List<? extends PolytopeHalfEdgeReadOnly> edgeList)
+   public void copyEdgeList(List<? extends HalfEdge3DReadOnly> edgeList)
    {
       this.edges.clear();
       for (int i = 0; i < edgeList.size(); i++)
          this.edges.add(getHalfEdgeProvider().getHalfEdge(edgeList.get(i)));
    }
 
-   public void copyEdgeList(PolytopeHalfEdgeReadOnly[] edgeListArray)
+   public void copyEdgeList(HalfEdge3DReadOnly[] edgeListArray)
    {
       edges.clear();
       for (int i = 0; i < edgeListArray.length; i++)
@@ -411,7 +411,7 @@ public abstract class ConvexPolytopeFaceBasics
          {
             boolean result = true;
             PolytopeHalfEdgeBasics matchedEdge = edges.get(index);
-            PolytopeHalfEdgeReadOnly candidateEdge = other.getEdge(0);
+            HalfEdge3DReadOnly candidateEdge = other.getEdge(0);
             for (int i = 0; result && i < edges.size() - 1; i++)
             {
                matchedEdge = matchedEdge.getNextHalfEdge();
@@ -427,7 +427,7 @@ public abstract class ConvexPolytopeFaceBasics
          return false;
    }
 
-   public int findMatchingEdgeIndex(PolytopeHalfEdgeReadOnly edgeToSearch, double epsilon)
+   public int findMatchingEdgeIndex(HalfEdge3DReadOnly edgeToSearch, double epsilon)
    {
       for (int i = 0; i < edges.size(); i++)
       {
@@ -437,7 +437,7 @@ public abstract class ConvexPolytopeFaceBasics
       return -1;
    }
 
-   public PolytopeHalfEdgeReadOnly findMatchingEdge(PolytopeHalfEdgeReadOnly edgeToSearch, double epsilon)
+   public HalfEdge3DReadOnly findMatchingEdge(HalfEdge3DReadOnly edgeToSearch, double epsilon)
    {
       return edges.get(findMatchingEdgeIndex(edgeToSearch, epsilon));
    }

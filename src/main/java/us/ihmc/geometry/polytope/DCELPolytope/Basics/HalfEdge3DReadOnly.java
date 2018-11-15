@@ -4,7 +4,7 @@ import us.ihmc.euclid.interfaces.EpsilonComparable;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface PolytopeHalfEdgeReadOnly extends Vector3DReadOnly, EpsilonComparable<PolytopeHalfEdgeReadOnly>
+public interface HalfEdge3DReadOnly extends Vector3DReadOnly, EpsilonComparable<HalfEdge3DReadOnly>
 {
    /**
     * Returns a reference to the origin vertex for this half edge
@@ -25,21 +25,21 @@ public interface PolytopeHalfEdgeReadOnly extends Vector3DReadOnly, EpsilonCompa
     * 
     * @return a read only reference to the twin half edge
     */
-   PolytopeHalfEdgeReadOnly getTwinHalfEdge();
+   HalfEdge3DReadOnly getTwinHalfEdge();
 
    /**
     * Returns a reference to the {@code nextHalfEdge} in the same {@code face} as this half edge
     * 
     * @return a read only reference to the next half edge
     */
-   PolytopeHalfEdgeReadOnly getNextHalfEdge();
+   HalfEdge3DReadOnly getNextHalfEdge();
 
    /**
     * Returns a reference to the {@code previousHalfEdge} in the same {@code face} as this half edge
     * 
     * @return a read only reference to the previous half edge
     */
-   PolytopeHalfEdgeReadOnly getPreviousHalfEdge();
+   HalfEdge3DReadOnly getPreviousHalfEdge();
 
    /**
     * Returns the reference to the face that this half edge is a part of
@@ -73,7 +73,7 @@ public interface PolytopeHalfEdgeReadOnly extends Vector3DReadOnly, EpsilonCompa
     *         origin and destination are in an {@code epsilon} vicinity of this half edges origin and
     *         destination respectively
     */
-   boolean isTwin(PolytopeHalfEdgeReadOnly twinEdge, double epsilon);
+   boolean isTwin(HalfEdge3DReadOnly twinEdge, double epsilon);
 
    /**
     * Returns a string that indicates the spatial location of the object

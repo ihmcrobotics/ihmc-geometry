@@ -12,7 +12,7 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * 
     * @return a list of read only references to the edges that originate at this edge
     */
-   List<? extends PolytopeHalfEdgeReadOnly> getAssociatedEdges();
+   List<? extends HalfEdge3DReadOnly> getAssociatedEdges();
 
    /**
     * Get a particular associated edge based on its index in the associated edge list held by the
@@ -21,7 +21,7 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * @param index must be less than value returned by {@code getNumberOfAssociatedEdges()}
     * @return a read only reference to the edge
     */
-   PolytopeHalfEdgeReadOnly getAssociatedEdge(int index);
+   HalfEdge3DReadOnly getAssociatedEdge(int index);
 
    /**
     * Checks if the edge specified originates at the current vertex. Check is performed by comparing
@@ -31,7 +31,7 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * @return {@code true} if the specified edge is on the associated edge list, {@code false}
     *         otherwise
     */
-   boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck);
+   boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck);
 
    /**
     * An associated edge is sufficiently close if its origin and destination are within a
@@ -42,7 +42,7 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * @return {@code true} if the specified edge is geometrically close to any of the associated edges.
     *         Otherwise {@code false}
     */
-   boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck, double epsilon);
+   boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck, double epsilon);
 
    /**
     * Returns the number of references held in the associated edge list

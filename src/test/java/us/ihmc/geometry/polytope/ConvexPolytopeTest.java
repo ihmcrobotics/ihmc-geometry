@@ -26,7 +26,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 public class ConvexPolytopeTest
@@ -597,7 +597,7 @@ public class ConvexPolytopeTest
       }
    }
 
-   public PolytopeHalfEdgeReadOnly checkForNullTwinEdges(ConvexPolytopeReadOnly polytope)
+   public HalfEdge3DReadOnly checkForNullTwinEdges(ConvexPolytopeReadOnly polytope)
    {
       int numberOfFaces = polytope.getNumberOfFaces();
       if (numberOfFaces < 2)
@@ -616,7 +616,7 @@ public class ConvexPolytopeTest
       return null;
    }
 
-   public PolytopeHalfEdgeReadOnly checkPolytopeConsistencySoft(ConvexPolytopeReadOnly polytope)
+   public HalfEdge3DReadOnly checkPolytopeConsistencySoft(ConvexPolytopeReadOnly polytope)
    {
       int numberOfFaces = polytope.getNumberOfFaces();
       if (numberOfFaces < 2)

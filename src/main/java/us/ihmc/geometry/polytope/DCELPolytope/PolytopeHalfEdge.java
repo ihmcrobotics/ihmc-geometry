@@ -1,7 +1,7 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeBuilder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
 
@@ -30,7 +30,7 @@ public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics implements Simplex
     * 
     * @param edge
     */
-   public PolytopeHalfEdge(PolytopeHalfEdgeReadOnly edge)
+   public PolytopeHalfEdge(HalfEdge3DReadOnly edge)
    {
       super(new Vertex3D(edge.getOriginVertex()), new Vertex3D(edge.getDestinationVertex()));
    }

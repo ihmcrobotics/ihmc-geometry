@@ -21,7 +21,7 @@ public interface ConvexPolytopeReadOnly extends EpsilonComparable<ConvexPolytope
     * 
     * @return a list of read only references to the half edges that make up the faces of this polytope
     */
-   List<? extends PolytopeHalfEdgeReadOnly> getEdges();
+   List<? extends HalfEdge3DReadOnly> getEdges();
 
    /**
     * Get a list of vertices that are part of this polytope. List does not contain any repititions

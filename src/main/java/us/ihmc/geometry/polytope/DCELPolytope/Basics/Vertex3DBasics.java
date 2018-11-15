@@ -118,7 +118,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * {@inheritDoc}
     */
    @Override
-   public boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck)
+   public boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck)
    {
       return associatedEdges.contains(edgeToCheck);
    }
@@ -127,7 +127,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * {@inheritDoc}
     */
    @Override
-   public boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck, double epsilon)
+   public boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck, double epsilon)
    {
       for (int i = 0; i < associatedEdges.size(); i++)
       {

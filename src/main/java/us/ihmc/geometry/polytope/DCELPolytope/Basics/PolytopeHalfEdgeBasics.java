@@ -28,7 +28,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly, SimplexBasics, Clearable, Transformable
+public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, SimplexBasics, Clearable, Transformable
 {
 
    /**
@@ -426,7 +426,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
    }
 
    @Override
-   public boolean epsilonEquals(PolytopeHalfEdgeReadOnly other, double epsilon)
+   public boolean epsilonEquals(HalfEdge3DReadOnly other, double epsilon)
    {
       return getOriginVertex().epsilonEquals(other.getOriginVertex(), epsilon) && getDestinationVertex().epsilonEquals(other.getDestinationVertex(), epsilon);
    }
@@ -434,7 +434,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
    /**
     * {@inheritDoc}
     */
-   public boolean isTwin(PolytopeHalfEdgeReadOnly twinEdge, double epsilon)
+   public boolean isTwin(HalfEdge3DReadOnly twinEdge, double epsilon)
    {
       return epsilonEquals(twinEdge.getTwinHalfEdge(), epsilon);
    }

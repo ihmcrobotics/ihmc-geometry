@@ -2,7 +2,7 @@ package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 
 import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.PolytopeHalfEdge;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 public class PolytopeHalfEdgeBuilder implements PolytopeHalfEdgeProvider
@@ -21,7 +21,7 @@ public class PolytopeHalfEdgeBuilder implements PolytopeHalfEdgeProvider
    }
 
    @Override
-   public PolytopeHalfEdge getHalfEdge(PolytopeHalfEdgeReadOnly polytopeHalfEdge)
+   public PolytopeHalfEdge getHalfEdge(HalfEdge3DReadOnly polytopeHalfEdge)
    {
       return new PolytopeHalfEdge(polytopeHalfEdge);
    }

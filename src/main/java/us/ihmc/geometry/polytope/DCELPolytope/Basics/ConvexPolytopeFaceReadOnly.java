@@ -15,7 +15,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     * 
     * @return a list of read only references to the half edges
     */
-   List<? extends PolytopeHalfEdgeReadOnly> getEdgeList();
+   List<? extends HalfEdge3DReadOnly> getEdgeList();
 
    /**
     * Gets a particular half edge that is part of the face
@@ -24,7 +24,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     *           {@code getNumberOfEdges()}
     * @return
     */
-   PolytopeHalfEdgeReadOnly getEdge(int index);
+   HalfEdge3DReadOnly getEdge(int index);
 
    /**
     * Returns the first edge that is visible from the specified point. A face edge is considered
@@ -35,7 +35,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     * @param point the point in the plane of the face w.r.t. which the visible edge is to be computed
     * @return a read only reference to the first visible half edge
     */
-   PolytopeHalfEdgeReadOnly getFirstVisibleEdge(Point3DReadOnly point);
+   HalfEdge3DReadOnly getFirstVisibleEdge(Point3DReadOnly point);
 
    /**
     * Checks if a point is strictly on the same side of the specified edge as the face centroid, i.e.
@@ -231,6 +231,6 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     * @param point the point to which the closed edge is required
     * @return read only reference to the half edge that is closed to the specified point
     */
-   PolytopeHalfEdgeReadOnly getEdgeClosestTo(Point3DReadOnly point);
+   HalfEdge3DReadOnly getEdgeClosestTo(Point3DReadOnly point);
 
 }

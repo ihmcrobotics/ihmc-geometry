@@ -4,7 +4,7 @@ import java.util.List;
 
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 
 public interface PolytopeListener
 {
@@ -18,9 +18,9 @@ public interface PolytopeListener
 
    void updateFaces();
 
-   void updateVisibleSilhouette(List<? extends PolytopeHalfEdgeReadOnly> visibleEdges);
+   void updateVisibleSilhouette(List<? extends HalfEdge3DReadOnly> visibleEdges);
 
-   void udpateVisibleEdgeSeed(PolytopeHalfEdgeReadOnly visibleEdgeSeed);
+   void udpateVisibleEdgeSeed(HalfEdge3DReadOnly visibleEdgeSeed);
 
    void updateOnFaceList(List<? extends ConvexPolytopeFaceReadOnly> onFaceList);
 
