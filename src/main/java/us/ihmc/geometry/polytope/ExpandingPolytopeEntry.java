@@ -6,8 +6,9 @@ import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 
 /**
- * Data structure for the Expanding Polytope Algorithm described in "Collision Detection in Interactive 3D Environments"
- * by Gino van den Bergen. Vertices and edges are index counterclockwise.
+ * Data structure for the Expanding Polytope Algorithm described in "Collision Detection in
+ * Interactive 3D Environments" by Gino van den Bergen. Vertices and edges are index
+ * counterclockwise.
  *
  */
 public class ExpandingPolytopeEntry implements Comparable<ExpandingPolytopeEntry>
@@ -25,7 +26,7 @@ public class ExpandingPolytopeEntry implements Comparable<ExpandingPolytopeEntry
 
    public ExpandingPolytopeEntry()
    {
-      
+
    }
 
    public ExpandingPolytopeEntry(Point3D vertexOne, Point3D vertexTwo, Point3D vertexThree)
@@ -51,7 +52,7 @@ public class ExpandingPolytopeEntry implements Comparable<ExpandingPolytopeEntry
       adjacentTriangleEdgeIndices[0] = 0;
       adjacentTriangleEdgeIndices[1] = 0;
       adjacentTriangleEdgeIndices[2] = 0;
-      
+
       closestPointToOrigin.set(0.0, 0.0, 0.0);
 
       triangleVertices[0] = pointOne;

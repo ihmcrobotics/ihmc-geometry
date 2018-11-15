@@ -20,7 +20,7 @@ public interface PolytopeVisualizationListener extends PolytopeListener
    void highlightEdges(List<? extends PolytopeHalfEdgeReadOnly> edges);
 
    void highlightVertices(List<? extends PolytopeVertexReadOnly> vertices);
-   
+
    @Override
    default void updateVisibleSilhouette(List<? extends PolytopeHalfEdgeReadOnly> visibleEdges)
    {
@@ -28,13 +28,13 @@ public interface PolytopeVisualizationListener extends PolytopeListener
    }
 
    void highlightEdge(PolytopeHalfEdgeReadOnly edgeToHighlight);
-   
+
    @Override
    default void udpateVisibleEdgeSeed(PolytopeHalfEdgeReadOnly visibleEdgeSeed)
    {
       highlightEdge(visibleEdgeSeed);
    }
-   
+
    @Override
    default void updateOnFaceList(List<? extends ConvexPolytopeFaceReadOnly> onFaceList)
    {

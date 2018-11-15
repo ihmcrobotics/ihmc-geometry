@@ -2,9 +2,8 @@ package us.ihmc.geometry.polytope;
 
 import java.util.ArrayList;
 
-import us.ihmc.euclid.tuple3D.Point3D;
-
 import gnu.trove.map.hash.THashMap;
+import us.ihmc.euclid.tuple3D.Point3D;
 
 public class ConvexPolytopeFromExpandingPolytopeEntryGenerator
 {

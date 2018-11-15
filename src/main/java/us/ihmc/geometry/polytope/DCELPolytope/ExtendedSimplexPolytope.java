@@ -26,22 +26,22 @@ public class ExtendedSimplexPolytope implements Simplex
    private final DenseMatrix64F basisInverse = new DenseMatrix64F(2, 3);
    private final DenseMatrix64F vector = new DenseMatrix64F(3, 1);
    private final DenseMatrix64F coordinates = new DenseMatrix64F(2, 1);
-   
+
    public ExtendedSimplexPolytope()
    {
       super();
    }
-   
+
    public void setEpsilon(double epsilon)
    {
       this.epsilon = epsilon;
    }
-   
+
    public void addVertex(PolytopeVertexReadOnly vertexOnPolytopeA, PolytopeVertexReadOnly vertexOnPolytopeB)
    {
       addVertex(vertexOnPolytopeA, vertexOnPolytopeB, epsilon);
    }
-   
+
    public void addVertex(PolytopeVertexReadOnly vertexOnPolytopeA, PolytopeVertexReadOnly vertexOnPolytopeB, double epsilon)
    {
       SimplexVertex newVertex = new SimplexVertex();
@@ -59,7 +59,7 @@ public class ExtendedSimplexPolytope implements Simplex
    {
       return polytope.isInteriorPoint(pointToCheck, epsilon);
    }
-   
+
    public double getShortestDistanceTo(Point3DReadOnly point)
    {
       return polytope.getShortestDistanceTo(point);
@@ -69,7 +69,7 @@ public class ExtendedSimplexPolytope implements Simplex
    {
       polytope.getSupportVectorDirectionTo(point, supportVectorToPack);
    }
-   
+
    public boolean isEmpty()
    {
       return polytope.isEmpty();
@@ -79,7 +79,7 @@ public class ExtendedSimplexPolytope implements Simplex
    {
       return (Simplex) polytope.getSmallestSimplexMemberReference(point);
    }
-   
+
    public String toString()
    {
       return polytope.toString();
@@ -89,15 +89,15 @@ public class ExtendedSimplexPolytope implements Simplex
    {
       return polytope;
    }
-   
+
    public void getCollidingPointsOnSimplex(Point3DReadOnly point, Point3D pointOnA, Point3D pointOnB)
    {
       Simplex member = getSmallestSimplexMemberReference(point);
       // Assuming linearity between the simplex and polytope points 
-      if(member instanceof ConvexPolytopeFace)
+      if (member instanceof ConvexPolytopeFace)
       {
          // TODO fix this nasty type casting
-         SimplexVertex simplexVertex1 = (SimplexVertex) ((ConvexPolytopeFace)member).getEdge(0).getOriginVertex();
+         SimplexVertex simplexVertex1 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getOriginVertex();
          PolytopeVertexReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
          PolytopeVertexReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
          SimplexVertex simplexVertex2 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getDestinationVertex();
@@ -106,10 +106,10 @@ public class ExtendedSimplexPolytope implements Simplex
          SimplexVertex simplexVertex3 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(1).getDestinationVertex();
          PolytopeVertexReadOnly polytopeAVertex3 = simplexVertex3.getVertexOnPolytopeA();
          PolytopeVertexReadOnly polytopeBVertex3 = simplexVertex3.getVertexOnPolytopeB();
-         
+
          // Computing the coordinate vector for the face basis (using the first two edges as the basis)
          EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, simplexVertex2, ((ConvexPolytopeFace) member).getFaceNormal(), projection);
-         for(int i = 0; i < 3; i++)
+         for (int i = 0; i < 3; i++)
          {
             basis.set(i, 0, simplexVertex1.getElement(i) - simplexVertex2.getElement(i));
             basis.set(i, 1, simplexVertex3.getElement(i) - simplexVertex2.getElement(i));

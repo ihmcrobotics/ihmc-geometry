@@ -1,10 +1,7 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.ConvexPolytopeFace;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedPolytopeVertex;
-import us.ihmc.geometry.polytope.DCELPolytope.PolytopeHalfEdge;
-import us.ihmc.geometry.polytope.DCELPolytope.Simplex;
 
 public class PolytopeVertexBuilder implements PolytopeVertexProvider
 {
@@ -32,5 +29,5 @@ public class PolytopeVertexBuilder implements PolytopeVertexProvider
    {
       return new ExtendedPolytopeVertex(vertexToAdd);
    }
-   
+
 }

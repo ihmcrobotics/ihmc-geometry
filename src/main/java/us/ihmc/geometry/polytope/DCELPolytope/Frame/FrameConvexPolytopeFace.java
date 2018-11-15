@@ -6,11 +6,12 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.FramePolytopeHalfEdgeBuilder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
 
-public class FrameConvexPolytopeFace extends ConvexPolytopeFaceBasics<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>  implements FrameSimplex, FrameSupportingVertexHolder, ReferenceFrameHolder
+public class FrameConvexPolytopeFace extends ConvexPolytopeFaceBasics<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>
+      implements FrameSimplex, FrameSupportingVertexHolder, ReferenceFrameHolder
 {
    private final ReferenceFrame referenceFrame;
    private final FramePolytopeHalfEdgeBuilder halfEdgeBuilder = new FramePolytopeHalfEdgeBuilder(this);
-   
+
    public FrameConvexPolytopeFace(ReferenceFrame referenceFrame)
    {
       this.referenceFrame = referenceFrame;

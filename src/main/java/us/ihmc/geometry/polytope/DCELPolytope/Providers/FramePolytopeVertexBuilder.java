@@ -3,7 +3,6 @@ package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 import us.ihmc.euclid.referenceFrame.FramePoint3D;
 import us.ihmc.euclid.referenceFrame.interfaces.ReferenceFrameHolder;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Frame.FrameConvexPolytopeFace;
 import us.ihmc.geometry.polytope.DCELPolytope.Frame.FramePolytopeHalfEdge;
 import us.ihmc.geometry.polytope.DCELPolytope.Frame.FramePolytopeVertex;
@@ -11,7 +10,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Frame.FramePolytopeVertex;
 public class FramePolytopeVertexBuilder implements PolytopeVertexProvider<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>
 {
    private final ReferenceFrameHolder referenceFrameHolder;
-   
+
    public FramePolytopeVertexBuilder(ReferenceFrameHolder referenceFrameHolder)
    {
       this.referenceFrameHolder = referenceFrameHolder;
@@ -40,7 +39,7 @@ public class FramePolytopeVertexBuilder implements PolytopeVertexProvider<FrameP
    {
       return new FramePolytopeVertex(referenceFrameHolder.getReferenceFrame(), vertexToAdd);
    }
-   
+
    public FramePolytopeVertex getVertex(FramePoint3D vertexToAdd)
    {
       return new FramePolytopeVertex(vertexToAdd.getReferenceFrame(), vertexToAdd);

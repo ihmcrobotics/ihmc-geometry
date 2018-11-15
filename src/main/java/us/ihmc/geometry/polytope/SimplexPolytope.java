@@ -5,7 +5,6 @@ import org.ejml.ops.CommonOps;
 
 import gnu.trove.map.hash.THashMap;
 import gnu.trove.map.hash.TObjectDoubleHashMap;
-import us.ihmc.commons.PrintTools;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 
@@ -619,14 +618,15 @@ public class SimplexPolytope
 
    public boolean wereMostRecentlyDiscared(Point3D checkOnA, Point3D checkOnB)
    {
-      if ((discardedOnA == null) || (discardedOnB == null)) return false;
+      if ((discardedOnA == null) || (discardedOnB == null))
+         return false;
 
       //TODO: Magic number.
       //TODO: Use == when the points are pointers. Need to be able to ask the shape if pointers or values...
       double epsilon = 1e-10;
-      
+
       return ((discardedOnA.distanceSquared(checkOnA) < epsilon) && (discardedOnB.distanceSquared(checkOnB) < epsilon));
-//      return ((discardedOnA == checkOnA) && (discardedOnB == checkOnB));
+      //      return ((discardedOnA == checkOnA) && (discardedOnB == checkOnB));
    }
 
    public boolean isInVoronoiRegionOfVertex(Point3D pointToCheck, Point3D otherPoint)
@@ -849,7 +849,7 @@ public class SimplexPolytope
    //
    //
    //   }
-   
+
    private void projectOriginOntoFace(Point3D vertexOne, Point3D vertexTwo, Point3D vertexThree, Point3D closestPointToOrigin)
    {
       // Using barycentric coordinates as described in https://www.cs.ubc.ca/~heidrich/Papers/JGT.05.pdf

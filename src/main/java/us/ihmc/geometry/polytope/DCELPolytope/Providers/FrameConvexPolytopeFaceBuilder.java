@@ -8,12 +8,12 @@ import us.ihmc.geometry.polytope.DCELPolytope.Frame.FramePolytopeVertex;
 public class FrameConvexPolytopeFaceBuilder implements ConvexPolytopeFaceProvider<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>
 {
    private final ReferenceFrameHolder referenceFrameHolder;
-   
+
    public FrameConvexPolytopeFaceBuilder(ReferenceFrameHolder referenceFrameHolder)
    {
       this.referenceFrameHolder = referenceFrameHolder;
    }
-   
+
    @Override
    public FrameConvexPolytopeFace getFace()
    {

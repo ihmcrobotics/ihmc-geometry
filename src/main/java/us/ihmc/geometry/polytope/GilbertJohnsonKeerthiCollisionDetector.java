@@ -7,7 +7,8 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 /**
  * GilbertJohnsonKeerthi (GJK) algorithm for doing collision detection
  *
- * For more information see book, papers, and presentations at http://realtimecollisiondetection.net/pubs/
+ * For more information see book, papers, and presentations at
+ * http://realtimecollisiondetection.net/pubs/
  */
 public class GilbertJohnsonKeerthiCollisionDetector
 {

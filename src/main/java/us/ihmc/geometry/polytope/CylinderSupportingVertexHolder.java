@@ -51,7 +51,7 @@ public class CylinderSupportingVertexHolder implements SupportingVertexHolder
    {
       tempTransform.set(transform);
       tempTransform.invert();
-      
+
       tempVectorForSupportingVertex.set(supportDirection);
       tempTransform.transform(tempVectorForSupportingVertex);
 
@@ -85,11 +85,11 @@ public class CylinderSupportingVertexHolder implements SupportingVertexHolder
       transform.transform(supportingVertex);
       return supportingVertex;
    }
-   
+
    public String toString()
    {
       String string = "radius = " + radius + ", height = " + height + ", transform = " + transform;
-      
+
       return string;
    }
 

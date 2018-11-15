@@ -2,9 +2,9 @@ package us.ihmc.geometry.polytope;
 
 import java.util.ArrayList;
 
+import gnu.trove.map.hash.THashMap;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
-import gnu.trove.map.hash.THashMap;
 
 /**
  * From http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html

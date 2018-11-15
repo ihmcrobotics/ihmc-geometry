@@ -5,7 +5,8 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 
 public interface ExpandingPolytopeAlgorithmListener
 {
-   public abstract void setPolytopes(SimplexPolytope simplex, SupportingVertexHolder polytopeOne, SupportingVertexHolder polytopeTwo, ExpandingPolytopeEntry triangleEntry);
+   public abstract void setPolytopes(SimplexPolytope simplex, SupportingVertexHolder polytopeOne, SupportingVertexHolder polytopeTwo,
+                                     ExpandingPolytopeEntry triangleEntry);
 
    public abstract void polledEntryToExpand(ExpandingPolytopeEntry triangleEntryToExpand);
 

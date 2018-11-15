@@ -109,6 +109,7 @@ public class ConvexPolytopeConstructor
 
    /**
     * Constructs a icosahedron that envelops the sphere to be created
+    * 
     * @param radius
     * @param center
     * @param edgeLengthForDiscretization
@@ -223,6 +224,7 @@ public class ConvexPolytopeConstructor
 
    /**
     * Creates a polytope by discretizing the curved surface of the cylinder
+    * 
     * @param center location of the polytope centroid
     * @param radius radius of the cylinder to be made
     * @param length lenght of the cylinder to be made
@@ -524,8 +526,7 @@ public class ConvexPolytopeConstructor
    public static FrameConvexPolytope getFrameCylindericalCollisionMesh(FramePoint3D centroid, Axis axis, double radius, double length,
                                                                        int curvedSurfaceDivisions)
    {
-      return createFramePolytope(centroid.getReferenceFrame(),
-                                 getCollisionMeshPointsForCylinder(centroid, axis, radius, length, curvedSurfaceDivisions));
+      return createFramePolytope(centroid.getReferenceFrame(), getCollisionMeshPointsForCylinder(centroid, axis, radius, length, curvedSurfaceDivisions));
    }
 
    public static FrameConvexPolytope getFrameCylindericalCollisionMesh(ReferenceFrame referenceFrame, Point3D centroid, Axis axis, double radius, double length,
@@ -540,18 +541,19 @@ public class ConvexPolytopeConstructor
       return createFramePolytope(referenceFrame, getCollisionMeshPointsForCylinder(transform, axis, radius, length, curvedSurfaceDivisions));
    }
 
-   public static ExtendedConvexPolytope getCylindericalCollisionMesh(Transform transform, Axis axis, double radius,
-                                                                       double length, int curvedSurfaceDivisions)
+   public static ExtendedConvexPolytope getCylindericalCollisionMesh(Transform transform, Axis axis, double radius, double length, int curvedSurfaceDivisions)
    {
       return createPolytope(getCollisionMeshPointsForCylinder(transform, axis, radius, length, curvedSurfaceDivisions));
    }
 
-   public static ExtendedConvexPolytope getCylindericalCollisionMesh(Point3DReadOnly centroid, Axis axis, double radius, double length, int curvedSurfaceDivisions)
+   public static ExtendedConvexPolytope getCylindericalCollisionMesh(Point3DReadOnly centroid, Axis axis, double radius, double length,
+                                                                     int curvedSurfaceDivisions)
    {
       return createPolytope(getCollisionMeshPointsForCylinder(centroid, axis, radius, length, curvedSurfaceDivisions));
    }
 
-   public static ArrayList<Point3D> getCollisionMeshPointsForCylinder(Point3DReadOnly centroid, Axis axis, double radius, double length, int curvedSurfaceDivisions)
+   public static ArrayList<Point3D> getCollisionMeshPointsForCylinder(Point3DReadOnly centroid, Axis axis, double radius, double length,
+                                                                      int curvedSurfaceDivisions)
    {
       return getCollisionMeshPointsForCylinder(centroid.getX(), centroid.getY(), centroid.getZ(), axis, radius, length, curvedSurfaceDivisions);
    }
@@ -687,26 +689,27 @@ public class ConvexPolytopeConstructor
    {
       return createFramePolytope(referenceFrame, getCollisionMeshPointsForCapsule(transform, axis, cylindericalLength, endRadius, curvedSurfaceDivisions));
    }
-   
-   public static ExtendedConvexPolytope getCapsuleCollisionMesh(Transform transform, Axis axis, double cylindericalLength,
-                                                                  double endRadius, int curvedSurfaceDivisions)
+
+   public static ExtendedConvexPolytope getCapsuleCollisionMesh(Transform transform, Axis axis, double cylindericalLength, double endRadius,
+                                                                int curvedSurfaceDivisions)
    {
       return createPolytope(getCollisionMeshPointsForCapsule(transform, axis, cylindericalLength, endRadius, curvedSurfaceDivisions));
    }
-   
+
    public static List<Point3D> getCollisionMeshPointsForCapsule(Transform transform, Axis axis, double length, double endRadius, int curvedSurfaceDivisions)
    {
       List<Point3D> points = new ArrayList<>();
       getCollisionMeshPointsForCapsule(transform, axis, length, endRadius, curvedSurfaceDivisions, points);
       return points;
    }
-   
-   public static void getCollisionMeshPointsForCapsule(Transform transform, Axis axis, double length, double endRadius, int curvedSurfaceDivisions, List<Point3D> pointsToPack)
+
+   public static void getCollisionMeshPointsForCapsule(Transform transform, Axis axis, double length, double endRadius, int curvedSurfaceDivisions,
+                                                       List<Point3D> pointsToPack)
    {
       getCollisionMeshPointsForCapsule(0.0, 0.0, 0.0, axis, length, endRadius, curvedSurfaceDivisions, pointsToPack);
       applyTransformToPoints(transform, pointsToPack);
    }
-   
+
    public static FrameConvexPolytope getFrameCapsuleCollisionMesh(ReferenceFrame referenceFrame, Point3D centeroid, Axis axis, double cylindericalLength,
                                                                   double endRadius, int curvedSurfaceDivisions)
    {

@@ -17,9 +17,10 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 /**
  * Template data structure that defines a Doubly-connected edge list (DCEL) polytope vertex
  * 
- * A DCEL vertex is composed of 
- * <li> 3D point: A data structure that stores the spatial location of the vertex in 3D space. May / may not have a notion of a {@code ReferenceFrame}
- * <li> Associated edge list: A list of DCEL edges {@code E} that have their origins at this vertex
+ * A DCEL vertex is composed of
+ * <li>3D point: A data structure that stores the spatial location of the vertex in 3D space. May /
+ * may not have a notion of a {@code ReferenceFrame}
+ * <li>Associated edge list: A list of DCEL edges {@code E} that have their origins at this vertex
  * 
  * @author Apoorv S
  * 
@@ -37,6 +38,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
 
    /**
     * Method to get a reference to the object storing the spatial coordinates for the vertex
+    * 
     * @return Typically a FramePoint3D or Point3D depending on the use
     */
    protected abstract Point3DBasics getPointObjectReference();
@@ -49,7 +51,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    /**
-    * Set the spatial coordinates from another vertex and copy all the edge associations 
+    * Set the spatial coordinates from another vertex and copy all the edge associations
     */
    public void set(V other)
    {
@@ -76,7 +78,9 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
 
    /**
     * Method to remove a particular edge from the associated edge list
-    * @param edgeToAdd the associated edge that is to be removed. In case the edge specified is not on the list, no errors are thrown
+    * 
+    * @param edgeToAdd the associated edge that is to be removed. In case the edge specified is not on
+    *           the list, no errors are thrown
     * 
     */
    public void removeAssociatedEdge(E edgeToAdd)
@@ -93,9 +97,10 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    /**
-    * Add a {@code List<E>} of DCEL edges to the associated edge list. This invokes the {@code addAssociatedEdge()} method 
-    * and addition to the list follows the same set of rules
-    * @param edgeList a list of DCEL edges that must be added 
+    * Add a {@code List<E>} of DCEL edges to the associated edge list. This invokes the
+    * {@code addAssociatedEdge()} method and addition to the list follows the same set of rules
+    * 
+    * @param edgeList a list of DCEL edges that must be added
     */
    public void addAssociatedEdges(List<E> edgeList)
    {
@@ -106,9 +111,11 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    /**
-    * Add a DCEL edge to the associated edge list. In case the edge is already on the associated edge list
-    * no action is carried out. The check for whether an edge is already on the list is done by comparing objects.
-    * Hence is possible to add a edge that geometrically equals an already existent edge
+    * Add a DCEL edge to the associated edge list. In case the edge is already on the associated edge
+    * list no action is carried out. The check for whether an edge is already on the list is done by
+    * comparing objects. Hence is possible to add a edge that geometrically equals an already existent
+    * edge
+    * 
     * @param edge the DCEL edge to add to the associated edge list
     */
    public void addAssociatedEdge(E edge)
@@ -132,7 +139,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    {
       for (int i = 0; i < associatedEdges.size(); i++)
       {
-         if(associatedEdges.get(i).epsilonEquals(edgeToCheck, epsilon))
+         if (associatedEdges.get(i).epsilonEquals(edgeToCheck, epsilon))
             return true;
       }
       return false;
@@ -267,7 +274,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    {
       return this;
    }
-   
+
    public void round(double epsilon)
    {
       setX(MathTools.roundToPrecision(getX(), epsilon));

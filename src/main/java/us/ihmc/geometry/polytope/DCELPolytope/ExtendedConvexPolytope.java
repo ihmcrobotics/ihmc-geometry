@@ -10,28 +10,30 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeVertexBuilder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeVertexProvider;
 
 /**
- * A convex polytope is a collection of faces that describe it 
+ * A convex polytope is a collection of faces that describe it
  * 
- * This class is a data structure for storing a polytope in the DCEL notation (ref: https://en.wikipedia.org/wiki/Doubly_connected_edge_list).
- * Based on the original implementation by Jerry Pratt
+ * This class is a data structure for storing a polytope in the DCEL notation (ref:
+ * https://en.wikipedia.org/wiki/Doubly_connected_edge_list). Based on the original implementation
+ * by Jerry Pratt
+ * 
  * @author Apoorv S
  */
 
 public class ExtendedConvexPolytope extends ConvexPolytopeBasics<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace>
 {
-   private final ConvexPolytopeFaceBuilder faceBuilder = new ConvexPolytopeFaceBuilder(); 
-   private final PolytopeVertexBuilder vertexBuilder =  new PolytopeVertexBuilder();
-   
+   private final ConvexPolytopeFaceBuilder faceBuilder = new ConvexPolytopeFaceBuilder();
+   private final PolytopeVertexBuilder vertexBuilder = new PolytopeVertexBuilder();
+
    public ExtendedConvexPolytope()
    {
       super();
    }
-   
+
    public ExtendedConvexPolytope(PolytopeListener listener)
    {
       super(listener);
    }
-   
+
    public ExtendedConvexPolytope(ExtendedConvexPolytope polytope)
    {
       super(polytope);
@@ -48,19 +50,19 @@ public class ExtendedConvexPolytope extends ConvexPolytopeBasics<ExtendedPolytop
    {
       return faceBuilder;
    }
-   
+
    @Override
    public ConvexPolytopeFace getFace(int index)
    {
       return (ConvexPolytopeFace) super.getFace(index);
    }
-   
+
    @Override
    public List<ExtendedPolytopeVertex> getVertices()
    {
       return (List<ExtendedPolytopeVertex>) super.getVertices();
    }
-   
+
    @Override
    public List<PolytopeHalfEdge> getEdges()
    {

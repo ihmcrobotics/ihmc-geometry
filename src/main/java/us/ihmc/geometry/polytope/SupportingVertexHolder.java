@@ -6,7 +6,8 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 public interface SupportingVertexHolder
 {
    /**
-    * Get a support vertex in the direction specified 
+    * Get a support vertex in the direction specified
+    * 
     * @param supportDirection the direction to search in
     * @return the spatial location of the supporting vertex
     */

@@ -9,12 +9,20 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
 public interface PolytopeListener
 {
    void attachPolytope(ConvexPolytopeReadOnly polytopeToAttach);
+
    void updateAll();
+
    void updateEdges();
+
    void updateVertices();
+
    void updateFaces();
+
    void updateVisibleSilhouette(List<? extends PolytopeHalfEdgeReadOnly> visibleEdges);
+
    void udpateVisibleEdgeSeed(PolytopeHalfEdgeReadOnly visibleEdgeSeed);
+
    void updateOnFaceList(List<? extends ConvexPolytopeFaceReadOnly> onFaceList);
+
    void updateVisibleFaceList(List<? extends ConvexPolytopeFaceReadOnly> visibleFaceList);
 }

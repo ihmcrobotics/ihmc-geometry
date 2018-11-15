@@ -7,15 +7,16 @@ import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
 
-public class FramePolytopeVertex extends PolytopeVertexBasics<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>  implements FrameSimplex, ReferenceFrameHolder
+public class FramePolytopeVertex extends PolytopeVertexBasics<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>
+      implements FrameSimplex, ReferenceFrameHolder
 {
    private FramePoint3D point = new FramePoint3D();
    private FramePoint3D pointToReturn = new FramePoint3D();
-   
+
    public FramePolytopeVertex()
    {
    }
-   
+
    public FramePolytopeVertex(ReferenceFrame frame)
    {
       this.point.setToZero(frame);
@@ -30,22 +31,22 @@ public class FramePolytopeVertex extends PolytopeVertexBasics<FramePolytopeVerte
    {
       this.point.setIncludingFrame(frame, vertex);
    }
-   
+
    public FramePolytopeVertex(FramePoint3D vertex)
    {
       this.point.setIncludingFrame(vertex);
    }
-   
+
    public ReferenceFrame getReferenceFrame()
    {
       return point.getReferenceFrame();
    }
-   
+
    public void changeFrame(ReferenceFrame referenceFrame)
    {
       point.changeFrame(referenceFrame);
    }
-   
+
    @Override
    public FramePoint3D getPosition()
    {

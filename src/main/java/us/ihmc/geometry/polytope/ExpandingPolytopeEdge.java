@@ -15,7 +15,7 @@ public class ExpandingPolytopeEdge
    {
       setEntryAndIndex(entry, edgeIndex);
    }
-   
+
    public void setEntryAndIndex(ExpandingPolytopeEntry entry, int edgeIndex)
    {
       this.entry = entry;
@@ -31,14 +31,14 @@ public class ExpandingPolytopeEdge
    {
       return edgeIndex;
    }
-   
+
    public Point3D getStartPoint()
    {
       return entry.getVertex(edgeIndex);
    }
-   
+
    public Point3D getEndPoint()
    {
-      return entry.getVertex((edgeIndex + 1) %3);
+      return entry.getVertex((edgeIndex + 1) % 3);
    }
 }

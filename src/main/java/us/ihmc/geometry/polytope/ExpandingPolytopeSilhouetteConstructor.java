@@ -16,7 +16,7 @@ public class ExpandingPolytopeSilhouetteConstructor
          int adjacentTriangleEdgeIndex = triangleEntrySeenByW.getAdjacentTriangleEdgeIndex(triangleIndex);
 
          if (adjacentTriangle != null)
-         {            
+         {
             silhouette(adjacentTriangle, adjacentTriangleEdgeIndex, w, edgeListToPack);
          }
       }

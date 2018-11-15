@@ -67,7 +67,7 @@ public class ExpandingPolytopeAlgorithm
       tempVector14.sub(pointFour, pointOne);
       tempVector12Cross13.cross(tempVector12, tempVector13);
       double tripleProduct = tempVector12Cross13.dot(tempVector14);
-      
+
       if (tripleProduct >= 0.0)
       {
          polytopeIsRightHanded = true;
@@ -84,10 +84,10 @@ public class ExpandingPolytopeAlgorithm
          System.err.println("pointTwo = " + pointTwo);
          System.err.println("pointThree = " + pointThree);
          System.err.println("pointFour = " + pointFour);
-         
+
          throw new RuntimeException("tripleProduct < 1e-10");
       }
-      
+
       correspondingPointsOnA.put(pointOne, simplex.getCorrespondingPointOnPolytopeA(pointOne));
       correspondingPointsOnA.put(pointTwo, simplex.getCorrespondingPointOnPolytopeA(pointTwo));
       correspondingPointsOnA.put(pointThree, simplex.getCorrespondingPointOnPolytopeA(pointThree));
@@ -172,21 +172,21 @@ public class ExpandingPolytopeAlgorithm
                // to be robust to numerical round off errors.
                tempVector12.sub(triangleEntryToExpand.getVertex(1), triangleEntryToExpand.getVertex(0));
                tempVector13.sub(triangleEntryToExpand.getVertex(2), triangleEntryToExpand.getVertex(0));
-               
-               if (polytopeIsRightHanded) 
+
+               if (polytopeIsRightHanded)
                {
-                  supportDirection.cross(tempVector13, tempVector12);                  
+                  supportDirection.cross(tempVector13, tempVector12);
                }
                else
                {
-                  supportDirection.cross(tempVector12, tempVector13);                  
+                  supportDirection.cross(tempVector12, tempVector13);
                }
             }
             else
             {
                supportDirection.set(closestPointToOrigin);
             }
-            
+
             Point3D supportingVertexA = polytopeA.getSupportingVertex(supportDirection);
             supportDirection.negate();
             Point3D supportingVertexB = polytopeB.getSupportingVertex(supportDirection);
@@ -242,12 +242,12 @@ public class ExpandingPolytopeAlgorithm
                   Point3D sentryVertexOne = sentry.getVertex(sentryEdgeIndex);
                   Point3D sentryVertexTwo = sentry.getVertex(nextIndex);
 
-//                  ExpandingPolytopeEntry newEntry = polytopeEntryPool.add();
-//                  newEntry.reset(sentryVertexTwo, sentryVertexOne, wPoint);
-                  
+                  //                  ExpandingPolytopeEntry newEntry = polytopeEntryPool.add();
+                  //                  newEntry.reset(sentryVertexTwo, sentryVertexOne, wPoint);
+
                   ExpandingPolytopeEntry newEntry = polytopeEntryPool.add();
                   newEntry.reset(sentryVertexTwo, sentryVertexOne, wPoint);
-//                  ExpandingPolytopeEntry newEntry = new ExpandingPolytopeEntry(sentryVertexTwo, sentryVertexOne, wPoint);
+                  //                  ExpandingPolytopeEntry newEntry = new ExpandingPolytopeEntry(sentryVertexTwo, sentryVertexOne, wPoint);
 
                   if (newEntry.isAffinelyDependent())
                   {
@@ -343,7 +343,7 @@ public class ExpandingPolytopeAlgorithm
    }
 
    private ExpandingPolytopeEntry[] getOrCreateTwoTriangleArray(THashMap<Point3D, ExpandingPolytopeEntry[]> mapFromStitchVertexToTriangles,
-         Point3D sentryVertexOne)
+                                                                Point3D sentryVertexOne)
    {
       ExpandingPolytopeEntry[] twoTriangleArray = mapFromStitchVertexToTriangles.get(sentryVertexOne);
       if (twoTriangleArray == null)
