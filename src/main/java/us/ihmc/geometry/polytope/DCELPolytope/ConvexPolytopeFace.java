@@ -20,7 +20,7 @@ public class ConvexPolytopeFace extends ConvexPolytopeFaceBasics implements Simp
       super();
    }
 
-   public ConvexPolytopeFace(PolytopeHalfEdge[] edges)
+   public ConvexPolytopeFace(HalfEdge3D[] edges)
    {
       super(edges);
    }
@@ -32,14 +32,14 @@ public class ConvexPolytopeFace extends ConvexPolytopeFaceBasics implements Simp
    }
 
    @Override
-   public PolytopeHalfEdge getEdge(int index)
+   public HalfEdge3D getEdge(int index)
    {
-      return (PolytopeHalfEdge) super.getEdge(index);
+      return (HalfEdge3D) super.getEdge(index);
    }
 
    @Override
-   public PolytopeHalfEdge getFirstVisibleEdge(Point3DReadOnly vertex)
+   public HalfEdge3D getFirstVisibleEdge(Point3DReadOnly vertex)
    {
-      return (PolytopeHalfEdge) super.getFirstVisibleEdge(vertex);
+      return (HalfEdge3D) super.getFirstVisibleEdge(vertex);
    }
 }

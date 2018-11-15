@@ -46,8 +46,8 @@ public class PolytopeVertexTest
       Vertex3D vertex1 = new Vertex3D(0.1, 0.2, 0.3);
       Vertex3D vertex2 = new Vertex3D(0.2, 3.1, 5.7);
       Vertex3D vertex3 = new Vertex3D(1.2, 8.1, 0.0);
-      PolytopeHalfEdge edge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge edge2 = new PolytopeHalfEdge(vertex1, vertex3);
+      HalfEdge3D edge1 = new HalfEdge3D(vertex1, vertex2);
+      HalfEdge3D edge2 = new HalfEdge3D(vertex1, vertex3);
       assertTrue(vertex1.getAssociatedEdges().size() == 2);
       assertTrue(vertex1.getAssociatedEdges().get(0) == edge1);
       assertTrue(vertex1.getAssociatedEdges().get(1) == edge2);
@@ -117,9 +117,9 @@ public class PolytopeVertexTest
       Vertex3D vertex1 = new Vertex3D(1.0, 2.0, 3.0);
       Vertex3D vertex2 = new Vertex3D(4.0, 5.0, 6.0);
       Vertex3D vertex3 = new Vertex3D(10.0, 15.0, 6.0);
-      PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex1, vertex3);
+      HalfEdge3D halfEdge1 = new HalfEdge3D(vertex1, vertex2);
+      HalfEdge3D halfEdge2 = new HalfEdge3D(vertex1, vertex2);
+      HalfEdge3D halfEdge3 = new HalfEdge3D(vertex1, vertex3);
       assertTrue(vertex1.getNumberOfAssociatedEdges() == 3);
       assertTrue(vertex1.getAssociatedEdge(0) == halfEdge1);
       assertTrue(vertex1.getAssociatedEdge(1) == halfEdge2);
@@ -145,7 +145,7 @@ public class PolytopeVertexTest
       assertTrue(fail);
       assertTrue(vertex1.isAssociatedWithEdge(halfEdge1, Epsilons.ONE_BILLIONTH));
       Vertex3D vertex4 = new Vertex3D(12.0, 1.0, 9.0);
-      PolytopeHalfEdge halfEdge4 = new PolytopeHalfEdge(vertex3, vertex4);
+      HalfEdge3D halfEdge4 = new HalfEdge3D(vertex3, vertex4);
       assertFalse(vertex1.isAssociatedWithEdge(halfEdge4));
       assertFalse(vertex1.isAssociatedWithEdge(halfEdge4, Epsilons.ONE));
    }
@@ -167,12 +167,12 @@ public class PolytopeVertexTest
    public void testMultipleAssociationAdd()
    {
       Vertex3D vertex = new Vertex3D(1.0, 2.0, 3.0);
-      List<PolytopeHalfEdge> halfEdgesToAdd = new ArrayList<>();
-      halfEdgesToAdd.add(new PolytopeHalfEdge());
-      halfEdgesToAdd.add(new PolytopeHalfEdge(vertex, null));
-      halfEdgesToAdd.add(new PolytopeHalfEdge());
-      halfEdgesToAdd.add(new PolytopeHalfEdge(vertex, null));
-      halfEdgesToAdd.add(new PolytopeHalfEdge());
+      List<HalfEdge3D> halfEdgesToAdd = new ArrayList<>();
+      halfEdgesToAdd.add(new HalfEdge3D());
+      halfEdgesToAdd.add(new HalfEdge3D(vertex, null));
+      halfEdgesToAdd.add(new HalfEdge3D());
+      halfEdgesToAdd.add(new HalfEdge3D(vertex, null));
+      halfEdgesToAdd.add(new HalfEdge3D());
       assertTrue(vertex.getNumberOfAssociatedEdges() == 2);
       vertex.addAssociatedEdges(halfEdgesToAdd);
       assertTrue(vertex.getNumberOfAssociatedEdges() == 5);

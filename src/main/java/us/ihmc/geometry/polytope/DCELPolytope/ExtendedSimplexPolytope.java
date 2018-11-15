@@ -120,13 +120,13 @@ public class ExtendedSimplexPolytope implements Simplex
          setByInterpolation(pointOnA, polytopeAVertex1, polytopeAVertex2, polytopeAVertex3, coordinates.get(0, 0), coordinates.get(1, 0));
          setByInterpolation(pointOnB, polytopeBVertex1, polytopeBVertex2, polytopeBVertex3, coordinates.get(0, 0), coordinates.get(1, 0));
       }
-      else if (member instanceof PolytopeHalfEdge)
+      else if (member instanceof HalfEdge3D)
       {
          // TODO fix this nasty type casting 
-         SimplexVertex simplexVertex1 = (SimplexVertex) ((PolytopeHalfEdge) member).getOriginVertex();
+         SimplexVertex simplexVertex1 = (SimplexVertex) ((HalfEdge3D) member).getOriginVertex();
          Vertex3DReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
-         SimplexVertex simplexVertex2 = (SimplexVertex) ((PolytopeHalfEdge) member).getDestinationVertex();
+         SimplexVertex simplexVertex2 = (SimplexVertex) ((HalfEdge3D) member).getDestinationVertex();
          Vertex3DReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
          double percentage = EuclidGeometryTools.percentageAlongLineSegment3D(point, simplexVertex1, simplexVertex2);

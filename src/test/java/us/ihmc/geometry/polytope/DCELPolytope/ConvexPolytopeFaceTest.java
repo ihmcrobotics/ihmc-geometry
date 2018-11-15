@@ -46,7 +46,7 @@ public class ConvexPolytopeFaceTest
       Vertex3D vertex4 = new Vertex3D(1.0, 1.0, 0.0);
       face.addVertex(vertex4, epsilon);
       assertTrue("Got: " + face.getNumberOfEdges() + " , should have been 4", face.getNumberOfEdges() == 4);
-      PolytopeHalfEdge edge = face.getEdge(0);
+      HalfEdge3D edge = face.getEdge(0);
       assertTrue(edge.getOriginVertex() == vertex1);
       assertTrue(edge.getDestinationVertex() == vertex2);
       edge = edge.getNextHalfEdge();
@@ -161,11 +161,11 @@ public class ConvexPolytopeFaceTest
       Vertex3D vertex3 = new Vertex3D(1.0, 1.0, 0.0);
       Vertex3D vertex4 = new Vertex3D(0.0, 1.0, 0.0);
       Vertex3D vertex5 = new Vertex3D(-1.0, 0.5, 0.0);
-      PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex2, vertex3);
-      PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex3, vertex4);
-      PolytopeHalfEdge halfEdge4 = new PolytopeHalfEdge(vertex4, vertex5);
-      PolytopeHalfEdge halfEdge5 = new PolytopeHalfEdge(vertex5, vertex1);
+      HalfEdge3D halfEdge1 = new HalfEdge3D(vertex1, vertex2);
+      HalfEdge3D halfEdge2 = new HalfEdge3D(vertex2, vertex3);
+      HalfEdge3D halfEdge3 = new HalfEdge3D(vertex3, vertex4);
+      HalfEdge3D halfEdge4 = new HalfEdge3D(vertex4, vertex5);
+      HalfEdge3D halfEdge5 = new HalfEdge3D(vertex5, vertex1);
       halfEdge1.setNextHalfEdge(halfEdge2);
       halfEdge2.setNextHalfEdge(halfEdge3);
       halfEdge3.setNextHalfEdge(halfEdge4);
@@ -176,9 +176,9 @@ public class ConvexPolytopeFaceTest
       halfEdge3.setPreviousHalfEdge(halfEdge2);
       halfEdge4.setPreviousHalfEdge(halfEdge3);
       halfEdge5.setPreviousHalfEdge(halfEdge4);
-      ConvexPolytopeFace face = new ConvexPolytopeFace(new PolytopeHalfEdge[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
+      ConvexPolytopeFace face = new ConvexPolytopeFace(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
       Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
-      PolytopeHalfEdge firstVisibleEdge = face.getFirstVisibleEdge(vertex6);
+      HalfEdge3D firstVisibleEdge = face.getFirstVisibleEdge(vertex6);
       assertTrue(firstVisibleEdge == halfEdge5);
 
       Vertex3D vertex7 = new Vertex3D(2.0, -1.0, 0.0);
@@ -195,11 +195,11 @@ public class ConvexPolytopeFaceTest
       Vertex3D vertex3 = new Vertex3D(1.0, 1.0, 0.0);
       Vertex3D vertex4 = new Vertex3D(0.0, 1.0, 0.0);
       Vertex3D vertex5 = new Vertex3D(-1.0, 0.5, 0.0);
-      PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex2, vertex3);
-      PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex3, vertex4);
-      PolytopeHalfEdge halfEdge4 = new PolytopeHalfEdge(vertex4, vertex5);
-      PolytopeHalfEdge halfEdge5 = new PolytopeHalfEdge(vertex5, vertex1);
+      HalfEdge3D halfEdge1 = new HalfEdge3D(vertex1, vertex2);
+      HalfEdge3D halfEdge2 = new HalfEdge3D(vertex2, vertex3);
+      HalfEdge3D halfEdge3 = new HalfEdge3D(vertex3, vertex4);
+      HalfEdge3D halfEdge4 = new HalfEdge3D(vertex4, vertex5);
+      HalfEdge3D halfEdge5 = new HalfEdge3D(vertex5, vertex1);
       halfEdge1.setNextHalfEdge(halfEdge2);
       halfEdge2.setNextHalfEdge(halfEdge3);
       halfEdge3.setNextHalfEdge(halfEdge4);
@@ -210,7 +210,7 @@ public class ConvexPolytopeFaceTest
       halfEdge3.setPreviousHalfEdge(halfEdge2);
       halfEdge4.setPreviousHalfEdge(halfEdge3);
       halfEdge5.setPreviousHalfEdge(halfEdge4);
-      ConvexPolytopeFace face = new ConvexPolytopeFace(new PolytopeHalfEdge[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
+      ConvexPolytopeFace face = new ConvexPolytopeFace(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
 
       List<HalfEdge3DBasics> visibleEdgeList = new ArrayList<>();
       Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);

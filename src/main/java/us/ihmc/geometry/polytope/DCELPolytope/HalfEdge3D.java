@@ -15,11 +15,11 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * 
  * @author Apoorv S
  */
-public class PolytopeHalfEdge extends HalfEdge3DBasics implements Simplex
+public class HalfEdge3D extends HalfEdge3DBasics implements Simplex
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 
-   public PolytopeHalfEdge()
+   public HalfEdge3D()
    {
       super();
    }
@@ -30,31 +30,31 @@ public class PolytopeHalfEdge extends HalfEdge3DBasics implements Simplex
     * 
     * @param edge
     */
-   public PolytopeHalfEdge(HalfEdge3DReadOnly edge)
+   public HalfEdge3D(HalfEdge3DReadOnly edge)
    {
       super(new Vertex3D(edge.getOriginVertex()), new Vertex3D(edge.getDestinationVertex()));
    }
 
-   public PolytopeHalfEdge(Vertex3D origin, Vertex3D destination)
+   public HalfEdge3D(Vertex3D origin, Vertex3D destination)
    {
       super(origin, destination);
    }
 
-   public PolytopeHalfEdge(Vertex3D originVertex, Vertex3D destinationVertex, PolytopeHalfEdge twinEdge,
-                           PolytopeHalfEdge nextHalfEdge, PolytopeHalfEdge previousHalfEdge, ConvexPolytopeFace face)
+   public HalfEdge3D(Vertex3D originVertex, Vertex3D destinationVertex, HalfEdge3D twinEdge,
+                           HalfEdge3D nextHalfEdge, HalfEdge3D previousHalfEdge, ConvexPolytopeFace face)
    {
       super(originVertex, destinationVertex, twinEdge, nextHalfEdge, previousHalfEdge, face);
    }
 
-   public PolytopeHalfEdge(PolytopeHalfEdge twinEdge, ConvexPolytopeFace face)
+   public HalfEdge3D(HalfEdge3D twinEdge, ConvexPolytopeFace face)
    {
       super(twinEdge, face);
    }
 
    @Override
-   public PolytopeHalfEdge getNextHalfEdge()
+   public HalfEdge3D getNextHalfEdge()
    {
-      return (PolytopeHalfEdge) super.getNextHalfEdge();
+      return (HalfEdge3D) super.getNextHalfEdge();
    }
 
    @Override
