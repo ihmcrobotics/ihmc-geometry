@@ -158,7 +158,7 @@ public abstract class ConvexPolytopeFaceBasics
     * @param vertexToAdd the vertex that must be added to the face
     * @param epsilon
     */
-   public void addVertex(PolytopeVertexBasics vertexToAdd, double epsilon)
+   public void addVertex(Vertex3DBasics vertexToAdd, double epsilon)
    {
       vertexToAdd.round(epsilon);
       switch (edges.size())
@@ -565,9 +565,9 @@ public abstract class ConvexPolytopeFaceBasics
    @Override
    public Point3DReadOnly getSupportingVertex(Vector3DReadOnly supportVector)
    {
-      PolytopeVertexBasics bestVertex = edges.get(0).getOriginVertex();
+      Vertex3DBasics bestVertex = edges.get(0).getOriginVertex();
       double maxDot = bestVertex.dot(supportVector);
-      PolytopeVertexBasics bestVertexCandidate = bestVertex;
+      Vertex3DBasics bestVertexCandidate = bestVertex;
       while (true)
       {
          bestVertexCandidate = bestVertex;

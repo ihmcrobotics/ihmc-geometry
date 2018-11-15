@@ -17,7 +17,7 @@ import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 public class PolytopeVertexTest
 {
@@ -214,6 +214,6 @@ public class PolytopeVertexTest
    
    public static void main(String args[])
    {
-      MutationTestFacilitator.facilitateMutationTestForClass(PolytopeVertexBasics.class, PolytopeVertexTest.class);
+      MutationTestFacilitator.facilitateMutationTestForClass(Vertex3DBasics.class, PolytopeVertexTest.class);
    }
 }

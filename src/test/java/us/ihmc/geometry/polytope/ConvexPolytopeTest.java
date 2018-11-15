@@ -27,7 +27,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 public class ConvexPolytopeTest
 {
@@ -379,7 +379,7 @@ public class ConvexPolytopeTest
       assertEquals(3, vertexSeven.getNumberOfAssociatedEdges());
       assertEquals(3, vertexEight.getNumberOfAssociatedEdges());
 
-      List<PolytopeVertexBasics> vertices = polytope.getVertices();
+      List<Vertex3DBasics> vertices = polytope.getVertices();
 
       RigidBodyTransform transform = new RigidBodyTransform();
       transform.setTranslation(1.0, 2.0, 3.0);

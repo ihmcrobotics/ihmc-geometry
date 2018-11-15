@@ -34,11 +34,11 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
    /**
     * Specifies the spatial location at which the half edge originates
     */
-   private PolytopeVertexBasics originVertex;
+   private Vertex3DBasics originVertex;
    /**
     * Specifies the spatial location at which the half edge terminates
     */
-   private PolytopeVertexBasics destinationVertex;
+   private Vertex3DBasics destinationVertex;
    /**
     * The half edge on an adjacent face that originates at the {@code destinatioVertex} and terminates
     * at the {@code originVertex}. Represents the opposite spatial direction
@@ -88,7 +88,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     * @param originVertex
     * @param destinationVertex
     */
-   public PolytopeHalfEdgeBasics(PolytopeVertexBasics originVertex, PolytopeVertexBasics destinationVertex)
+   public PolytopeHalfEdgeBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -174,7 +174,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     *           face normal. Can be {@code null}
     * @param face the face that this half edge is a part of. Can be {@code null}
     */
-   public PolytopeHalfEdgeBasics(PolytopeVertexBasics originVertex, PolytopeVertexBasics destinationVertex, PolytopeHalfEdgeBasics twinEdge,
+   public PolytopeHalfEdgeBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex, PolytopeHalfEdgeBasics twinEdge,
                                  PolytopeHalfEdgeBasics nextHalfEdge, PolytopeHalfEdgeBasics previousHalfEdge, ConvexPolytopeFaceBasics face)
    {
       setOriginVertex(originVertex);
@@ -192,7 +192,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     * 
     * @param originVertex the new vertex that the half edge originates at. Can be null. Is modified
     */
-   public void setOriginVertex(PolytopeVertexBasics originVertex)
+   public void setOriginVertex(Vertex3DBasics originVertex)
    {
       if (this.originVertex != null)
          this.originVertex.removeAssociatedEdge(this);
@@ -209,7 +209,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     * @param originVertex the new vertex that the half edge originates at. Can be null. Is not modified
     *           in this function
     */
-   public void setOriginVertexUnsafe(PolytopeVertexBasics originVertex)
+   public void setOriginVertexUnsafe(Vertex3DBasics originVertex)
    {
       this.originVertex = originVertex;
    }
@@ -245,7 +245,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
    /**
     * Returns a reference to the origin vertex for this half edge
     */
-   public PolytopeVertexBasics getOriginVertex()
+   public Vertex3DBasics getOriginVertex()
    {
       return originVertex;
    }
@@ -257,7 +257,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     * @param destinationVertex the new vertex that the half edge originates at. Can be null. Is not
     *           modified in this function
     */
-   public void setDestinationVertex(PolytopeVertexBasics destinationVertex)
+   public void setDestinationVertex(Vertex3DBasics destinationVertex)
    {
       this.destinationVertex = destinationVertex;
       updateTwinOrigin();
@@ -271,7 +271,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     *           modified in this function
     * @param destinationVertex
     */
-   public void setDestinationVertexUnsafe(PolytopeVertexBasics destinationVertex)
+   public void setDestinationVertexUnsafe(Vertex3DBasics destinationVertex)
    {
       this.destinationVertex = destinationVertex;
    }
@@ -279,7 +279,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
    /**
     * Returns a reference to the {@code destinationVertex} of this half edge
     */
-   public PolytopeVertexBasics getDestinationVertex()
+   public Vertex3DBasics getDestinationVertex()
    {
       return destinationVertex;
    }
@@ -501,7 +501,7 @@ public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly
     */
    public void reverseEdge()
    {
-      PolytopeVertexBasics newDestinationVertex = this.originVertex;
+      Vertex3DBasics newDestinationVertex = this.originVertex;
       setOriginVertex(destinationVertex);
       setDestinationVertex(newDestinationVertex);
       PolytopeHalfEdgeBasics newNextHalfEdge = this.previousHalfEdge;

@@ -1,7 +1,7 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 /**
  * This class stores the location of a point which is the vertex of a polytope A list of polytope
@@ -11,7 +11,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
  * @author Apoorv S
  *
  */
-public class ExtendedPolytopeVertex extends PolytopeVertexBasics implements Simplex
+public class ExtendedPolytopeVertex extends Vertex3DBasics implements Simplex
 {
    private double x, y, z;
 
