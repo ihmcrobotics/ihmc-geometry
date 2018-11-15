@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import us.ihmc.commons.Epsilons;
 import us.ihmc.continuousIntegration.ContinuousIntegrationAnnotations.ContinuousIntegrationTest;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 
 public class ConvexPolytopeFaceTest
 {
@@ -212,7 +212,7 @@ public class ConvexPolytopeFaceTest
       halfEdge5.setPreviousHalfEdge(halfEdge4);
       ConvexPolytopeFace face = new ConvexPolytopeFace(new PolytopeHalfEdge[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
 
-      List<PolytopeHalfEdgeBasics> visibleEdgeList = new ArrayList<>();
+      List<HalfEdge3DBasics> visibleEdgeList = new ArrayList<>();
       Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
       face.getVisibleEdgeList(vertex6, visibleEdgeList);
       assertTrue(visibleEdgeList.size() == 2);

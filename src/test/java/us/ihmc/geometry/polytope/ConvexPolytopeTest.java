@@ -25,7 +25,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
 import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
@@ -170,7 +170,7 @@ public class ConvexPolytopeTest
       polytope.addVertex(vertexThree, EPSILON);
       polytope.addVertex(vertexFour, EPSILON);
       polytope.addVertex(vertexFive, EPSILON);
-      List<PolytopeHalfEdgeBasics> visibleEdges = new ArrayList<>();
+      List<HalfEdge3DBasics> visibleEdges = new ArrayList<>();
       polytope.getVisibleSilhouette(vertexSix, visibleEdges, EPSILON);
    }
 
@@ -424,7 +424,7 @@ public class ConvexPolytopeTest
       ExtendedConvexPolytope cubeOne = ConvexPolytopeConstructor.constructExtendedBoxWithCenterAtZero(100.0, 100.0, 0.5);
       assertEquals(8, cubeOne.getNumberOfVertices());
       assertEquals(12, cubeOne.getNumberOfEdges());
-      List<PolytopeHalfEdgeBasics> edges = cubeOne.getEdges();
+      List<HalfEdge3DBasics> edges = cubeOne.getEdges();
       assertEquals(24, edges.size());
    }
 

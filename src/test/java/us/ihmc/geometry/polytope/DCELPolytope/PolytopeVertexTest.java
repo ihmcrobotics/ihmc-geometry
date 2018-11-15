@@ -16,7 +16,7 @@ import us.ihmc.euclid.tools.EuclidCoreRandomTools;
 import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
 
 public class PolytopeVertexTest
@@ -56,7 +56,7 @@ public class PolytopeVertexTest
       assertTrue(vertex2.getAssociatedEdges().size() == 0);
       assertTrue(vertex3.getAssociatedEdges().size() == 0);
 
-      PolytopeHalfEdgeBasics twinEdge1 = edge1.createTwinHalfEdge();
+      HalfEdge3DBasics twinEdge1 = edge1.createTwinHalfEdge();
       assertTrue(vertex2.getAssociatedEdges().size() == 1);
       assertTrue(vertex2.getAssociatedEdges().get(0) == twinEdge1);
 

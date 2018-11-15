@@ -1,6 +1,6 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeBuilder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
@@ -15,7 +15,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * 
  * @author Apoorv S
  */
-public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics implements Simplex
+public class PolytopeHalfEdge extends HalfEdge3DBasics implements Simplex
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 

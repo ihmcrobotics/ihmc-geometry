@@ -32,7 +32,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
 {
    private final static boolean debug = false;
    private final ArrayList<Vertex3DBasics> vertices = new ArrayList<>();
-   private final ArrayList<PolytopeHalfEdgeBasics> edges = new ArrayList<>();
+   private final ArrayList<HalfEdge3DBasics> edges = new ArrayList<>();
    private final ArrayList<ConvexPolytopeFaceBasics> faces = new ArrayList<>();
    /**
     * Bounding box for the polytope
@@ -44,7 +44,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
    private final ArrayList<ConvexPolytopeFaceBasics> silhouetteFaces = new ArrayList<>();
    private final ArrayList<ConvexPolytopeFaceBasics> nonSilhouetteFaces = new ArrayList<>();
    private final ArrayList<ConvexPolytopeFaceBasics> onFaceList = new ArrayList<>();
-   private final ArrayList<PolytopeHalfEdgeBasics> visibleSilhouetteList = new ArrayList<>();
+   private final ArrayList<HalfEdge3DBasics> visibleSilhouetteList = new ArrayList<>();
 
    private Vector3D tempVector = new Vector3D();
    private Point3D centroid = new Point3D();
@@ -162,7 +162,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       return edges.size() / 2;
    }
 
-   public List<PolytopeHalfEdgeBasics> getEdges()
+   public List<HalfEdge3DBasics> getEdges()
    {
       updateEdges();
       return edges;
@@ -173,7 +173,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       edges.clear();
       for (int i = 0; i < faces.size(); i++)
       {
-         List<PolytopeHalfEdgeBasics> faceEdgeList = faces.get(i).getEdgeList();
+         List<HalfEdge3DBasics> faceEdgeList = faces.get(i).getEdgeList();
          for (int j = 0; j < faceEdgeList.size(); j++)
          {
             edges.add(faceEdgeList.get(j));
@@ -296,7 +296,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
                faces.get(0).reverseFaceNormal();
 
             visibleSilhouetteList.clear();
-            PolytopeHalfEdgeBasics halfEdge = faces.get(0).getEdge(0);
+            HalfEdge3DBasics halfEdge = faces.get(0).getEdge(0);
             if (listener != null)
                listener.udpateVisibleEdgeSeed(halfEdge);
             for (int i = 0; i < faces.get(0).getNumberOfEdges(); i++)
@@ -323,7 +323,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       if (debug)
          PrintTools.debug("Visible faces: " + visibleFaces.size() + ", On Faces: " + onFaceList.size());
       getSilhouetteFaces(silhouetteFaces, nonSilhouetteFaces, visibleFaces);
-      PolytopeHalfEdgeBasics firstHalfEdgeForSilhouette = null;
+      HalfEdge3DBasics firstHalfEdgeForSilhouette = null;
       if (listener != null)
       {
          listener.updateOnFaceList(onFaceList);
@@ -333,7 +333,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       {
          if (checkIsInteriorPointOf(onFaceList, vertexToAdd, epsilon))
             return;
-         PolytopeHalfEdgeBasics firstVisibleEdge = getFirstVisibleEdgeFromOnFaceList(onFaceList, visibleFaces); //onFaceList.get(0).getFirstVisibleEdge(vertexToAdd);
+         HalfEdge3DBasics firstVisibleEdge = getFirstVisibleEdgeFromOnFaceList(onFaceList, visibleFaces); //onFaceList.get(0).getFirstVisibleEdge(vertexToAdd);
          if (firstVisibleEdge == null)
             return;
          firstHalfEdgeForSilhouette = firstVisibleEdge.getTwinHalfEdge();
@@ -377,10 +377,10 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       return false;
    }
 
-   private PolytopeHalfEdgeBasics getFirstVisibleEdgeFromOnFaceList(ArrayList<ConvexPolytopeFaceBasics> onFaceList, ArrayList<ConvexPolytopeFaceBasics> visibleFaces)
+   private HalfEdge3DBasics getFirstVisibleEdgeFromOnFaceList(ArrayList<ConvexPolytopeFaceBasics> onFaceList, ArrayList<ConvexPolytopeFaceBasics> visibleFaces)
    {
       ConvexPolytopeFaceBasics firstFace = onFaceList.get(0);
-      PolytopeHalfEdgeBasics edgeUnderConsideration = firstFace.getEdge(0);
+      HalfEdge3DBasics edgeUnderConsideration = firstFace.getEdge(0);
       for (int i = 0; i < firstFace.getNumberOfEdges(); i++)
       {
          if (!visibleFaces.contains(edgeUnderConsideration.getNextHalfEdge().getTwinHalfEdge().getFace())
@@ -422,7 +422,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       }
    }
 
-   public void getVisibleSilhouette(Point3DReadOnly vertex, List<PolytopeHalfEdgeBasics> visibleSilhouetteToPack, double epsilon)
+   public void getVisibleSilhouette(Point3DReadOnly vertex, List<HalfEdge3DBasics> visibleSilhouetteToPack, double epsilon)
    {
       ConvexPolytopeFaceBasics leastVisibleFace = getVisibleFaces(visibleFaces, vertex, epsilon);
       if (visibleFaces.isEmpty())
@@ -431,14 +431,14 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       }
       getFacesWhichPointIsOn(vertex, onFaceList, epsilon);
       getSilhouetteFaces(silhouetteFaces, nonSilhouetteFaces, visibleFaces);
-      PolytopeHalfEdgeBasics firstHalfEdgeForSilhouette = onFaceList.size() > 0 ? onFaceList.get(0).getFirstVisibleEdge(vertex).getTwinHalfEdge()
+      HalfEdge3DBasics firstHalfEdgeForSilhouette = onFaceList.size() > 0 ? onFaceList.get(0).getFirstVisibleEdge(vertex).getTwinHalfEdge()
             : getSeedEdgeForSilhouetteCalculation(visibleFaces, leastVisibleFace);
       getVisibleSilhouetteUsingSeed(visibleSilhouetteToPack, firstHalfEdgeForSilhouette, visibleFaces);
    }
 
-   public void getVisibleSilhouetteUsingSeed(List<PolytopeHalfEdgeBasics> visibleSilhouetteToPack, PolytopeHalfEdgeBasics seedHalfEdge, List<ConvexPolytopeFaceBasics> silhouetteFaceList)
+   public void getVisibleSilhouetteUsingSeed(List<HalfEdge3DBasics> visibleSilhouetteToPack, HalfEdge3DBasics seedHalfEdge, List<ConvexPolytopeFaceBasics> silhouetteFaceList)
    {
-      PolytopeHalfEdgeBasics halfEdgeUnderConsideration = seedHalfEdge;
+      HalfEdge3DBasics halfEdgeUnderConsideration = seedHalfEdge;
       visibleSilhouetteToPack.clear();
       int numberOfEdges = getNumberOfEdges();
       int count;
@@ -504,12 +504,12 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       }
    }
 
-   public PolytopeHalfEdgeBasics getSeedEdgeForSilhouetteCalculation(List<ConvexPolytopeFaceBasics> visibleFaceList, ConvexPolytopeFaceBasics leastVisibleFace)
+   public HalfEdge3DBasics getSeedEdgeForSilhouetteCalculation(List<ConvexPolytopeFaceBasics> visibleFaceList, ConvexPolytopeFaceBasics leastVisibleFace)
    {
       if (faces.size() == 1)
          return faces.get(0).getEdge(0);
-      PolytopeHalfEdgeBasics seedEdge = null;
-      PolytopeHalfEdgeBasics seedEdgeCandidate = leastVisibleFace.getEdge(0);
+      HalfEdge3DBasics seedEdge = null;
+      HalfEdge3DBasics seedEdgeCandidate = leastVisibleFace.getEdge(0);
       for (int i = 0; seedEdge == null && i < leastVisibleFace.getNumberOfEdges(); i++)
       {
          if (!visibleFaceList.contains(seedEdgeCandidate.getTwinHalfEdge().getFace()))
@@ -546,12 +546,12 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
    //      twinEdges(visibleSilhouetteList.get(visibleSilhouetteList.size() - 1).getTwinHalfEdge().getNextHalfEdge(), firstNewFace.getEdge(0).getPreviousHalfEdge());
    //   }
 
-   private void createFacesFromVisibleSilhouetteAndOnFaceList(List<PolytopeHalfEdgeBasics> silhouetteEdges, List<ConvexPolytopeFaceBasics> onFaceList, Vertex3DBasics vertexToAdd, double epsilon)
+   private void createFacesFromVisibleSilhouetteAndOnFaceList(List<HalfEdge3DBasics> silhouetteEdges, List<ConvexPolytopeFaceBasics> onFaceList, Vertex3DBasics vertexToAdd, double epsilon)
    {
       //for(int i = 0; i < silhouetteEdges.size(); i++)
       //PrintTools.debug("Sil: " + silhouetteEdges.get(i));
       //PrintTools.debug(silhouetteEdges.get(0).getFace().toString());
-      PolytopeHalfEdgeBasics previousLeadingEdge = null, trailingEdge = null;
+      HalfEdge3DBasics previousLeadingEdge = null, trailingEdge = null;
       if (onFaceList.contains(silhouetteEdges.get(0).getFace()))
       {
          previousLeadingEdge = silhouetteEdges.get(0).getFace().getFirstVisibleEdge(vertexToAdd);
@@ -578,7 +578,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
          if (onFaceList.contains(silhouetteEdges.get(i).getFace()))
          {
             ConvexPolytopeFaceBasics faceToExtend = silhouetteEdges.get(i).getFace();
-            PolytopeHalfEdgeBasics tempEdge = faceToExtend.getFirstVisibleEdge(vertexToAdd);
+            HalfEdge3DBasics tempEdge = faceToExtend.getFirstVisibleEdge(vertexToAdd);
             faceToExtend.addVertex(vertexToAdd, epsilon);
             if (tempEdge == null)
                PrintTools.debug("This again");
@@ -597,7 +597,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       twinEdges(previousLeadingEdge, trailingEdge);
    }
 
-   private void twinEdges(PolytopeHalfEdgeBasics halfEdge1, PolytopeHalfEdgeBasics halfEdge2)
+   private void twinEdges(HalfEdge3DBasics halfEdge1, HalfEdge3DBasics halfEdge2)
    {
       if (halfEdge1.getOriginVertex() != halfEdge2.getDestinationVertex() && halfEdge1.getDestinationVertex() != halfEdge2.getOriginVertex())
          PrintTools.debug("This should print \n\n\n\n");
@@ -605,7 +605,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       halfEdge2.setTwinHalfEdge(halfEdge1);
    }
 
-   private ConvexPolytopeFaceBasics createFaceFromTwinEdgeAndVertex(Vertex3DBasics vertex, PolytopeHalfEdgeBasics twinEdge, double epsilon)
+   private ConvexPolytopeFaceBasics createFaceFromTwinEdgeAndVertex(Vertex3DBasics vertex, HalfEdge3DBasics twinEdge, double epsilon)
    {
       ConvexPolytopeFaceBasics newFace = getConvexFaceProvider().getFace();
       faces.add(newFace);
@@ -662,7 +662,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
    {
       for (int i = 0; i < faceToRemove.getNumberOfEdges(); i++)
       {
-         PolytopeHalfEdgeBasics twinHalfEdge = faceToRemove.getEdge(i).getTwinHalfEdge();
+         HalfEdge3DBasics twinHalfEdge = faceToRemove.getEdge(i).getTwinHalfEdge();
          if (twinHalfEdge != null)
             twinHalfEdge.setTwinHalfEdge(null);
          faceToRemove.getEdge(i).clear();

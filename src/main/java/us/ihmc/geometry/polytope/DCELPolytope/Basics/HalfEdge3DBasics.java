@@ -28,9 +28,8 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, SimplexBasics, Clearable, Transformable
+public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBasics, Clearable, Transformable
 {
-
    /**
     * Specifies the spatial location at which the half edge originates
     */
@@ -43,15 +42,15 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * The half edge on an adjacent face that originates at the {@code destinatioVertex} and terminates
     * at the {@code originVertex}. Represents the opposite spatial direction
     */
-   private PolytopeHalfEdgeBasics twinEdge;
+   private HalfEdge3DBasics twinEdge;
    /**
     * The half edge on the same face as this edge that originates at the {@code destinationVertex}
     */
-   private PolytopeHalfEdgeBasics nextHalfEdge;
+   private HalfEdge3DBasics nextHalfEdge;
    /**
     * The half edge on the same face as this edge that terminates at the {@code originVertex}
     */
-   private PolytopeHalfEdgeBasics previousHalfEdge;
+   private HalfEdge3DBasics previousHalfEdge;
    /**
     * getShortestDistanceTo The face that this edge is a part of
     */
@@ -77,7 +76,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
    /**
     * Default constructor
     */
-   public PolytopeHalfEdgeBasics()
+   public HalfEdge3DBasics()
    {
 
    }
@@ -88,7 +87,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * @param originVertex
     * @param destinationVertex
     */
-   public PolytopeHalfEdgeBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex)
+   public HalfEdge3DBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -99,7 +98,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * 
     * @param edge
     */
-   public PolytopeHalfEdgeBasics(PolytopeHalfEdgeBasics edge)
+   public HalfEdge3DBasics(HalfEdge3DBasics edge)
    {
       set(edge);
    }
@@ -111,9 +110,9 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     *         stores this edge as its twin but this half edge does not store the generated half edge as
     *         its twin
     */
-   public PolytopeHalfEdgeBasics createTwinHalfEdge()
+   public HalfEdge3DBasics createTwinHalfEdge()
    {
-      PolytopeHalfEdgeBasics twinEdge = getHalfEdgeProvider().getHalfEdge(getDestinationVertex(), getOriginVertex());
+      HalfEdge3DBasics twinEdge = getHalfEdgeProvider().getHalfEdge(getDestinationVertex(), getOriginVertex());
       twinEdge.setTwinHalfEdge(this);
       return twinEdge;
    }
@@ -122,9 +121,9 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * Creates a half edge using the {@code createTwinHalfEdge{} function and stores a reference to the
     * new object in the twin edge field @return a twin edge
     */
-   public PolytopeHalfEdgeBasics setAndCreateTwinHalfEdge()
+   public HalfEdge3DBasics setAndCreateTwinHalfEdge()
    {
-      PolytopeHalfEdgeBasics twinEdge = createTwinHalfEdge();
+      HalfEdge3DBasics twinEdge = createTwinHalfEdge();
       setTwinHalfEdge(twinEdge);
       return twinEdge;
    }
@@ -135,7 +134,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * 
     * @param twinEdge
     */
-   public void setToTwin(PolytopeHalfEdgeBasics twinEdge)
+   public void setToTwin(HalfEdge3DBasics twinEdge)
    {
       twinEdge.clear();
       twinEdge.setOriginVertex(this.destinationVertex);
@@ -149,7 +148,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * @param twinEdge the edge that is to be the twin of the new half edgegetShortestDistanceTo
     * @param face the face that the new half edge is to be a part of
     */
-   public PolytopeHalfEdgeBasics(PolytopeHalfEdgeBasics twinEdge, ConvexPolytopeFaceBasics face)
+   public HalfEdge3DBasics(HalfEdge3DBasics twinEdge, ConvexPolytopeFaceBasics face)
    {
       setTwinHalfEdge(twinEdge);
       setOriginVertex(twinEdge.getDestinationVertex());
@@ -174,8 +173,8 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     *           face normal. Can be {@code null}
     * @param face the face that this half edge is a part of. Can be {@code null}
     */
-   public PolytopeHalfEdgeBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex, PolytopeHalfEdgeBasics twinEdge,
-                                 PolytopeHalfEdgeBasics nextHalfEdge, PolytopeHalfEdgeBasics previousHalfEdge, ConvexPolytopeFaceBasics face)
+   public HalfEdge3DBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex, HalfEdge3DBasics twinEdge,
+                                 HalfEdge3DBasics nextHalfEdge, HalfEdge3DBasics previousHalfEdge, ConvexPolytopeFaceBasics face)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -290,7 +289,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * 
     * @param twinEdge the half edge to be stored as a twin edge of this half edge.
     */
-   public void setTwinHalfEdge(PolytopeHalfEdgeBasics twinEdge)
+   public void setTwinHalfEdge(HalfEdge3DBasics twinEdge)
    {
       this.twinEdge = twinEdge;
    }
@@ -298,7 +297,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
    /**
     * {@inheritDoc}
     */
-   public PolytopeHalfEdgeBasics getTwinHalfEdge()
+   public HalfEdge3DBasics getTwinHalfEdge()
    {
       return twinEdge;
    }
@@ -311,7 +310,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * @throws RuntimeException in case the origin of this specified next half edge is not the same as
     *            the destination of the this edge
     */
-   public void setNextHalfEdge(PolytopeHalfEdgeBasics nextHalfEdge)
+   public void setNextHalfEdge(HalfEdge3DBasics nextHalfEdge)
    {
       if (nextHalfEdge == null || (nextHalfEdge.getOriginVertex() == this.getDestinationVertex() && nextHalfEdge.getFace() == this.getFace()))
          setNextHalfEdgeUnsafe(nextHalfEdge);
@@ -325,7 +324,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * 
     * @param nextHalfEdge the half edge whose reference is to be stored in the next half edge field
     */
-   private void setNextHalfEdgeUnsafe(PolytopeHalfEdgeBasics nextHalfEdge)
+   private void setNextHalfEdgeUnsafe(HalfEdge3DBasics nextHalfEdge)
    {
       this.nextHalfEdge = nextHalfEdge;
    }
@@ -333,7 +332,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
    /**
     * {@inheritDoc}
     */
-   public PolytopeHalfEdgeBasics getNextHalfEdge()
+   public HalfEdge3DBasics getNextHalfEdge()
    {
       return nextHalfEdge;
    }
@@ -346,7 +345,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * @throws RuntimeException in case the destination of this specified next half edge is not the same
     *            as the origin of the this edge
     */
-   public void setPreviousHalfEdge(PolytopeHalfEdgeBasics previousHalfEdge)
+   public void setPreviousHalfEdge(HalfEdge3DBasics previousHalfEdge)
    {
       if (previousHalfEdge == null || (previousHalfEdge.getDestinationVertex() == this.getOriginVertex() && previousHalfEdge.getFace() == this.getFace()))
          setPreviousHalfEdgeUnsafe(previousHalfEdge);
@@ -361,7 +360,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * @param previousHalfEdge the half edge whose reference is to be stored in the previous half edge
     *           field
     */
-   private void setPreviousHalfEdgeUnsafe(PolytopeHalfEdgeBasics previousHalfEdge)
+   private void setPreviousHalfEdgeUnsafe(HalfEdge3DBasics previousHalfEdge)
    {
       this.previousHalfEdge = previousHalfEdge;
    }
@@ -369,7 +368,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
    /**
     * {@inheritDoc}
     */
-   public PolytopeHalfEdgeBasics getPreviousHalfEdge()
+   public HalfEdge3DBasics getPreviousHalfEdge()
    {
       return previousHalfEdge;
    }
@@ -443,7 +442,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
     * Copies all the references from the specified half edge to this half edge while updating the
     * associated objects
     */
-   public void set(PolytopeHalfEdgeBasics other)
+   public void set(HalfEdge3DBasics other)
    {
       setOriginVertex(other.getOriginVertex());
       setDestinationVertex(other.getDestinationVertex());
@@ -504,7 +503,7 @@ public abstract class PolytopeHalfEdgeBasics implements HalfEdge3DReadOnly, Simp
       Vertex3DBasics newDestinationVertex = this.originVertex;
       setOriginVertex(destinationVertex);
       setDestinationVertex(newDestinationVertex);
-      PolytopeHalfEdgeBasics newNextHalfEdge = this.previousHalfEdge;
+      HalfEdge3DBasics newNextHalfEdge = this.previousHalfEdge;
       setPreviousHalfEdgeUnsafe(nextHalfEdge);
       setNextHalfEdgeUnsafe(newNextHalfEdge);
    }

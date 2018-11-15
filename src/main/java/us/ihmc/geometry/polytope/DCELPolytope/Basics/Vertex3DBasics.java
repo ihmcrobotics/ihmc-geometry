@@ -29,7 +29,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * List of edges that start at this vertex. May be part of different faces
     */
-   private final List<PolytopeHalfEdgeBasics> associatedEdges = new ArrayList<>();
+   private final List<HalfEdge3DBasics> associatedEdges = new ArrayList<>();
 
    /**
     * Default constructor
@@ -52,7 +52,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * {@inheritDoc}
     */
    @Override
-   public List<PolytopeHalfEdgeBasics> getAssociatedEdges()
+   public List<HalfEdge3DBasics> getAssociatedEdges()
    {
       return associatedEdges;
    }
@@ -61,7 +61,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * {@inheritDoc}
     */
    @Override
-   public PolytopeHalfEdgeBasics getAssociatedEdge(int index)
+   public HalfEdge3DBasics getAssociatedEdge(int index)
    {
       return associatedEdges.get(index);
    }
@@ -73,7 +73,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     *           the list, no errors are thrown
     *
     */
-   public void removeAssociatedEdge(PolytopeHalfEdgeBasics edgeToAdd)
+   public void removeAssociatedEdge(HalfEdge3DBasics edgeToAdd)
    {
       associatedEdges.remove(edgeToAdd);
    }
@@ -92,7 +92,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     *
     * @param edgeList a list of DCEL edges that must be added
     */
-   public void addAssociatedEdges(List<? extends PolytopeHalfEdgeBasics> edgeList)
+   public void addAssociatedEdges(List<? extends HalfEdge3DBasics> edgeList)
    {
       for (int i = 0; i < edgeList.size(); i++)
       {
@@ -108,7 +108,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     *
     * @param edge the DCEL edge to add to the associated edge list
     */
-   public void addAssociatedEdge(PolytopeHalfEdgeBasics edge)
+   public void addAssociatedEdge(HalfEdge3DBasics edge)
    {
       if (!isAssociatedWithEdge(edge))
          associatedEdges.add(edge);
