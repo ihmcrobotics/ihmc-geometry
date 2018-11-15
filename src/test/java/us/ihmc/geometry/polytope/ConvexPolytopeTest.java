@@ -534,7 +534,7 @@ public class ConvexPolytopeTest
    }
 
    @ContinuousIntegrationTest(estimatedDuration = 0.0)
-   @Test(timeout = 1000)
+   @Test(timeout = 30000)
    public void testCylinderCreationFromRandomPointsByProjection()
    {
       int numberOfPoints = 100;
