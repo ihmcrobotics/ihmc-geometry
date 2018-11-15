@@ -1,6 +1,6 @@
 package us.ihmc.geometry.polytope;
 
-import us.ihmc.euclid.tuple3D.Point3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 public interface SupportingVertexHolder
@@ -11,5 +11,5 @@ public interface SupportingVertexHolder
     * @param supportDirection the direction to search in
     * @return the spatial location of the supporting vertex
     */
-   Point3D getSupportingVertex(Vector3DReadOnly supportDirection);
+   Point3DReadOnly getSupportingVertex(Vector3DReadOnly supportDirection);
 }

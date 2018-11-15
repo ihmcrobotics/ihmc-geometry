@@ -362,9 +362,9 @@ public class ConvexPolytopeTest
       polytope.addVertex(vertexSeven, EPSILON);
       polytope.addVertex(vertexEight, EPSILON);
 
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(0.0, 0.0, 0.0), vertexOne.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 1.0, 0.0), vertexThree.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 0.0, 1.0), vertexSix.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(0.0, 0.0, 0.0), vertexOne, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 1.0, 0.0), vertexThree, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 0.0, 1.0), vertexSix, Epsilons.ONE_TEN_BILLIONTH);
 
       assertEquals(8, polytope.getNumberOfVertices());
       assertEquals(12, polytope.getNumberOfEdges());
@@ -384,36 +384,36 @@ public class ConvexPolytopeTest
       transform.setTranslation(1.0, 2.0, 3.0);
       polytope.applyTransform(transform);
 
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 2.0, 3.0), vertexOne.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 3.0, 3.0), vertexThree.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 2.0, 4.0), vertexSix.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 2.0, 3.0), vertexOne, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 3.0, 3.0), vertexThree, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 2.0, 4.0), vertexSix, Epsilons.ONE_TEN_BILLIONTH);
 
       transform.setRotationEulerAndZeroTranslation(0.0, 0.0, Math.PI / 2.0);
       polytope.applyTransform(transform);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-2.0, 1.0, 3.0), vertexOne.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-3.0, 2.0, 3.0), vertexThree.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-2.0, 2.0, 4.0), vertexSix.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-2.0, 1.0, 3.0), vertexOne, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-3.0, 2.0, 3.0), vertexThree, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(-2.0, 2.0, 4.0), vertexSix, Epsilons.ONE_TEN_BILLIONTH);
 
       // Apply in reverse order to get back to unit box at origin.
       transform.setRotationEulerAndZeroTranslation(0.0, 0.0, -Math.PI / 2.0);
       polytope.applyTransform(transform);
       transform.setTranslationAndIdentityRotation(-1.0, -2.0, -3.0);
       polytope.applyTransform(transform);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(0.0, 0.0, 0.0), vertexOne.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 1.0, 0.0), vertexThree.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
-      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 0.0, 1.0), vertexSix.getPosition(), Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(0.0, 0.0, 0.0), vertexOne, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 1.0, 0.0), vertexThree, Epsilons.ONE_TEN_BILLIONTH);
+      EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(1.0, 0.0, 1.0), vertexSix, Epsilons.ONE_TEN_BILLIONTH);
 
       Vector3D supportDirection = new Vector3D(1.0, 1.0, 1.0);
       Point3DReadOnly supportingVertex = polytope.getSupportingVertex(supportDirection);
-      assertTrue(supportingVertex == vertexSeven.getPosition());
+      assertTrue(supportingVertex == vertexSeven);
 
       supportDirection = new Vector3D(-1.0, -1.0, -1.0);
       supportingVertex = polytope.getSupportingVertex(supportDirection);
-      assertTrue(supportingVertex == vertexOne.getPosition());
+      assertTrue(supportingVertex == vertexOne);
 
       supportDirection = new Vector3D(100.0, 0.01, -0.01);
       supportingVertex = polytope.getSupportingVertex(supportDirection);
-      assertTrue(supportingVertex == vertexThree.getPosition());
+      assertTrue(supportingVertex == vertexThree);
    }
 
    @ContinuousIntegrationTest(estimatedDuration = 0.0)

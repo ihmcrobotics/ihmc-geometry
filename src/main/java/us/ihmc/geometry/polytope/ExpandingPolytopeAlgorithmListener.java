@@ -2,6 +2,7 @@ package us.ihmc.geometry.polytope;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public interface ExpandingPolytopeAlgorithmListener
 {
@@ -10,7 +11,7 @@ public interface ExpandingPolytopeAlgorithmListener
 
    public abstract void polledEntryToExpand(ExpandingPolytopeEntry triangleEntryToExpand);
 
-   public abstract void computedSupportingVertices(Point3D supportingVertexA, Point3D supportingVertexB, Vector3D w);
+   public abstract void computedSupportingVertices(Point3DReadOnly supportingVertexA, Point3DReadOnly supportingVertexB, Vector3D w);
 
    public abstract void computedCloseEnough(double vDotW, double lengthSquared, double mu, boolean closeEnough);
 

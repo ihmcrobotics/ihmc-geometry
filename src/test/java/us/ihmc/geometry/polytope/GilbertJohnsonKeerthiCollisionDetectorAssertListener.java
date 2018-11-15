@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class GilbertJohnsonKeerthiCollisionDetectorAssertListener implements GilbertJohnsonKeerthiCollisionDetectorListener
 {
@@ -15,7 +16,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorAssertListener implements Gil
    }
 
    @Override
-   public void addedVertexToSimplex(SimplexPolytope simplex, Point3D vertexOnSimplex, Point3D vertexOnA, Point3D vertexOnB)
+   public void addedVertexToSimplex(SimplexPolytope simplex, Point3D vertexOnSimplex, Point3DReadOnly vertexOnA, Point3DReadOnly vertexOnB)
    {
       // TODO Auto-generated method stub
    }
@@ -73,7 +74,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorAssertListener implements Gil
    }
 
    @Override
-   public void foundSupportPoints(SimplexPolytope simplex, Point3D supportingPointOnA, Point3D supportingPointOnB, Vector3D supportPointOnSimplex)
+   public void foundSupportPoints(SimplexPolytope simplex, Point3DReadOnly supportingPointOnA, Point3DReadOnly supportingPointOnB, Vector3D supportPointOnSimplex)
    {
       // TODO Auto-generated method stub
 

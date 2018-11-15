@@ -2,6 +2,7 @@ package us.ihmc.geometry.polytope;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class PrintingExpandingPolytopeAlgorithmListener implements ExpandingPolytopeAlgorithmListener
 {
@@ -23,7 +24,7 @@ public class PrintingExpandingPolytopeAlgorithmListener implements ExpandingPoly
    }
 
    @Override
-   public void computedSupportingVertices(Point3D supportingVertexA, Point3D supportingVertexB, Vector3D w)
+   public void computedSupportingVertices(Point3DReadOnly supportingVertexA, Point3DReadOnly supportingVertexB, Vector3D w)
    {
       System.out.println("Computed Supporting Vertex:" + w);
    }

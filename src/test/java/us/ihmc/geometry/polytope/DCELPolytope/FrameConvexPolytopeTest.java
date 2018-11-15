@@ -66,8 +66,8 @@ public class FrameConvexPolytopeTest
       FramePolytopeVertex vertex1 = new FramePolytopeVertex(boxFrame);
       assertTrue(vertex1 != null);
       assertTrue(vertex1.getReferenceFrame() == boxFrame);
-      assertTrue(vertex1.getPosition().getX() == 0.0);
-      assertTrue(vertex1.getPosition().getY() == 0.0);
-      assertTrue(vertex1.getPosition().getZ() == 0.0);
+      assertTrue(vertex1.getX() == 0.0);
+      assertTrue(vertex1.getY() == 0.0);
+      assertTrue(vertex1.getZ() == 0.0);
    }
 }

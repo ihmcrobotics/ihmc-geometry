@@ -398,7 +398,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     */
    public Vector3DReadOnly getEdgeVector()
    {
-      edgeVector.sub(this.destinationVertex.getPosition(), this.originVertex.getPosition());
+      edgeVector.sub(this.destinationVertex, this.originVertex);
       return edgeVector;
    }
 

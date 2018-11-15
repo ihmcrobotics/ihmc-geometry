@@ -7,13 +7,14 @@ import gnu.trove.map.hash.THashMap;
 import gnu.trove.map.hash.TObjectDoubleHashMap;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class SimplexPolytope
 {
    private Point3D pointOne, pointTwo, pointThree, pointFour;
 
-   private THashMap<Point3D, Point3D> simplexPointToPolytopePointA = new THashMap<>();
-   private THashMap<Point3D, Point3D> simplexPointToPolytopePointB = new THashMap<>();
+   private THashMap<Point3D, Point3DReadOnly> simplexPointToPolytopePointA = new THashMap<>();
+   private THashMap<Point3D, Point3DReadOnly> simplexPointToPolytopePointB = new THashMap<>();
    private TObjectDoubleHashMap<Point3D> lambdas = new TObjectDoubleHashMap<>();
 
    public int getNumberOfPoints()
@@ -103,9 +104,9 @@ public class SimplexPolytope
       return lambdas.get(point);
    }
 
-   public boolean addVertex(Point3D simplexPointToAdd, Point3D correspondingPointOnA, Point3D correspondingPointOnB)
+   public boolean addVertex(Point3D simplexPointToAdd, Point3DReadOnly vertexOne, Point3DReadOnly vertexTwo)
    {
-      boolean alreadyHaveThatOne = doWeAlreadyHaveThatVertex(correspondingPointOnA, correspondingPointOnB);
+      boolean alreadyHaveThatOne = doWeAlreadyHaveThatVertex(vertexOne, vertexTwo);
 
       if (alreadyHaveThatOne)
          return false;
@@ -146,13 +147,13 @@ public class SimplexPolytope
       else
          throw new RuntimeException("Only support SimplexPolytopes with at most 4 vertices");
 
-      simplexPointToPolytopePointA.put(simplexPointToAdd, correspondingPointOnA);
-      simplexPointToPolytopePointB.put(simplexPointToAdd, correspondingPointOnB);
+      simplexPointToPolytopePointA.put(simplexPointToAdd, vertexOne);
+      simplexPointToPolytopePointB.put(simplexPointToAdd, vertexTwo);
 
       return true;
    }
 
-   private boolean doWeAlreadyHaveThatVertex(Point3D correspondingPointOnA, Point3D correspondingPointOnB)
+   private boolean doWeAlreadyHaveThatVertex(Point3DReadOnly correspondingPointOnA, Point3DReadOnly correspondingPointOnB)
    {
       if (pointOne != null)
       {
@@ -495,8 +496,8 @@ public class SimplexPolytope
 
    private void retainPoints(Point3D pointToKeep)
    {
-      Point3D point3dOnA = simplexPointToPolytopePointA.get(pointToKeep);
-      Point3D point3dOnB = simplexPointToPolytopePointB.get(pointToKeep);
+      Point3DReadOnly point3dOnA = simplexPointToPolytopePointA.get(pointToKeep);
+      Point3DReadOnly point3dOnB = simplexPointToPolytopePointB.get(pointToKeep);
 
       pointOne = null;
       pointTwo = null;
@@ -514,11 +515,11 @@ public class SimplexPolytope
 
    private void retainPoints(Point3D pointToKeep1, Point3D pointToKeep2)
    {
-      Point3D point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
-      Point3D point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
+      Point3DReadOnly point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
+      Point3DReadOnly point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
 
-      Point3D point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
-      Point3D point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
+      Point3DReadOnly point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
+      Point3DReadOnly point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
 
       pointOne = null;
       pointTwo = null;
@@ -539,13 +540,13 @@ public class SimplexPolytope
 
    private void retainPoints(Point3D pointToKeep1, Point3D pointToKeep2, Point3D pointToKeep3)
    {
-      Point3D point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
-      Point3D point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
-      Point3D point3dOnA3 = simplexPointToPolytopePointA.get(pointToKeep3);
+      Point3DReadOnly point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
+      Point3DReadOnly point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
+      Point3DReadOnly point3dOnA3 = simplexPointToPolytopePointA.get(pointToKeep3);
 
-      Point3D point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
-      Point3D point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
-      Point3D point3dOnB3 = simplexPointToPolytopePointB.get(pointToKeep3);
+      Point3DReadOnly point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
+      Point3DReadOnly point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
+      Point3DReadOnly point3dOnB3 = simplexPointToPolytopePointB.get(pointToKeep3);
 
       pointOne = null;
       pointTwo = null;
@@ -569,15 +570,15 @@ public class SimplexPolytope
 
    private void retainPoints(Point3D pointToKeep1, Point3D pointToKeep2, Point3D pointToKeep3, Point3D pointToKeep4)
    {
-      Point3D point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
-      Point3D point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
-      Point3D point3dOnA3 = simplexPointToPolytopePointA.get(pointToKeep3);
-      Point3D point3dOnA4 = simplexPointToPolytopePointA.get(pointToKeep4);
+      Point3DReadOnly point3dOnA1 = simplexPointToPolytopePointA.get(pointToKeep1);
+      Point3DReadOnly point3dOnA2 = simplexPointToPolytopePointA.get(pointToKeep2);
+      Point3DReadOnly point3dOnA3 = simplexPointToPolytopePointA.get(pointToKeep3);
+      Point3DReadOnly point3dOnA4 = simplexPointToPolytopePointA.get(pointToKeep4);
 
-      Point3D point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
-      Point3D point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
-      Point3D point3dOnB3 = simplexPointToPolytopePointB.get(pointToKeep3);
-      Point3D point3dOnB4 = simplexPointToPolytopePointB.get(pointToKeep4);
+      Point3DReadOnly point3dOnB1 = simplexPointToPolytopePointB.get(pointToKeep1);
+      Point3DReadOnly point3dOnB2 = simplexPointToPolytopePointB.get(pointToKeep2);
+      Point3DReadOnly point3dOnB3 = simplexPointToPolytopePointB.get(pointToKeep3);
+      Point3DReadOnly point3dOnB4 = simplexPointToPolytopePointB.get(pointToKeep4);
 
       pointOne = null;
       pointTwo = null;
@@ -603,7 +604,7 @@ public class SimplexPolytope
       simplexPointToPolytopePointB.put(pointToKeep4, point3dOnB4);
    }
 
-   private Point3D discardedOnA, discardedOnB;
+   private Point3DReadOnly discardedOnA, discardedOnB;
 
    private void rememberDiscardedVertices(Point3D pointToDiscard)
    {
@@ -616,7 +617,7 @@ public class SimplexPolytope
       discardedOnA = discardedOnB = null;
    }
 
-   public boolean wereMostRecentlyDiscared(Point3D checkOnA, Point3D checkOnB)
+   public boolean wereMostRecentlyDiscared(Point3DReadOnly checkOnA, Point3DReadOnly checkOnB)
    {
       if ((discardedOnA == null) || (discardedOnB == null))
          return false;
@@ -910,12 +911,12 @@ public class SimplexPolytope
       return lambda;
    }
 
-   public Point3D getCorrespondingPointOnPolytopeA(Point3D simplexPoint)
+   public Point3DReadOnly getCorrespondingPointOnPolytopeA(Point3D simplexPoint)
    {
       return simplexPointToPolytopePointA.get(simplexPoint);
    }
 
-   public Point3D getCorrespondingPointOnPolytopeB(Point3D simplexPoint)
+   public Point3DReadOnly getCorrespondingPointOnPolytopeB(Point3D simplexPoint)
    {
       return simplexPointToPolytopePointB.get(simplexPoint);
    }

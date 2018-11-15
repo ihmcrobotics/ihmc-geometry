@@ -681,7 +681,7 @@ public abstract class ConvexPolytopeBasics<V extends PolytopeVertexBasics<V, E, 
 
       for (int i = 0; i < faces.size(); i++)
       {
-         tempVector.sub(pointToCheck, faces.get(i).getEdge(0).getOriginVertex().getPosition());
+         tempVector.sub(pointToCheck, faces.get(i).getEdge(0).getOriginVertex());
          double dotProduct = tempVector.dot(faces.get(i).getFaceNormal());
          if (dotProduct >= epsilon || faces.get(i).getNumberOfEdges() < 3)
          {
@@ -697,7 +697,7 @@ public abstract class ConvexPolytopeBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    @Override
-   public Point3D getSupportingVertex(Vector3DReadOnly supportDirection)
+   public Point3DReadOnly getSupportingVertex(Vector3DReadOnly supportDirection)
    {
       V bestVertex = faces.get(0).getEdge(0).getOriginVertex();
       tempVector.set(bestVertex);
@@ -717,7 +717,7 @@ public abstract class ConvexPolytopeBasics<V extends PolytopeVertexBasics<V, E, 
             }
          }
          if (bestVertex == vertexCandidate)
-            return (Point3D) bestVertex.getPosition();
+            return bestVertex;
          else
             bestVertex = vertexCandidate;
       }

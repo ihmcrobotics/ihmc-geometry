@@ -6,9 +6,7 @@ import java.util.List;
 import us.ihmc.commons.MathTools;
 import us.ihmc.euclid.interfaces.Clearable;
 import us.ihmc.euclid.interfaces.Settable;
-import us.ihmc.euclid.interfaces.Transformable;
 import us.ihmc.euclid.tools.EuclidCoreIOTools;
-import us.ihmc.euclid.transform.interfaces.Transform;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
@@ -29,19 +27,12 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
  * @param <F> A collection of edges that constitute a face of the polytope
  */
 public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, F>, E extends PolytopeHalfEdgeBasics<V, E, F>, F extends ConvexPolytopeFaceBasics<V, E, F>>
-      implements SimplexBasics, PolytopeVertexReadOnly, Clearable, Settable<V>, Transformable, Point3DBasics
+      implements SimplexBasics, PolytopeVertexReadOnly, Clearable, Settable<V>, Point3DBasics
 {
    /**
     * List of edges that start at this vertex. May be part of different faces
     */
    private final ArrayList<E> associatedEdges = new ArrayList<>();
-
-   /**
-    * Method to get a reference to the object storing the spatial coordinates for the vertex
-    * 
-    * @return Typically a FramePoint3D or Point3D depending on the use
-    */
-   protected abstract Point3DBasics getPointObjectReference();
 
    /**
     * Default constructor
@@ -55,7 +46,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
     */
    public void set(V other)
    {
-      getPointObjectReference().set(other.getPosition());
+      Point3DBasics.super.set(other);
       clearAssociatedEdgeList();
       addAssociatedEdges(other.getAssociatedEdges());
    }
@@ -169,42 +160,6 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
       return EuclidCoreIOTools.getTuple3DString(this);
    }
 
-   @Override
-   public double getX()
-   {
-      return getPointObjectReference().getX();
-   }
-
-   @Override
-   public double getY()
-   {
-      return getPointObjectReference().getY();
-   }
-
-   @Override
-   public double getZ()
-   {
-      return getPointObjectReference().getZ();
-   }
-
-   @Override
-   public double getElement(int index)
-   {
-      return getPointObjectReference().getElement(index);
-   }
-
-   @Override
-   public void applyTransform(Transform transform)
-   {
-      getPointObjectReference().applyTransform(transform);
-   }
-
-   @Override
-   public void applyInverseTransform(Transform transform)
-   {
-      getPointObjectReference().applyInverseTransform(transform);
-   }
-
    /**
     * {@inheritDoc}
     */
@@ -219,48 +174,9 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    }
 
    @Override
-   public boolean containsNaN()
-   {
-      return getPosition().containsNaN();
-   }
-
-   @Override
-   public void setToNaN()
-   {
-      getPointObjectReference().setToNaN();
-   }
-
-   @Override
-   public void setToZero()
-   {
-      getPointObjectReference().setToZero();
-   }
-
-   public void setX(double x)
-   {
-      getPointObjectReference().setX(x);
-   }
-
-   public void setY(double y)
-   {
-      getPointObjectReference().setY(y);
-   }
-
-   public void setZ(double z)
-   {
-      getPointObjectReference().setZ(z);
-   }
-
-   @Override
-   public boolean epsilonEquals(PolytopeVertexReadOnly other, double epsilon)
-   {
-      return getPointObjectReference().epsilonEquals(other, epsilon);
-   }
-
-   @Override
    public double getShortestDistanceTo(Point3DReadOnly point)
    {
-      return getPointObjectReference().distance(point);
+      return distance(point);
    }
 
    @Override

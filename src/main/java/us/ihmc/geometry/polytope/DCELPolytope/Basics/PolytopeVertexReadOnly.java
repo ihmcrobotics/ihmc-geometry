@@ -6,15 +6,8 @@ import us.ihmc.euclid.interfaces.EpsilonComparable;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface PolytopeVertexReadOnly extends Point3DReadOnly, EpsilonComparable<PolytopeVertexReadOnly>
+public interface PolytopeVertexReadOnly extends Point3DReadOnly
 {
-   /**
-    * Gets a the spatial location of vertex
-    * 
-    * @return a read only reference to the object that stores the location
-    */
-   Point3DReadOnly getPosition();
-
    /**
     * Get list of edges that originate at this vertex
     * 
@@ -64,7 +57,15 @@ public interface PolytopeVertexReadOnly extends Point3DReadOnly, EpsilonComparab
     * 
     * @return the resultant dot product
     */
-   double dot(Vector3DReadOnly vector);
+   default double dot(Vector3DReadOnly vector)
+   {
+      return getX() * vector.getX() + getY() * vector.getY() + getZ() * vector.getZ();
+   }
+
+   default boolean epsilonEquals(PolytopeVertexReadOnly other, double epsilon)
+   {
+      return Point3DReadOnly.super.epsilonEquals(other, epsilon);
+   }
 
    /**
     * Get a printable version of the vertex data

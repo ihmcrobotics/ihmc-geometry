@@ -3,6 +3,7 @@ package us.ihmc.geometry.polytope;
 import us.ihmc.commons.lists.RecyclingArrayList;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 /**
  * GilbertJohnsonKeerthi (GJK) algorithm for doing collision detection
@@ -67,10 +68,10 @@ public class GilbertJohnsonKeerthiCollisionDetector
       // initialGuessOfSeparatingVector. That will ensure that the point is on the exterior of the Minkowski Difference
       // and will allow us to speed things up by remembering the previous separating vector.
 
-      Point3D vertexOne = polytopeA.getSupportingVertex(initialGuessOfSeparatingVector);
+      Point3DReadOnly vertexOne = polytopeA.getSupportingVertex(initialGuessOfSeparatingVector);
       negativeSupportDirection.set(initialGuessOfSeparatingVector);
       negativeSupportDirection.negate();
-      Point3D vertexTwo = polytopeB.getSupportingVertex(negativeSupportDirection);
+      Point3DReadOnly vertexTwo = polytopeB.getSupportingVertex(negativeSupportDirection);
 
       Point3D minkowskiDifferenceVertex = poolOfPoints.add();//new Point3D();
       minkowskiDifferenceVertex.sub(vertexOne, vertexTwo);
@@ -121,10 +122,10 @@ public class GilbertJohnsonKeerthiCollisionDetector
 
          supportDirection.set(closestPointToOrigin);
          supportDirection.negate();
-         Point3D supportingVertexOnA = polytopeA.getSupportingVertex(supportDirection);
+         Point3DReadOnly supportingVertexOnA = polytopeA.getSupportingVertex(supportDirection);
 
          supportDirection.negate();
-         Point3D supportingVertexOnB = polytopeB.getSupportingVertex(supportDirection);
+         Point3DReadOnly supportingVertexOnB = polytopeB.getSupportingVertex(supportDirection);
 
          if (simplex.wereMostRecentlyDiscared(supportingVertexOnA, supportingVertexOnB))
          {

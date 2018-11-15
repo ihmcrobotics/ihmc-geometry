@@ -7,14 +7,15 @@ import gnu.trove.map.hash.THashMap;
 import us.ihmc.commons.lists.RecyclingArrayList;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class ExpandingPolytopeAlgorithm
 {
    private final PriorityQueue<ExpandingPolytopeEntry> triangleEntryQueue = new PriorityQueue<ExpandingPolytopeEntry>();
    private final ExpandingPolytopeEdgeList edgeList = new ExpandingPolytopeEdgeList();
 
-   private final THashMap<Point3D, Point3D> correspondingPointsOnA = new THashMap<>();
-   private final THashMap<Point3D, Point3D> correspondingPointsOnB = new THashMap<>();
+   private final THashMap<Point3D, Point3DReadOnly> correspondingPointsOnA = new THashMap<>();
+   private final THashMap<Point3D, Point3DReadOnly> correspondingPointsOnB = new THashMap<>();
 
    private boolean polytopeIsRightHanded;
    private SupportingVertexHolder polytopeA;
@@ -187,9 +188,9 @@ public class ExpandingPolytopeAlgorithm
                supportDirection.set(closestPointToOrigin);
             }
 
-            Point3D supportingVertexA = polytopeA.getSupportingVertex(supportDirection);
+            Point3DReadOnly supportingVertexA = polytopeA.getSupportingVertex(supportDirection);
             supportDirection.negate();
-            Point3D supportingVertexB = polytopeB.getSupportingVertex(supportDirection);
+            Point3DReadOnly supportingVertexB = polytopeB.getSupportingVertex(supportDirection);
 
             Vector3D w = new Vector3D();
             w.sub(supportingVertexA, supportingVertexB);
@@ -367,8 +368,8 @@ public class ExpandingPolytopeAlgorithm
          Point3D vertex = closestTriangleToOrigin.getVertex(i);
          double lambda = closestTriangleToOrigin.getLambda(i);
 
-         Point3D pointOnA = correspondingPointsOnA.get(vertex);
-         Point3D pointOnB = correspondingPointsOnB.get(vertex);
+         Point3DReadOnly pointOnA = correspondingPointsOnA.get(vertex);
+         Point3DReadOnly pointOnB = correspondingPointsOnB.get(vertex);
 
          tempPoint.set(pointOnA);
          tempPoint.scale(lambda);

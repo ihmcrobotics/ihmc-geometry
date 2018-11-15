@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class ExpandingPolytopeAlgorithmAssertListener implements ExpandingPolytopeAlgorithmListener
 {
@@ -21,7 +22,7 @@ public class ExpandingPolytopeAlgorithmAssertListener implements ExpandingPolyto
    }
 
    @Override
-   public void computedSupportingVertices(Point3D supportingVertexA, Point3D supportingVertexB, Vector3D w)
+   public void computedSupportingVertices(Point3DReadOnly supportingVertexA, Point3DReadOnly supportingVertexB, Vector3D w)
    {      
    }
 

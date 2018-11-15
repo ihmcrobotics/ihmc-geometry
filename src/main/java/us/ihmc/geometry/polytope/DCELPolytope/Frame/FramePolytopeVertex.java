@@ -2,64 +2,92 @@ package us.ihmc.geometry.polytope.DCELPolytope.Frame;
 
 import us.ihmc.euclid.referenceFrame.FramePoint3D;
 import us.ihmc.euclid.referenceFrame.ReferenceFrame;
-import us.ihmc.euclid.referenceFrame.interfaces.ReferenceFrameHolder;
-import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
+import us.ihmc.euclid.referenceFrame.interfaces.FramePoint3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexReadOnly;
 
 public class FramePolytopeVertex extends PolytopeVertexBasics<FramePolytopeVertex, FramePolytopeHalfEdge, FrameConvexPolytopeFace>
-      implements FrameSimplex, ReferenceFrameHolder
+      implements FrameSimplex, FramePoint3DBasics
 {
-   private FramePoint3D point = new FramePoint3D();
-   private FramePoint3D pointToReturn = new FramePoint3D();
+   private ReferenceFrame referenceFrame;
+   private double x, y, z;
 
    public FramePolytopeVertex()
    {
+      setToZero(ReferenceFrame.getWorldFrame());
    }
 
    public FramePolytopeVertex(ReferenceFrame frame)
    {
-      this.point.setToZero(frame);
+      setToZero(frame);
    }
 
    public FramePolytopeVertex(ReferenceFrame frame, double x, double y, double z)
    {
-      this.point.setIncludingFrame(frame, x, y, z);
+      setIncludingFrame(frame, x, y, z);
    }
 
    public FramePolytopeVertex(ReferenceFrame frame, Point3DReadOnly vertex)
    {
-      this.point.setIncludingFrame(frame, vertex);
+      setIncludingFrame(frame, vertex);
    }
 
    public FramePolytopeVertex(FramePoint3D vertex)
    {
-      this.point.setIncludingFrame(vertex);
+      setIncludingFrame(vertex);
    }
 
+   @Override
+   public void setReferenceFrame(ReferenceFrame referenceFrame)
+   {
+      this.referenceFrame = referenceFrame;
+   }
+
+   @Override
+   public void setX(double x)
+   {
+      this.x = x;
+   }
+
+   @Override
+   public void setY(double y)
+   {
+      this.y = y;
+   }
+
+   @Override
+   public void setZ(double z)
+   {
+      this.z = z;
+   }
+
+   @Override
    public ReferenceFrame getReferenceFrame()
    {
-      return point.getReferenceFrame();
-   }
-
-   public void changeFrame(ReferenceFrame referenceFrame)
-   {
-      point.changeFrame(referenceFrame);
+      return referenceFrame;
    }
 
    @Override
-   public FramePoint3D getPosition()
+   public double getX()
    {
-      pointToReturn.setIncludingFrame(point);
-      pointToReturn.changeFrame(ReferenceFrame.getWorldFrame());
-      return pointToReturn;
+      return x;
    }
 
    @Override
-   protected Point3DBasics getPointObjectReference()
+   public double getY()
    {
-      getPosition();
-      pointToReturn.changeFrame(ReferenceFrame.getWorldFrame());
-      return pointToReturn;
+      return y;
+   }
+
+   @Override
+   public double getZ()
+   {
+      return z;
+   }
+
+   public boolean epsilonEquals(FramePolytopeVertex other, double epsilon)
+   {
+      return super.epsilonEquals(other, epsilon);
    }
 }

@@ -2,6 +2,7 @@ package us.ihmc.geometry.polytope;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 
 public class PrintingGilbertJohnsonKeerthiCollisionDetectorListener implements GilbertJohnsonKeerthiCollisionDetectorListener
 {
@@ -15,7 +16,7 @@ public class PrintingGilbertJohnsonKeerthiCollisionDetectorListener implements G
    }
 
    @Override
-   public void addedVertexToSimplex(SimplexPolytope simplex, Point3D vertexOnSimplex, Point3D vertexOnA, Point3D vertexOnB)
+   public void addedVertexToSimplex(SimplexPolytope simplex, Point3D vertexOnSimplex, Point3DReadOnly vertexOnA, Point3DReadOnly vertexOnB)
    {
       System.out.println("\nAdded Vertex to Simplex. New simplex is: ");
       System.out.println(simplex);
@@ -38,7 +39,7 @@ public class PrintingGilbertJohnsonKeerthiCollisionDetectorListener implements G
    }
 
    @Override
-   public void foundSupportPoints(SimplexPolytope simplex, Point3D supportingVertexOnA, Point3D supportingVertexOnB, Vector3D supportingVertexOnSimplex)
+   public void foundSupportPoints(SimplexPolytope simplex, Point3DReadOnly supportingVertexOnA, Point3DReadOnly supportingVertexOnB, Vector3D supportingVertexOnSimplex)
    {
       System.out.println("\nFound supporting vertices");
       System.out.println("supportingVertexOnA: " + supportingVertexOnA);
