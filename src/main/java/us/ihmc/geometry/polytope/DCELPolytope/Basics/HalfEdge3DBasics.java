@@ -424,12 +424,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBas
       destinationVertex.applyInverseTransform(transform);
    }
 
-   @Override
-   public boolean epsilonEquals(HalfEdge3DReadOnly other, double epsilon)
-   {
-      return getOriginVertex().epsilonEquals(other.getOriginVertex(), epsilon) && getDestinationVertex().epsilonEquals(other.getDestinationVertex(), epsilon);
-   }
-
    /**
     * {@inheritDoc}
     */
