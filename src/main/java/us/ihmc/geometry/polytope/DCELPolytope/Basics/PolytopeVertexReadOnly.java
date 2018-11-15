@@ -2,7 +2,6 @@ package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
 import java.util.List;
 
-import us.ihmc.euclid.interfaces.EpsilonComparable;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
@@ -75,10 +74,12 @@ public interface PolytopeVertexReadOnly extends Point3DReadOnly
    String toString();
 
    /**
-    * Checks if any of the associated faces for this vertex have been marked Marking is simply a
-    * boolean value being set to {@code true} or {@code false} Useful for some operations that need a
-    * temporary list to be stored but you're lazy and don't want to make that list and look it up all
-    * the time
+    * Checks if any of the associated faces for this vertex have been marked.
+    * <p>
+    * Marking is simply a boolean value being set to {@code true} or {@code false} Useful for some
+    * operations that need a temporary list to be stored but you're lazy and don't want to make that
+    * list and look it up all the time
+    * </p>
     * 
     * @return {@code true} if the face is not null and marked. Otherwise {@code false}
     */

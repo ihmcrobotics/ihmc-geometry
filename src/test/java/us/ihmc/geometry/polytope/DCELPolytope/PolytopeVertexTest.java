@@ -18,7 +18,6 @@ import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
-import us.ihmc.geometry.polytope.DCELPolytope.Frame.FramePolytopeVertex;
 
 public class PolytopeVertexTest
 {
@@ -61,16 +60,6 @@ public class PolytopeVertexTest
       assertTrue(vertex2.getAssociatedEdges().size() == 1);
       assertTrue(vertex2.getAssociatedEdges().get(0) == twinEdge1);
 
-   }
-
-   @Test(timeout = 1000)
-   public void testFrameConstructor()
-   {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex();
-      FramePolytopeVertex framevertex = new FramePolytopeVertex(ReferenceFrame.getWorldFrame(), new ExtendedPolytopeVertex());
-      FramePolytopeVertex framevertex2 = new FramePolytopeVertex(ReferenceFrame.getWorldFrame(), new ExtendedPolytopeVertex());
-      framevertex.epsilonEquals(framevertex2, Epsilons.ONE);
-      vertex.epsilonEquals(framevertex, Epsilons.ONE);
    }
 
    @Test(timeout = 1000)
