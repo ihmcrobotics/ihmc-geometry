@@ -11,7 +11,7 @@ import us.ihmc.euclid.geometry.tools.EuclidGeometryTools;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
 public class ExtendedSimplexPolytope implements Simplex
 {
@@ -37,12 +37,12 @@ public class ExtendedSimplexPolytope implements Simplex
       this.epsilon = epsilon;
    }
 
-   public void addVertex(PolytopeVertexReadOnly vertexOnPolytopeA, PolytopeVertexReadOnly vertexOnPolytopeB)
+   public void addVertex(Vertex3DReadOnly vertexOnPolytopeA, Vertex3DReadOnly vertexOnPolytopeB)
    {
       addVertex(vertexOnPolytopeA, vertexOnPolytopeB, epsilon);
    }
 
-   public void addVertex(PolytopeVertexReadOnly vertexOnPolytopeA, PolytopeVertexReadOnly vertexOnPolytopeB, double epsilon)
+   public void addVertex(Vertex3DReadOnly vertexOnPolytopeA, Vertex3DReadOnly vertexOnPolytopeB, double epsilon)
    {
       SimplexVertex newVertex = new SimplexVertex();
       newVertex.set(vertexOnPolytopeA, vertexOnPolytopeB);
@@ -98,14 +98,14 @@ public class ExtendedSimplexPolytope implements Simplex
       {
          // TODO fix this nasty type casting
          SimplexVertex simplexVertex1 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getOriginVertex();
-         PolytopeVertexReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
-         PolytopeVertexReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
+         Vertex3DReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
+         Vertex3DReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
          SimplexVertex simplexVertex2 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getDestinationVertex();
-         PolytopeVertexReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
-         PolytopeVertexReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
+         Vertex3DReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
+         Vertex3DReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
          SimplexVertex simplexVertex3 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(1).getDestinationVertex();
-         PolytopeVertexReadOnly polytopeAVertex3 = simplexVertex3.getVertexOnPolytopeA();
-         PolytopeVertexReadOnly polytopeBVertex3 = simplexVertex3.getVertexOnPolytopeB();
+         Vertex3DReadOnly polytopeAVertex3 = simplexVertex3.getVertexOnPolytopeA();
+         Vertex3DReadOnly polytopeBVertex3 = simplexVertex3.getVertexOnPolytopeB();
 
          // Computing the coordinate vector for the face basis (using the first two edges as the basis)
          EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, simplexVertex2, ((ConvexPolytopeFace) member).getFaceNormal(), projection);
@@ -124,11 +124,11 @@ public class ExtendedSimplexPolytope implements Simplex
       {
          // TODO fix this nasty type casting 
          SimplexVertex simplexVertex1 = (SimplexVertex) ((PolytopeHalfEdge) member).getOriginVertex();
-         PolytopeVertexReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
-         PolytopeVertexReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
+         Vertex3DReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
+         Vertex3DReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
          SimplexVertex simplexVertex2 = (SimplexVertex) ((PolytopeHalfEdge) member).getDestinationVertex();
-         PolytopeVertexReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
-         PolytopeVertexReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
+         Vertex3DReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
+         Vertex3DReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
          double percentage = EuclidGeometryTools.percentageAlongLineSegment3D(point, simplexVertex1, simplexVertex2);
          pointOnA.interpolate(polytopeAVertex1, polytopeAVertex2, percentage);
          pointOnB.interpolate(polytopeBVertex1, polytopeBVertex2, percentage);
@@ -145,8 +145,8 @@ public class ExtendedSimplexPolytope implements Simplex
       }
    }
 
-   private void setByInterpolation(Point3D pointOnA, PolytopeVertexReadOnly polytopeAVertex1, PolytopeVertexReadOnly polytopeAVertex2,
-                                   PolytopeVertexReadOnly polytopeAVertex3, double a, double b)
+   private void setByInterpolation(Point3D pointOnA, Vertex3DReadOnly polytopeAVertex1, Vertex3DReadOnly polytopeAVertex2,
+                                   Vertex3DReadOnly polytopeAVertex3, double a, double b)
    {
       basisVector1.sub(polytopeAVertex1, polytopeAVertex2);
       basisVector2.sub(polytopeAVertex3, polytopeAVertex2);

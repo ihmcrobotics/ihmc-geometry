@@ -11,14 +11,14 @@ public interface PolytopeHalfEdgeReadOnly extends Vector3DReadOnly, EpsilonCompa
     * 
     * @return a read only reference of the origin vertex for the half edge
     */
-   PolytopeVertexReadOnly getOriginVertex();
+   Vertex3DReadOnly getOriginVertex();
 
    /**
     * Returns a reference to the destination vertex for this half edge
     * 
     * @return a read only reference of the destination vertex for the half edge
     */
-   PolytopeVertexReadOnly getDestinationVertex();
+   Vertex3DReadOnly getDestinationVertex();
 
    /**
     * Returns a reference to the twin edge of this half edge

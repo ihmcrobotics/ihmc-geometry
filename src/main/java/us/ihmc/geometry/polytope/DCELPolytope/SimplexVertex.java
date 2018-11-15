@@ -1,11 +1,11 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
 public class SimplexVertex extends ExtendedPolytopeVertex
 {
-   PolytopeVertexReadOnly polytopeAVertexReference;
-   PolytopeVertexReadOnly polytopeBVertexReference;
+   Vertex3DReadOnly polytopeAVertexReference;
+   Vertex3DReadOnly polytopeBVertexReference;
 
    public SimplexVertex()
    {
@@ -17,19 +17,19 @@ public class SimplexVertex extends ExtendedPolytopeVertex
       set(vertexOnPolytopeA, vertexOnPolytopeB);
    }
 
-   public void set(PolytopeVertexReadOnly vertexOnPolytopeA, PolytopeVertexReadOnly vertexOnPolytopeB)
+   public void set(Vertex3DReadOnly vertexOnPolytopeA, Vertex3DReadOnly vertexOnPolytopeB)
    {
       this.polytopeAVertexReference = vertexOnPolytopeA;
       this.polytopeBVertexReference = vertexOnPolytopeB;
       sub(vertexOnPolytopeA, vertexOnPolytopeB);
    }
 
-   public PolytopeVertexReadOnly getVertexOnPolytopeA()
+   public Vertex3DReadOnly getVertexOnPolytopeA()
    {
       return polytopeAVertexReference;
    }
 
-   public PolytopeVertexReadOnly getVertexOnPolytopeB()
+   public Vertex3DReadOnly getVertexOnPolytopeB()
    {
       return polytopeBVertexReference;
    }

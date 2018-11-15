@@ -5,7 +5,7 @@ import java.util.List;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface PolytopeVertexReadOnly extends Point3DReadOnly
+public interface Vertex3DReadOnly extends Point3DReadOnly
 {
    /**
     * Get list of edges that originate at this vertex
@@ -61,7 +61,7 @@ public interface PolytopeVertexReadOnly extends Point3DReadOnly
       return getX() * vector.getX() + getY() * vector.getY() + getZ() * vector.getZ();
    }
 
-   default boolean epsilonEquals(PolytopeVertexReadOnly other, double epsilon)
+   default boolean epsilonEquals(Vertex3DReadOnly other, double epsilon)
    {
       return Point3DReadOnly.super.epsilonEquals(other, epsilon);
    }

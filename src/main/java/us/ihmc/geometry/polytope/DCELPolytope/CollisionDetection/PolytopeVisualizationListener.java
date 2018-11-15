@@ -5,7 +5,7 @@ import java.util.List;
 
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
 public interface PolytopeVisualizationListener extends PolytopeListener
 {
@@ -19,7 +19,7 @@ public interface PolytopeVisualizationListener extends PolytopeListener
 
    void highlightEdges(List<? extends PolytopeHalfEdgeReadOnly> edges);
 
-   void highlightVertices(List<? extends PolytopeVertexReadOnly> vertices);
+   void highlightVertices(List<? extends Vertex3DReadOnly> vertices);
 
    @Override
    default void updateVisibleSilhouette(List<? extends PolytopeHalfEdgeReadOnly> visibleEdges)

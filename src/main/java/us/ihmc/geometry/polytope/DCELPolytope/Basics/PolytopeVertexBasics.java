@@ -24,7 +24,7 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
  * @param <E> Data structure representing edges formed by joining two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class PolytopeVertexBasics implements SimplexBasics, PolytopeVertexReadOnly, Point3DBasics
+public abstract class PolytopeVertexBasics implements SimplexBasics, Vertex3DReadOnly, Point3DBasics
 {
    /**
     * List of edges that start at this vertex. May be part of different faces
