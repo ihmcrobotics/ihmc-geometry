@@ -1,9 +1,10 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
+import us.ihmc.euclid.geometry.interfaces.LineSegment3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface HalfEdge3DReadOnly extends Vector3DReadOnly
+public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly
 {
    /**
     * Returns a reference to the origin vertex for this half edge
@@ -18,6 +19,18 @@ public interface HalfEdge3DReadOnly extends Vector3DReadOnly
     * @return a read only reference of the destination vertex for the half edge
     */
    Vertex3DReadOnly getDestinationVertex();
+
+   @Override
+   default Point3DReadOnly getFirstEndpoint()
+   {
+      return getOriginVertex();
+   }
+
+   @Override
+   default Point3DReadOnly getSecondEndpoint()
+   {
+      return getDestinationVertex();
+   }
 
    /**
     * Returns a reference to the twin edge of this half edge
@@ -76,7 +89,7 @@ public interface HalfEdge3DReadOnly extends Vector3DReadOnly
 
    default boolean epsilonEquals(HalfEdge3DReadOnly other, double epsilon)
    {
-      return getOriginVertex().epsilonEquals(other.getOriginVertex(), epsilon) && getDestinationVertex().epsilonEquals(other.getDestinationVertex(), epsilon);
+      return LineSegment3DReadOnly.super.epsilonEquals(other, epsilon);
    }
 
    /**

@@ -1,11 +1,11 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
+import us.ihmc.euclid.geometry.interfaces.LineSegment3DBasics;
 import us.ihmc.euclid.geometry.tools.EuclidGeometryTools;
-import us.ihmc.euclid.interfaces.Clearable;
-import us.ihmc.euclid.interfaces.Transformable;
 import us.ihmc.euclid.transform.interfaces.Transform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
@@ -28,7 +28,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBasics, Clearable, Transformable
+public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegment3DBasics, SimplexBasics
 {
    /**
     * Specifies the spatial location at which the half edge originates
@@ -129,20 +129,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBas
    }
 
    /**
-    * Takes a edge, clears all its fields and assigns it all the values that a twin edge for this half
-    * edge would have i.e. {@code originVertex}, {@code destinationVertex}, {@code twinEdge = this}
-    * 
-    * @param twinEdge
-    */
-   public void setToTwin(HalfEdge3DBasics twinEdge)
-   {
-      twinEdge.clear();
-      twinEdge.setOriginVertex(this.destinationVertex);
-      twinEdge.setDestinationVertex(this.originVertex);
-      twinEdge.setTwinHalfEdge(this);
-   }
-
-   /**
     * Creates a half edge from a twin edge and the face that the new half edge is to be a part of
     * 
     * @param twinEdge the edge that is to be the twin of the new half edgegetShortestDistanceTo
@@ -184,6 +170,20 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBas
       setFace(face);
    }
 
+   /**
+    * Takes a edge, clears all its fields and assigns it all the values that a twin edge for this half
+    * edge would have i.e. {@code originVertex}, {@code destinationVertex}, {@code twinEdge = this}
+    * 
+    * @param twinEdge
+    */
+   public void setToTwin(HalfEdge3DBasics twinEdge)
+   {
+      twinEdge.clear();
+      twinEdge.setOriginVertex(this.destinationVertex);
+      twinEdge.setDestinationVertex(this.originVertex);
+      twinEdge.setTwinHalfEdge(this);
+   }
+   
    /**
     * Update the reference to the {@code originVertex} field to the specified value. Also updates the
     * associated edges of the previously held and newly specified {@code originVertex} and the
@@ -391,6 +391,18 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBas
       return face;
    }
 
+   @Override
+   public Point3DBasics getFirstEndpoint()
+   {
+      return getOriginVertex();
+   }
+
+   @Override
+   public Point3DBasics getSecondEndpoint()
+   {
+      return getDestinationVertex();
+   }
+
    /**
     * {@inheritDoc}
     */
@@ -509,24 +521,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, SimplexBas
    {
       return "From: " + ((originVertex == null) ? "null" : originVertex.toString()) + ", To: "
             + ((destinationVertex == null) ? "null" : destinationVertex.toString());
-   }
-
-   @Override
-   public double getX()
-   {
-      return getEdgeVector().getX();
-   }
-
-   @Override
-   public double getY()
-   {
-      return getEdgeVector().getY();
-   }
-
-   @Override
-   public double getZ()
-   {
-      return getEdgeVector().getZ();
    }
 
    @Override
