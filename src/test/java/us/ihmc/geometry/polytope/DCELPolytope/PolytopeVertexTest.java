@@ -24,17 +24,17 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testConstructors()
    {
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.1, 0.2, 0.4);
+      Vertex3D vertex1 = new Vertex3D(0.1, 0.2, 0.4);
       assertTrue(vertex1.getX() == 0.1);
       assertTrue(vertex1.getY() == 0.2);
       assertTrue(vertex1.getZ() == 0.4);
 
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(new Point3D(1.2, 3.14, 1.519));
+      Vertex3D vertex2 = new Vertex3D(new Point3D(1.2, 3.14, 1.519));
       assertTrue(vertex2.getX() == 1.2);
       assertTrue(vertex2.getY() == 3.14);
       assertTrue(vertex2.getZ() == 1.519);
 
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(vertex1);
+      Vertex3D vertex3 = new Vertex3D(vertex1);
       assertTrue(vertex1.getX() == vertex3.getX());
       assertTrue(vertex1.getY() == vertex3.getY());
       assertTrue(vertex1.getZ() == vertex3.getZ());
@@ -43,9 +43,9 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testEdgeAssociation()
    {
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.1, 0.2, 0.3);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(0.2, 3.1, 5.7);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(1.2, 8.1, 0.0);
+      Vertex3D vertex1 = new Vertex3D(0.1, 0.2, 0.3);
+      Vertex3D vertex2 = new Vertex3D(0.2, 3.1, 5.7);
+      Vertex3D vertex3 = new Vertex3D(1.2, 8.1, 0.0);
       PolytopeHalfEdge edge1 = new PolytopeHalfEdge(vertex1, vertex2);
       PolytopeHalfEdge edge2 = new PolytopeHalfEdge(vertex1, vertex3);
       assertTrue(vertex1.getAssociatedEdges().size() == 2);
@@ -65,7 +65,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testDotProduct()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.1241252, -15.12415, 86.12536);
+      Vertex3D vertex = new Vertex3D(1.1241252, -15.12415, 86.12536);
       assertTrue(vertex.dot(new Vector3D(1.0, 0.5, 1.0)) == 1.1241252 - 0.5 * 15.12415 + 86.12536);
    }
 
@@ -73,7 +73,7 @@ public class PolytopeVertexTest
    public void testShortestDistanceCalculation()
    {
       Random random = new Random(123l);
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.1241252, -15.12415, 86.12536);
+      Vertex3D vertex = new Vertex3D(1.1241252, -15.12415, 86.12536);
       Point3D point = EuclidCoreRandomTools.nextPoint3D(random);
       assertTrue(vertex.getShortestDistanceTo(point) == point.distance(vertex));
    }
@@ -83,7 +83,7 @@ public class PolytopeVertexTest
    {
       Random random = new Random(1254l);
       Point3D somePoint = EuclidCoreRandomTools.nextPoint3D(random);
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(random.nextDouble(), random.nextDouble(), random.nextDouble());
+      Vertex3D vertex = new Vertex3D(random.nextDouble(), random.nextDouble(), random.nextDouble());
       Vector3D supportVectorToPack = new Vector3D();
       vertex.getSupportVectorDirectionTo(somePoint, supportVectorToPack);
       assertTrue(supportVectorToPack.getX() == somePoint.getX() - vertex.getX());
@@ -95,7 +95,7 @@ public class PolytopeVertexTest
    public void testRounding()
    {
       Random random = new Random(1254l);
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(random.nextDouble(), random.nextDouble(), random.nextDouble());
+      Vertex3D vertex = new Vertex3D(random.nextDouble(), random.nextDouble(), random.nextDouble());
       Point3D someCoordinate = new Point3D(vertex);
       vertex.round(Epsilons.ONE_HUNDREDTH);
       assertTrue(MathTools.roundToPrecision(someCoordinate.getX(), Epsilons.ONE_HUNDREDTH) + " " + vertex.getX(),
@@ -107,16 +107,16 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testSubSimplex()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex();
+      Vertex3D vertex = new Vertex3D();
       assertTrue(vertex.getSmallestSimplexMemberReference(null) == vertex);
    }
 
    @Test(timeout = 1000)
    public void testAssociatedEdgeRemoval()
    {
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(1.0, 2.0, 3.0);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(4.0, 5.0, 6.0);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(10.0, 15.0, 6.0);
+      Vertex3D vertex1 = new Vertex3D(1.0, 2.0, 3.0);
+      Vertex3D vertex2 = new Vertex3D(4.0, 5.0, 6.0);
+      Vertex3D vertex3 = new Vertex3D(10.0, 15.0, 6.0);
       PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
       PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex1, vertex2);
       PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex1, vertex3);
@@ -144,7 +144,7 @@ public class PolytopeVertexTest
       }
       assertTrue(fail);
       assertTrue(vertex1.isAssociatedWithEdge(halfEdge1, Epsilons.ONE_BILLIONTH));
-      ExtendedPolytopeVertex vertex4 = new ExtendedPolytopeVertex(12.0, 1.0, 9.0);
+      Vertex3D vertex4 = new Vertex3D(12.0, 1.0, 9.0);
       PolytopeHalfEdge halfEdge4 = new PolytopeHalfEdge(vertex3, vertex4);
       assertFalse(vertex1.isAssociatedWithEdge(halfEdge4));
       assertFalse(vertex1.isAssociatedWithEdge(halfEdge4, Epsilons.ONE));
@@ -153,7 +153,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testTransform()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.0, 2.0, 3.0);
+      Vertex3D vertex = new Vertex3D(1.0, 2.0, 3.0);
       RigidBodyTransform transform = new RigidBodyTransform();
       transform.setTranslation(10.0, 11.0, 12.0);
       transform.setRotationRoll(Math.PI / 2.0d);
@@ -166,7 +166,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testMultipleAssociationAdd()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.0, 2.0, 3.0);
+      Vertex3D vertex = new Vertex3D(1.0, 2.0, 3.0);
       List<PolytopeHalfEdge> halfEdgesToAdd = new ArrayList<>();
       halfEdgesToAdd.add(new PolytopeHalfEdge());
       halfEdgesToAdd.add(new PolytopeHalfEdge(vertex, null));
@@ -181,7 +181,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testInverseTransform()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(1.0, 2.0, 3.0);
+      Vertex3D vertex = new Vertex3D(1.0, 2.0, 3.0);
       RigidBodyTransform transform = new RigidBodyTransform();
       transform.setTranslation(10.0, 11.0, 12.0);
       transform.setRotationRoll(Math.PI / 2.0d);
@@ -194,7 +194,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testSetToNaN()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(10.0, 1.0, 12.0);
+      Vertex3D vertex = new Vertex3D(10.0, 1.0, 12.0);
       vertex.setToNaN();
       assertTrue(Double.isNaN(vertex.getElement(0)));
       assertTrue(Double.isNaN(vertex.getElement(1)));
@@ -205,7 +205,7 @@ public class PolytopeVertexTest
    @Test(timeout = 1000)
    public void testSetToZero()
    {
-      ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(10.0, 1.0, 12.0);
+      Vertex3D vertex = new Vertex3D(10.0, 1.0, 12.0);
       vertex.setToZero();
       assertTrue(vertex.getElement(0) == 0.0);
       assertTrue(vertex.getElement(1) == 0.0);

@@ -12,14 +12,14 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 /**
  * Template data structure that defines a Doubly-connected edge list (DCEL) polytope vertex
- * 
+ *
  * A DCEL vertex is composed of
  * <li>3D point: A data structure that stores the spatial location of the vertex in 3D space. May /
  * may not have a notion of a {@code ReferenceFrame}
  * <li>Associated edge list: A list of DCEL edges {@code E} that have their origins at this vertex
- * 
+ *
  * @author Apoorv S
- * 
+ *
  * @param <V> The class that extends this template. Should represent a point in some 3D space
  * @param <E> Data structure representing edges formed by joining two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
@@ -51,6 +51,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public List<PolytopeHalfEdgeBasics> getAssociatedEdges()
    {
       return associatedEdges;
@@ -59,6 +60,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public PolytopeHalfEdgeBasics getAssociatedEdge(int index)
    {
       return associatedEdges.get(index);
@@ -66,10 +68,10 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
 
    /**
     * Method to remove a particular edge from the associated edge list
-    * 
+    *
     * @param edgeToAdd the associated edge that is to be removed. In case the edge specified is not on
     *           the list, no errors are thrown
-    * 
+    *
     */
    public void removeAssociatedEdge(PolytopeHalfEdgeBasics edgeToAdd)
    {
@@ -87,7 +89,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * Add a {@code List<E>} of DCEL edges to the associated edge list. This invokes the
     * {@code addAssociatedEdge()} method and addition to the list follows the same set of rules
-    * 
+    *
     * @param edgeList a list of DCEL edges that must be added
     */
    public void addAssociatedEdges(List<? extends PolytopeHalfEdgeBasics> edgeList)
@@ -103,7 +105,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * list no action is carried out. The check for whether an edge is already on the list is done by
     * comparing objects. Hence is possible to add a edge that geometrically equals an already existent
     * edge
-    * 
+    *
     * @param edge the DCEL edge to add to the associated edge list
     */
    public void addAssociatedEdge(PolytopeHalfEdgeBasics edge)
@@ -115,6 +117,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck)
    {
       return associatedEdges.contains(edgeToCheck);
@@ -123,6 +126,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public boolean isAssociatedWithEdge(PolytopeHalfEdgeReadOnly edgeToCheck, double epsilon)
    {
       for (int i = 0; i < associatedEdges.size(); i++)
@@ -136,6 +140,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public int getNumberOfAssociatedEdges()
    {
       return associatedEdges.size();
@@ -144,6 +149,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public double dot(Vector3DReadOnly vector)
    {
       return getX() * vector.getX() + getY() * vector.getY() + getZ() * vector.getZ();
@@ -152,6 +158,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public String toString()
    {
       return EuclidCoreIOTools.getTuple3DString(this);
@@ -160,6 +167,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    /**
     * {@inheritDoc}
     */
+   @Override
    public boolean isAnyFaceMarked()
    {
       boolean isMarked = false;

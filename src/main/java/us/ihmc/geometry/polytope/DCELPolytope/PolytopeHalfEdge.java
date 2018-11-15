@@ -32,15 +32,15 @@ public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics implements Simplex
     */
    public PolytopeHalfEdge(PolytopeHalfEdgeReadOnly edge)
    {
-      super(new ExtendedPolytopeVertex(edge.getOriginVertex()), new ExtendedPolytopeVertex(edge.getDestinationVertex()));
+      super(new Vertex3D(edge.getOriginVertex()), new Vertex3D(edge.getDestinationVertex()));
    }
 
-   public PolytopeHalfEdge(ExtendedPolytopeVertex origin, ExtendedPolytopeVertex destination)
+   public PolytopeHalfEdge(Vertex3D origin, Vertex3D destination)
    {
       super(origin, destination);
    }
 
-   public PolytopeHalfEdge(ExtendedPolytopeVertex originVertex, ExtendedPolytopeVertex destinationVertex, PolytopeHalfEdge twinEdge,
+   public PolytopeHalfEdge(Vertex3D originVertex, Vertex3D destinationVertex, PolytopeHalfEdge twinEdge,
                            PolytopeHalfEdge nextHalfEdge, PolytopeHalfEdge previousHalfEdge, ConvexPolytopeFace face)
    {
       super(originVertex, destinationVertex, twinEdge, nextHalfEdge, previousHalfEdge, face);

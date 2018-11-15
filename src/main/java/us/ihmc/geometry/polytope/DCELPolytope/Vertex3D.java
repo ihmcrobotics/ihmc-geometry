@@ -11,26 +11,26 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
  * @author Apoorv S
  *
  */
-public class ExtendedPolytopeVertex extends Vertex3DBasics implements Simplex
+public class Vertex3D extends Vertex3DBasics implements Simplex
 {
    private double x, y, z;
 
-   public ExtendedPolytopeVertex()
+   public Vertex3D()
    {
       setToZero();
    }
 
-   public ExtendedPolytopeVertex(double x, double y, double z)
+   public Vertex3D(double x, double y, double z)
    {
       set(x, y, z);
    }
 
-   public ExtendedPolytopeVertex(Point3DReadOnly position)
+   public Vertex3D(Point3DReadOnly position)
    {
       set(position);
    }
 
-   public ExtendedPolytopeVertex(ExtendedPolytopeVertex vertex)
+   public Vertex3D(Vertex3D vertex)
    {
       set(vertex);
    }

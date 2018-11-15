@@ -22,7 +22,7 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.ConvexPolytopeFace;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
-import us.ihmc.geometry.polytope.DCELPolytope.ExtendedPolytopeVertex;
+import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
@@ -38,12 +38,12 @@ public class ConvexPolytopeTest
    public void testAdditionWithSquarePyramid()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexSix = new ExtendedPolytopeVertex(0.0, 1.0, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertexFive = new Vertex3D(0.0, 0.0, 1.0);
+      Vertex3D vertexSix = new Vertex3D(0.0, 1.0, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -77,7 +77,7 @@ public class ConvexPolytopeTest
       polytope.addVertex(1.0, 2.0, 0.0, EPSILON);
       polytope.addVertex(2.0, 2.0, 0.0, EPSILON);
 
-      ExtendedPolytopeVertex newVertex = new ExtendedPolytopeVertex(3.0, 1.0, 0.0);
+      Vertex3D newVertex = new Vertex3D(3.0, 1.0, 0.0);
       polytope.addVertex(newVertex, EPSILON);
       polytope.addVertex(3.0, 0.0, 0.0, EPSILON);
       polytope.addVertex(2.0, -1.0, 0.0, EPSILON);
@@ -159,12 +159,12 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeVisibleSilhouetteCalculation()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.0, 1.0, 1.0);
-      ExtendedPolytopeVertex vertexSix = new ExtendedPolytopeVertex(1.0, 1.0, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 0.0, 1.0);
+      Vertex3D vertexFive = new Vertex3D(0.0, 1.0, 1.0);
+      Vertex3D vertexSix = new Vertex3D(1.0, 1.0, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -179,14 +179,14 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeWithUnitCube()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.0, 1.0, 1.0);
-      ExtendedPolytopeVertex vertexSix = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexSeven = new ExtendedPolytopeVertex(1.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexEight = new ExtendedPolytopeVertex(1.0, 1.0, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 0.0, 1.0);
+      Vertex3D vertexFive = new Vertex3D(0.0, 1.0, 1.0);
+      Vertex3D vertexSix = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexSeven = new Vertex3D(1.0, 0.0, 1.0);
+      Vertex3D vertexEight = new Vertex3D(1.0, 1.0, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -230,10 +230,10 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeWithPyramid()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.5, 0.5, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.5, 0.5, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -281,11 +281,11 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeWithSquarePyramid()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.5, 0.5, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertexFive = new Vertex3D(0.5, 0.5, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -325,11 +325,11 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeWithWierdShape()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.5, 0.5, 1.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.0, 1.0, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.5, 0.5, 1.0);
+      Vertex3D vertexFive = new Vertex3D(0.0, 1.0, 1.0);
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
       polytope.addVertex(vertexThree, EPSILON);
@@ -345,14 +345,14 @@ public class ConvexPolytopeTest
    public void testConvexPolytopeWithAUnitCube()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(0.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexSix = new ExtendedPolytopeVertex(1.0, 0.0, 1.0);
-      ExtendedPolytopeVertex vertexSeven = new ExtendedPolytopeVertex(1.0, 1.0, 1.0);
-      ExtendedPolytopeVertex vertexEight = new ExtendedPolytopeVertex(0.0, 1.0, 1.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertexFive = new Vertex3D(0.0, 0.0, 1.0);
+      Vertex3D vertexSix = new Vertex3D(1.0, 0.0, 1.0);
+      Vertex3D vertexSeven = new Vertex3D(1.0, 1.0, 1.0);
+      Vertex3D vertexEight = new Vertex3D(0.0, 1.0, 1.0);
 
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);
@@ -443,15 +443,15 @@ public class ConvexPolytopeTest
       assertTrue(boundingBox.getMaxY() == Double.POSITIVE_INFINITY);
       assertTrue(boundingBox.getMaxZ() == Double.POSITIVE_INFINITY);
 
-      ExtendedPolytopeVertex vertexOne = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexTwo = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertexThree = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertexFour = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
+      Vertex3D vertexOne = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertexTwo = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertexThree = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertexFour = new Vertex3D(0.0, 1.0, 0.0);
 
-      ExtendedPolytopeVertex vertexFive = new ExtendedPolytopeVertex(new Point3D(0.0, 0.0, 1.0));
-      ExtendedPolytopeVertex vertexSix = new ExtendedPolytopeVertex(new Point3D(1.0, 0.0, 1.0));
-      ExtendedPolytopeVertex vertexSeven = new ExtendedPolytopeVertex(new Point3D(1.0, 1.0, 1.0));
-      ExtendedPolytopeVertex vertexEight = new ExtendedPolytopeVertex(new Point3D(0.0, 1.0, 1.0));
+      Vertex3D vertexFive = new Vertex3D(new Point3D(0.0, 0.0, 1.0));
+      Vertex3D vertexSix = new Vertex3D(new Point3D(1.0, 0.0, 1.0));
+      Vertex3D vertexSeven = new Vertex3D(new Point3D(1.0, 1.0, 1.0));
+      Vertex3D vertexEight = new Vertex3D(new Point3D(0.0, 1.0, 1.0));
 
       polytope.addVertex(vertexOne, EPSILON);
       polytope.addVertex(vertexTwo, EPSILON);

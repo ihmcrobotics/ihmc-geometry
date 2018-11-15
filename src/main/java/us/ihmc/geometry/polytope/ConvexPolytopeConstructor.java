@@ -16,7 +16,7 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple4D.Quaternion;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
-import us.ihmc.geometry.polytope.DCELPolytope.ExtendedPolytopeVertex;
+import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeBasics;
 
 public class ConvexPolytopeConstructor
@@ -59,14 +59,14 @@ public class ConvexPolytopeConstructor
    public static ExtendedConvexPolytope constructExtendedUnitCube()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      polytope.addVertex(new ExtendedPolytopeVertex(0.0, 0.0, 0.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(1.0, 0.0, 0.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(0.0, 1.0, 0.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(1.0, 1.0, 0.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(0.0, 0.0, 1.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(1.0, 0.0, 1.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(0.0, 1.0, 1.0), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(1.0, 1.0, 1.0), EPSILON);
+      polytope.addVertex(new Vertex3D(0.0, 0.0, 0.0), EPSILON);
+      polytope.addVertex(new Vertex3D(1.0, 0.0, 0.0), EPSILON);
+      polytope.addVertex(new Vertex3D(0.0, 1.0, 0.0), EPSILON);
+      polytope.addVertex(new Vertex3D(1.0, 1.0, 0.0), EPSILON);
+      polytope.addVertex(new Vertex3D(0.0, 0.0, 1.0), EPSILON);
+      polytope.addVertex(new Vertex3D(1.0, 0.0, 1.0), EPSILON);
+      polytope.addVertex(new Vertex3D(0.0, 1.0, 1.0), EPSILON);
+      polytope.addVertex(new Vertex3D(1.0, 1.0, 1.0), EPSILON);
       return polytope;
    }
 
@@ -162,12 +162,12 @@ public class ConvexPolytopeConstructor
    public static ExtendedConvexPolytope constructSphere(Point3D center, double radius, int cubeDivisions)
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
-      List<ExtendedPolytopeVertex> vertices = new ArrayList<>();
+      List<Vertex3D> vertices = new ArrayList<>();
       for (int i = 0; i < cubeDivisions; i++)
       {
          for (int j = 0; j < cubeDivisions; j++)
          {
-            ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex((2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius,
+            Vertex3D vertex = new Vertex3D((2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius,
                                                                        (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, -radius);
             vertices.add(vertex);
          }
@@ -177,16 +177,16 @@ public class ConvexPolytopeConstructor
       {
          for (int j = 0; j < cubeDivisions; j++)
          {
-            ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex(-radius, (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius,
+            Vertex3D vertex = new Vertex3D(-radius, (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius,
                                                                        (2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius);
             vertices.add(vertex);
-            vertex = new ExtendedPolytopeVertex((2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, -radius,
+            vertex = new Vertex3D((2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, -radius,
                                                 (2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius);
             vertices.add(vertex);
-            vertex = new ExtendedPolytopeVertex((2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, radius,
+            vertex = new Vertex3D((2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, radius,
                                                 (2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius);
             vertices.add(vertex);
-            vertex = new ExtendedPolytopeVertex(radius, (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius,
+            vertex = new Vertex3D(radius, (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius,
                                                 (2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius);
             vertices.add(vertex);
          }
@@ -196,7 +196,7 @@ public class ConvexPolytopeConstructor
       {
          for (int j = 1; j < cubeDivisions - 1; j++)
          {
-            ExtendedPolytopeVertex vertex = new ExtendedPolytopeVertex((2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius,
+            Vertex3D vertex = new Vertex3D((2.0 * (float) i / (float) (cubeDivisions - 1) - 1) * radius,
                                                                        (2.0 * (float) j / (float) (cubeDivisions - 1) - 1) * radius, radius);
             vertices.add(vertex);
          }
@@ -204,7 +204,7 @@ public class ConvexPolytopeConstructor
 
       for (int i = 0; i < vertices.size(); i++)
       {
-         ExtendedPolytopeVertex vertex = vertices.get(i);
+         Vertex3D vertex = vertices.get(i);
          double mag = Math.sqrt(vertex.getX() * vertex.getX() + vertex.getY() * vertex.getY() + vertex.getZ() * vertex.getZ());
          vertex.setX(vertex.getX() * radius / mag);
          vertex.setY(vertex.getY() * radius / mag);
@@ -234,12 +234,12 @@ public class ConvexPolytopeConstructor
       double vertexAngle = 2 * Math.PI / numberOfDivisionsForCurvedSurface;
       double enclosingRadius = radius / Math.cos(vertexAngle / 2.0);
       for (int i = 0; i < numberOfDivisionsForCurvedSurface; i++)
-         polytope.addVertex(new ExtendedPolytopeVertex(center.getX() + enclosingRadius * Math.cos(i * vertexAngle),
+         polytope.addVertex(new Vertex3D(center.getX() + enclosingRadius * Math.cos(i * vertexAngle),
                                                        center.getY() + enclosingRadius * Math.sin(i * vertexAngle), center.getZ() - length / 2.0),
                             EPSILON);
       for (int i = 0; i < numberOfDivisionsForCurvedSurface; i++)
       {
-         polytope.addVertex(new ExtendedPolytopeVertex(center.getX() + enclosingRadius * Math.cos(i * vertexAngle),
+         polytope.addVertex(new Vertex3D(center.getX() + enclosingRadius * Math.cos(i * vertexAngle),
                                                        center.getY() + enclosingRadius * Math.sin(i * vertexAngle), center.getZ() + length / 2.0),
                             EPSILON);
       }
@@ -266,14 +266,14 @@ public class ConvexPolytopeConstructor
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
 
-      polytope.addVertex(new ExtendedPolytopeVertex(-halfLengthX, -halfWidthY, -halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(halfLengthX, -halfWidthY, -halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(halfLengthX, halfWidthY, -halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(-halfLengthX, halfWidthY, -halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(-halfLengthX, -halfWidthY, halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(halfLengthX, -halfWidthY, halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(halfLengthX, halfWidthY, halfHeightZ), EPSILON);
-      polytope.addVertex(new ExtendedPolytopeVertex(-halfLengthX, halfWidthY, halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(-halfLengthX, -halfWidthY, -halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(halfLengthX, -halfWidthY, -halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(halfLengthX, halfWidthY, -halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(-halfLengthX, halfWidthY, -halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(-halfLengthX, -halfWidthY, halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(halfLengthX, -halfWidthY, halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(halfLengthX, halfWidthY, halfHeightZ), EPSILON);
+      polytope.addVertex(new Vertex3D(-halfLengthX, halfWidthY, halfHeightZ), EPSILON);
 
       return polytope;
    }

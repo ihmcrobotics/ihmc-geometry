@@ -2,7 +2,7 @@ package us.ihmc.geometry.polytope.DCELPolytope;
 
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
-public class SimplexVertex extends ExtendedPolytopeVertex
+public class SimplexVertex extends Vertex3D
 {
    Vertex3DReadOnly polytopeAVertexReference;
    Vertex3DReadOnly polytopeBVertexReference;
@@ -12,7 +12,7 @@ public class SimplexVertex extends ExtendedPolytopeVertex
       super();
    }
 
-   public SimplexVertex(ExtendedPolytopeVertex vertexOnPolytopeA, ExtendedPolytopeVertex vertexOnPolytopeB)
+   public SimplexVertex(Vertex3D vertexOnPolytopeA, Vertex3D vertexOnPolytopeB)
    {
       set(vertexOnPolytopeA, vertexOnPolytopeB);
    }

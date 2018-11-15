@@ -21,9 +21,9 @@ public class ConvexPolytopeFaceTest
    public void testConstructorAndAddVertex()
    {
       ConvexPolytopeFace face = new ConvexPolytopeFace();
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
+      Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertex2 = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertex3 = new Vertex3D(1.0, 0.0, 0.0);
       face.addVertex(vertex1, epsilon);
       assertTrue(face.getNumberOfEdges() == 1);
       assertTrue(face.getEdge(0).getOriginVertex() == vertex1);
@@ -43,7 +43,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(face.getEdge(2).getOriginVertex() == vertex3);
       assertTrue(face.getEdge(2).getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex4 = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
+      Vertex3D vertex4 = new Vertex3D(1.0, 1.0, 0.0);
       face.addVertex(vertex4, epsilon);
       assertTrue("Got: " + face.getNumberOfEdges() + " , should have been 4", face.getNumberOfEdges() == 4);
       PolytopeHalfEdge edge = face.getEdge(0);
@@ -59,7 +59,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(edge.getOriginVertex() == vertex3);
       assertTrue(edge.getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex5 = new ExtendedPolytopeVertex(2.0, 2.0, 0.0);
+      Vertex3D vertex5 = new Vertex3D(2.0, 2.0, 0.0);
       face.addVertex(vertex5, epsilon);
       assertTrue("Number of edges: " + face.getNumberOfEdges() + ", needed: " + 4, face.getNumberOfEdges() == 4);
       edge = face.getEdge(0);
@@ -75,7 +75,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(edge.getOriginVertex() == vertex3);
       assertTrue(edge.getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex6 = new ExtendedPolytopeVertex(3.0, 3.0, 0.0);
+      Vertex3D vertex6 = new Vertex3D(3.0, 3.0, 0.0);
       face.addVertex(vertex6, epsilon);
       assertTrue("Number of edges: " + face.getNumberOfEdges() + ", needed: " + 4, face.getNumberOfEdges() == 4);
       edge = face.getEdge(0);
@@ -91,7 +91,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(edge.getOriginVertex() == vertex3);
       assertTrue(edge.getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex7 = new ExtendedPolytopeVertex(2.0, 3.0, 0.0);
+      Vertex3D vertex7 = new Vertex3D(2.0, 3.0, 0.0);
       face.addVertex(vertex7, epsilon);
       assertTrue("Number of edges: " + face.getNumberOfEdges() + ", needed: " + 5, face.getNumberOfEdges() == 5);
       edge = face.getEdge(0);
@@ -110,7 +110,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(edge.getOriginVertex() == vertex3);
       assertTrue(edge.getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex8 = new ExtendedPolytopeVertex(0.0, 0.0, 1.0);
+      Vertex3D vertex8 = new Vertex3D(0.0, 0.0, 1.0);
       assertFalse(face.isPointInFacePlane(vertex8, Epsilons.ONE_BILLIONTH));
       face.addVertex(vertex8, epsilon);
       assertTrue("Number of edges: " + face.getNumberOfEdges() + ", needed: " + 5, face.getNumberOfEdges() == 5);
@@ -130,7 +130,7 @@ public class ConvexPolytopeFaceTest
       assertTrue(edge.getOriginVertex() == vertex3);
       assertTrue(edge.getDestinationVertex() == vertex1);
 
-      ExtendedPolytopeVertex vertex9 = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
+      Vertex3D vertex9 = new Vertex3D(1.0, 1.0, 0.0);
       assertTrue(face.isPointInFacePlane(vertex9, Epsilons.ONE_MILLIONTH));
       assertTrue(face.isInteriorPoint(vertex9, epsilon));
       face.addVertex(vertex9, epsilon);
@@ -156,11 +156,11 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testGetFirstVisibleEdge()
    {
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex4 = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex5 = new ExtendedPolytopeVertex(-1.0, 0.5, 0.0);
+      Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertex2 = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertex3 = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertex4 = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertex5 = new Vertex3D(-1.0, 0.5, 0.0);
       PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
       PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex2, vertex3);
       PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex3, vertex4);
@@ -177,11 +177,11 @@ public class ConvexPolytopeFaceTest
       halfEdge4.setPreviousHalfEdge(halfEdge3);
       halfEdge5.setPreviousHalfEdge(halfEdge4);
       ConvexPolytopeFace face = new ConvexPolytopeFace(new PolytopeHalfEdge[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
-      ExtendedPolytopeVertex vertex6 = new ExtendedPolytopeVertex(-1.0, -1.0, 0.0);
+      Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
       PolytopeHalfEdge firstVisibleEdge = face.getFirstVisibleEdge(vertex6);
       assertTrue(firstVisibleEdge == halfEdge5);
 
-      ExtendedPolytopeVertex vertex7 = new ExtendedPolytopeVertex(2.0, -1.0, 0.0);
+      Vertex3D vertex7 = new Vertex3D(2.0, -1.0, 0.0);
       firstVisibleEdge = face.getFirstVisibleEdge(vertex7);
       assertTrue(firstVisibleEdge == halfEdge5);
    }
@@ -190,11 +190,11 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testGetVisibleEdgeList()
    {
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(1.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(1.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex4 = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex5 = new ExtendedPolytopeVertex(-1.0, 0.5, 0.0);
+      Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertex2 = new Vertex3D(1.0, 0.0, 0.0);
+      Vertex3D vertex3 = new Vertex3D(1.0, 1.0, 0.0);
+      Vertex3D vertex4 = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertex5 = new Vertex3D(-1.0, 0.5, 0.0);
       PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
       PolytopeHalfEdge halfEdge2 = new PolytopeHalfEdge(vertex2, vertex3);
       PolytopeHalfEdge halfEdge3 = new PolytopeHalfEdge(vertex3, vertex4);
@@ -213,13 +213,13 @@ public class ConvexPolytopeFaceTest
       ConvexPolytopeFace face = new ConvexPolytopeFace(new PolytopeHalfEdge[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
 
       List<PolytopeHalfEdgeBasics> visibleEdgeList = new ArrayList<>();
-      ExtendedPolytopeVertex vertex6 = new ExtendedPolytopeVertex(-1.0, -1.0, 0.0);
+      Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
       face.getVisibleEdgeList(vertex6, visibleEdgeList);
       assertTrue(visibleEdgeList.size() == 2);
       assertTrue(visibleEdgeList.get(0) == halfEdge5);
       assertTrue(visibleEdgeList.get(1) == halfEdge1);
 
-      ExtendedPolytopeVertex vertex7 = new ExtendedPolytopeVertex(2.0, -1.0, 0.0);
+      Vertex3D vertex7 = new Vertex3D(2.0, -1.0, 0.0);
       face.getVisibleEdgeList(vertex7, visibleEdgeList);
       assertTrue(visibleEdgeList.size() == 3);
       assertTrue(visibleEdgeList.get(0) == halfEdge5);
@@ -232,9 +232,9 @@ public class ConvexPolytopeFaceTest
    public void testRepeatedPointAddition()
    {
       ConvexPolytopeFace face = new ConvexPolytopeFace();
-      ExtendedPolytopeVertex vertex1 = new ExtendedPolytopeVertex(0.0, 0.0, 0.0);
-      ExtendedPolytopeVertex vertex2 = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
-      ExtendedPolytopeVertex vertex3 = new ExtendedPolytopeVertex(0.0, 1.0, 0.0);
+      Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
+      Vertex3D vertex2 = new Vertex3D(0.0, 1.0, 0.0);
+      Vertex3D vertex3 = new Vertex3D(0.0, 1.0, 0.0);
       face.addVertex(vertex1, epsilon);
       face.addVertex(vertex2, epsilon);
       face.addVertex(vertex3, epsilon);
@@ -246,11 +246,11 @@ public class ConvexPolytopeFaceTest
    public void testAdditionPrecision()
    {
       ConvexPolytopeFace face = new ConvexPolytopeFace();
-      face.addVertex(new ExtendedPolytopeVertex(0.0001111, 0.0002222, 0.0003333), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex(1.0001111, 0.0002222, 0.0003333), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex(1.0001111, 1.0002222, 0.0003333), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex(0.0001111, 1.0002222, 0.0003333), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex(1.0001111, 0.0002222, 0.0003333), epsilon);
+      face.addVertex(new Vertex3D(0.0001111, 0.0002222, 0.0003333), epsilon);
+      face.addVertex(new Vertex3D(1.0001111, 0.0002222, 0.0003333), epsilon);
+      face.addVertex(new Vertex3D(1.0001111, 1.0002222, 0.0003333), epsilon);
+      face.addVertex(new Vertex3D(0.0001111, 1.0002222, 0.0003333), epsilon);
+      face.addVertex(new Vertex3D(1.0001111, 0.0002222, 0.0003333), epsilon);
       assertTrue(face.toString(), face.getNumberOfEdges() == 4);
    }
 
@@ -260,11 +260,11 @@ public class ConvexPolytopeFaceTest
    {
       ConvexPolytopeFace face = new ConvexPolytopeFace();
 
-      face.addVertex(new ExtendedPolytopeVertex( -0.15000000000000002, 0.04200000000000001, 0.11500000000000002), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex( -0.15000000000000002, 0.07500000000000001, -0.12000000000000002), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex( -0.15000000000000002, -0.07500000000000001, -0.12000000000000002), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex( -0.15000000000000002, -0.04200000000000001, 0.11500000000000002), epsilon);
-      face.addVertex(new ExtendedPolytopeVertex( -0.15000000000000002, 0.07500000000000001, -0.12000000000000002), epsilon);
+      face.addVertex(new Vertex3D( -0.15000000000000002, 0.04200000000000001, 0.11500000000000002), epsilon);
+      face.addVertex(new Vertex3D( -0.15000000000000002, 0.07500000000000001, -0.12000000000000002), epsilon);
+      face.addVertex(new Vertex3D( -0.15000000000000002, -0.07500000000000001, -0.12000000000000002), epsilon);
+      face.addVertex(new Vertex3D( -0.15000000000000002, -0.04200000000000001, 0.11500000000000002), epsilon);
+      face.addVertex(new Vertex3D( -0.15000000000000002, 0.07500000000000001, -0.12000000000000002), epsilon);
       assertTrue(face.toString(), face.getNumberOfEdges() == 4);
    }
 

@@ -1,33 +1,33 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.ExtendedPolytopeVertex;
+import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 
 public class PolytopeVertexBuilder implements PolytopeVertexProvider
 {
 
    @Override
-   public ExtendedPolytopeVertex getVertex()
+   public Vertex3D getVertex()
    {
-      return new ExtendedPolytopeVertex();
+      return new Vertex3D();
    }
 
    @Override
-   public ExtendedPolytopeVertex getVertex(double x, double y, double z)
+   public Vertex3D getVertex(double x, double y, double z)
    {
-      return new ExtendedPolytopeVertex(x, y, z);
+      return new Vertex3D(x, y, z);
    }
 
    @Override
-   public ExtendedPolytopeVertex getVertex(double[] coords)
+   public Vertex3D getVertex(double[] coords)
    {
-      return new ExtendedPolytopeVertex(coords[0], coords[1], coords[2]);
+      return new Vertex3D(coords[0], coords[1], coords[2]);
    }
 
    @Override
-   public ExtendedPolytopeVertex getVertex(Point3DReadOnly vertexToAdd)
+   public Vertex3D getVertex(Point3DReadOnly vertexToAdd)
    {
-      return new ExtendedPolytopeVertex(vertexToAdd);
+      return new Vertex3D(vertexToAdd);
    }
 
 }
