@@ -12,11 +12,11 @@ import org.junit.Test;
 import us.ihmc.commons.Epsilons;
 import us.ihmc.commons.MathTools;
 import us.ihmc.commons.MutationTestFacilitator;
-import us.ihmc.euclid.referenceFrame.ReferenceFrame;
 import us.ihmc.euclid.tools.EuclidCoreRandomTools;
 import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
 
 public class PolytopeVertexTest
@@ -56,7 +56,7 @@ public class PolytopeVertexTest
       assertTrue(vertex2.getAssociatedEdges().size() == 0);
       assertTrue(vertex3.getAssociatedEdges().size() == 0);
 
-      PolytopeHalfEdge twinEdge1 = edge1.createTwinHalfEdge();
+      PolytopeHalfEdgeBasics twinEdge1 = edge1.createTwinHalfEdge();
       assertTrue(vertex2.getAssociatedEdges().size() == 1);
       assertTrue(vertex2.getAssociatedEdges().get(0) == twinEdge1);
 

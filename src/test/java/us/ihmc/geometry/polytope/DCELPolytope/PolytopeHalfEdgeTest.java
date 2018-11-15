@@ -7,6 +7,7 @@ import org.junit.Test;
 import us.ihmc.commons.Epsilons;
 import us.ihmc.continuousIntegration.ContinuousIntegrationAnnotations.ContinuousIntegrationTest;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
 
 public class PolytopeHalfEdgeTest
 {
@@ -76,7 +77,7 @@ public class PolytopeHalfEdgeTest
       ExtendedPolytopeVertex vertex1 = getRandomPolytopeVertex();
       ExtendedPolytopeVertex vertex2 = getRandomPolytopeVertex();
       PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge twinOfHalfEdge1 = halfEdge1.createTwinHalfEdge();
+      PolytopeHalfEdgeBasics twinOfHalfEdge1 = halfEdge1.createTwinHalfEdge();
       assertTrue(twinOfHalfEdge1.getTwinHalfEdge() == halfEdge1);
       assertTrue(twinOfHalfEdge1.getOriginVertex() == vertex2);
       assertTrue(twinOfHalfEdge1.getDestinationVertex() == vertex1);
@@ -89,7 +90,7 @@ public class PolytopeHalfEdgeTest
       ExtendedPolytopeVertex vertex1 = getRandomPolytopeVertex();
       ExtendedPolytopeVertex vertex2 = getRandomPolytopeVertex();
       PolytopeHalfEdge halfEdge1 = new PolytopeHalfEdge(vertex1, vertex2);
-      PolytopeHalfEdge twinOfHalfEdge1 = halfEdge1.setAndCreateTwinHalfEdge();
+      PolytopeHalfEdgeBasics twinOfHalfEdge1 = halfEdge1.setAndCreateTwinHalfEdge();
       assertTrue(twinOfHalfEdge1.getTwinHalfEdge() == halfEdge1);
       assertTrue(halfEdge1.getTwinHalfEdge() == twinOfHalfEdge1);
       assertTrue(twinOfHalfEdge1.getOriginVertex() == vertex2);

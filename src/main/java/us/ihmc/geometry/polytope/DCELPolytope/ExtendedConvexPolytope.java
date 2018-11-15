@@ -1,7 +1,5 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
-import java.util.List;
-
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.CollisionDetection.PolytopeListener;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.ConvexPolytopeFaceBuilder;
@@ -19,7 +17,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeVertexProvider;
  * @author Apoorv S
  */
 
-public class ExtendedConvexPolytope extends ConvexPolytopeBasics<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace>
+public class ExtendedConvexPolytope extends ConvexPolytopeBasics
 {
    private final ConvexPolytopeFaceBuilder faceBuilder = new ConvexPolytopeFaceBuilder();
    private final PolytopeVertexBuilder vertexBuilder = new PolytopeVertexBuilder();
@@ -40,13 +38,13 @@ public class ExtendedConvexPolytope extends ConvexPolytopeBasics<ExtendedPolytop
    }
 
    @Override
-   protected PolytopeVertexProvider<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace> getVertexProvider()
+   protected PolytopeVertexProvider getVertexProvider()
    {
       return vertexBuilder;
    }
 
    @Override
-   protected ConvexPolytopeFaceProvider<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace> getConvexFaceProvider()
+   protected ConvexPolytopeFaceProvider getConvexFaceProvider()
    {
       return faceBuilder;
    }
@@ -55,17 +53,5 @@ public class ExtendedConvexPolytope extends ConvexPolytopeBasics<ExtendedPolytop
    public ConvexPolytopeFace getFace(int index)
    {
       return (ConvexPolytopeFace) super.getFace(index);
-   }
-
-   @Override
-   public List<ExtendedPolytopeVertex> getVertices()
-   {
-      return (List<ExtendedPolytopeVertex>) super.getVertices();
-   }
-
-   @Override
-   public List<PolytopeHalfEdge> getEdges()
-   {
-      return (List<PolytopeHalfEdge>) super.getEdges();
    }
 }

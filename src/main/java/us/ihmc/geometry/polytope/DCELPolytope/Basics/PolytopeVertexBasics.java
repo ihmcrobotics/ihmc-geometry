@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import us.ihmc.commons.MathTools;
-import us.ihmc.euclid.interfaces.Clearable;
-import us.ihmc.euclid.interfaces.Settable;
 import us.ihmc.euclid.tools.EuclidCoreIOTools;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
@@ -26,13 +24,12 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
  * @param <E> Data structure representing edges formed by joining two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, F>, E extends PolytopeHalfEdgeBasics<V, E, F>, F extends ConvexPolytopeFaceBasics<V, E, F>>
-      implements SimplexBasics, PolytopeVertexReadOnly, Clearable, Settable<V>, Point3DBasics
+public abstract class PolytopeVertexBasics implements SimplexBasics, PolytopeVertexReadOnly, Point3DBasics
 {
    /**
     * List of edges that start at this vertex. May be part of different faces
     */
-   private final ArrayList<E> associatedEdges = new ArrayList<>();
+   private final List<PolytopeHalfEdgeBasics> associatedEdges = new ArrayList<>();
 
    /**
     * Default constructor
@@ -44,7 +41,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    /**
     * Set the spatial coordinates from another vertex and copy all the edge associations
     */
-   public void set(V other)
+   public void set(PolytopeVertexBasics other)
    {
       Point3DBasics.super.set(other);
       clearAssociatedEdgeList();
@@ -54,7 +51,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    /**
     * {@inheritDoc}
     */
-   public List<E> getAssociatedEdges()
+   public List<PolytopeHalfEdgeBasics> getAssociatedEdges()
    {
       return associatedEdges;
    }
@@ -62,7 +59,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
    /**
     * {@inheritDoc}
     */
-   public E getAssociatedEdge(int index)
+   public PolytopeHalfEdgeBasics getAssociatedEdge(int index)
    {
       return associatedEdges.get(index);
    }
@@ -74,7 +71,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
     *           the list, no errors are thrown
     * 
     */
-   public void removeAssociatedEdge(E edgeToAdd)
+   public void removeAssociatedEdge(PolytopeHalfEdgeBasics edgeToAdd)
    {
       associatedEdges.remove(edgeToAdd);
    }
@@ -93,7 +90,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
     * 
     * @param edgeList a list of DCEL edges that must be added
     */
-   public void addAssociatedEdges(List<E> edgeList)
+   public void addAssociatedEdges(List<? extends PolytopeHalfEdgeBasics> edgeList)
    {
       for (int i = 0; i < edgeList.size(); i++)
       {
@@ -109,7 +106,7 @@ public abstract class PolytopeVertexBasics<V extends PolytopeVertexBasics<V, E, 
     * 
     * @param edge the DCEL edge to add to the associated edge list
     */
-   public void addAssociatedEdge(E edge)
+   public void addAssociatedEdge(PolytopeHalfEdgeBasics edge)
    {
       if (!isAssociatedWithEdge(edge))
          associatedEdges.add(edge);

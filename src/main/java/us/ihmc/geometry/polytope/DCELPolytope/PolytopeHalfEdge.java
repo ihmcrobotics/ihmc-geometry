@@ -15,7 +15,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * 
  * @author Apoorv S
  */
-public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace> implements Simplex
+public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics implements Simplex
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 
@@ -58,7 +58,7 @@ public class PolytopeHalfEdge extends PolytopeHalfEdgeBasics<ExtendedPolytopeVer
    }
 
    @Override
-   protected PolytopeHalfEdgeProvider<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace> getHalfEdgeProvider()
+   protected PolytopeHalfEdgeProvider getHalfEdgeProvider()
    {
       return halfEdgeBuilder;
    }

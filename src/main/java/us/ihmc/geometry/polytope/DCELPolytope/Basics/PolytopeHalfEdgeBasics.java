@@ -2,7 +2,6 @@ package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
 import us.ihmc.euclid.geometry.tools.EuclidGeometryTools;
 import us.ihmc.euclid.interfaces.Clearable;
-import us.ihmc.euclid.interfaces.Settable;
 import us.ihmc.euclid.interfaces.Transformable;
 import us.ihmc.euclid.transform.interfaces.Transform;
 import us.ihmc.euclid.tuple3D.Point3D;
@@ -29,35 +28,34 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E, F>, E extends PolytopeHalfEdgeBasics<V, E, F>, F extends ConvexPolytopeFaceBasics<V, E, F>>
-      implements PolytopeHalfEdgeReadOnly, SimplexBasics, Clearable, Transformable, Settable<E>
+public abstract class PolytopeHalfEdgeBasics implements PolytopeHalfEdgeReadOnly, SimplexBasics, Clearable, Transformable
 {
 
    /**
     * Specifies the spatial location at which the half edge originates
     */
-   private V originVertex;
+   private PolytopeVertexBasics originVertex;
    /**
     * Specifies the spatial location at which the half edge terminates
     */
-   private V destinationVertex;
+   private PolytopeVertexBasics destinationVertex;
    /**
     * The half edge on an adjacent face that originates at the {@code destinatioVertex} and terminates
     * at the {@code originVertex}. Represents the opposite spatial direction
     */
-   private E twinEdge;
+   private PolytopeHalfEdgeBasics twinEdge;
    /**
     * The half edge on the same face as this edge that originates at the {@code destinationVertex}
     */
-   private E nextHalfEdge;
+   private PolytopeHalfEdgeBasics nextHalfEdge;
    /**
     * The half edge on the same face as this edge that terminates at the {@code originVertex}
     */
-   private E previousHalfEdge;
+   private PolytopeHalfEdgeBasics previousHalfEdge;
    /**
     * getShortestDistanceTo The face that this edge is a part of
     */
-   private F face;
+   private ConvexPolytopeFaceBasics face;
    /**
     * A vector that represents the direction and lenght of the half edge. Not recomputed on change of
     * values. Only recomputed when called through its getter
@@ -74,7 +72,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @return an object that can be used to create other half edge objects
     */
-   protected abstract PolytopeHalfEdgeProvider<V, E, F> getHalfEdgeProvider();
+   protected abstract PolytopeHalfEdgeProvider getHalfEdgeProvider();
 
    /**
     * Default constructor
@@ -90,7 +88,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @param originVertex
     * @param destinationVertex
     */
-   public PolytopeHalfEdgeBasics(V originVertex, V destinationVertex)
+   public PolytopeHalfEdgeBasics(PolytopeVertexBasics originVertex, PolytopeVertexBasics destinationVertex)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -101,7 +99,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param edge
     */
-   public PolytopeHalfEdgeBasics(E edge)
+   public PolytopeHalfEdgeBasics(PolytopeHalfEdgeBasics edge)
    {
       set(edge);
    }
@@ -113,10 +111,10 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     *         stores this edge as its twin but this half edge does not store the generated half edge as
     *         its twin
     */
-   public E createTwinHalfEdge()
+   public PolytopeHalfEdgeBasics createTwinHalfEdge()
    {
-      E twinEdge = getHalfEdgeProvider().getHalfEdge(getDestinationVertex(), getOriginVertex());
-      twinEdge.setTwinHalfEdge((E) this);
+      PolytopeHalfEdgeBasics twinEdge = getHalfEdgeProvider().getHalfEdge(getDestinationVertex(), getOriginVertex());
+      twinEdge.setTwinHalfEdge(this);
       return twinEdge;
    }
 
@@ -124,9 +122,9 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * Creates a half edge using the {@code createTwinHalfEdge{} function and stores a reference to the
     * new object in the twin edge field @return a twin edge
     */
-   public E setAndCreateTwinHalfEdge()
+   public PolytopeHalfEdgeBasics setAndCreateTwinHalfEdge()
    {
-      E twinEdge = createTwinHalfEdge();
+      PolytopeHalfEdgeBasics twinEdge = createTwinHalfEdge();
       setTwinHalfEdge(twinEdge);
       return twinEdge;
    }
@@ -137,12 +135,12 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param twinEdge
     */
-   public void setToTwin(E twinEdge)
+   public void setToTwin(PolytopeHalfEdgeBasics twinEdge)
    {
       twinEdge.clear();
       twinEdge.setOriginVertex(this.destinationVertex);
       twinEdge.setDestinationVertex(this.originVertex);
-      twinEdge.setTwinHalfEdge((E) this);
+      twinEdge.setTwinHalfEdge(this);
    }
 
    /**
@@ -151,7 +149,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @param twinEdge the edge that is to be the twin of the new half edgegetShortestDistanceTo
     * @param face the face that the new half edge is to be a part of
     */
-   public PolytopeHalfEdgeBasics(E twinEdge, F face)
+   public PolytopeHalfEdgeBasics(PolytopeHalfEdgeBasics twinEdge, ConvexPolytopeFaceBasics face)
    {
       setTwinHalfEdge(twinEdge);
       setOriginVertex(twinEdge.getDestinationVertex());
@@ -176,7 +174,8 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     *           face normal. Can be {@code null}
     * @param face the face that this half edge is a part of. Can be {@code null}
     */
-   public PolytopeHalfEdgeBasics(V originVertex, V destinationVertex, E twinEdge, E nextHalfEdge, E previousHalfEdge, F face)
+   public PolytopeHalfEdgeBasics(PolytopeVertexBasics originVertex, PolytopeVertexBasics destinationVertex, PolytopeHalfEdgeBasics twinEdge,
+                                 PolytopeHalfEdgeBasics nextHalfEdge, PolytopeHalfEdgeBasics previousHalfEdge, ConvexPolytopeFaceBasics face)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -193,13 +192,13 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param originVertex the new vertex that the half edge originates at. Can be null. Is modified
     */
-   public void setOriginVertex(V originVertex)
+   public void setOriginVertex(PolytopeVertexBasics originVertex)
    {
       if (this.originVertex != null)
-         this.originVertex.removeAssociatedEdge((E) this);
+         this.originVertex.removeAssociatedEdge(this);
       setOriginVertexUnsafe(originVertex);
       if (this.originVertex != null)
-         this.originVertex.addAssociatedEdge((E) this);
+         this.originVertex.addAssociatedEdge(this);
       updateTwinDestination();
    }
 
@@ -210,7 +209,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @param originVertex the new vertex that the half edge originates at. Can be null. Is not modified
     *           in this function
     */
-   public void setOriginVertexUnsafe(V originVertex)
+   public void setOriginVertexUnsafe(PolytopeVertexBasics originVertex)
    {
       this.originVertex = originVertex;
    }
@@ -246,7 +245,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * Returns a reference to the origin vertex for this half edge
     */
-   public V getOriginVertex()
+   public PolytopeVertexBasics getOriginVertex()
    {
       return originVertex;
    }
@@ -258,7 +257,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @param destinationVertex the new vertex that the half edge originates at. Can be null. Is not
     *           modified in this function
     */
-   public void setDestinationVertex(V destinationVertex)
+   public void setDestinationVertex(PolytopeVertexBasics destinationVertex)
    {
       this.destinationVertex = destinationVertex;
       updateTwinOrigin();
@@ -272,7 +271,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     *           modified in this function
     * @param destinationVertex
     */
-   public void setDestinationVertexUnsafe(V destinationVertex)
+   public void setDestinationVertexUnsafe(PolytopeVertexBasics destinationVertex)
    {
       this.destinationVertex = destinationVertex;
    }
@@ -280,7 +279,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * Returns a reference to the {@code destinationVertex} of this half edge
     */
-   public V getDestinationVertex()
+   public PolytopeVertexBasics getDestinationVertex()
    {
       return destinationVertex;
    }
@@ -291,7 +290,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param twinEdge the half edge to be stored as a twin edge of this half edge.
     */
-   public void setTwinHalfEdge(E twinEdge)
+   public void setTwinHalfEdge(PolytopeHalfEdgeBasics twinEdge)
    {
       this.twinEdge = twinEdge;
    }
@@ -299,7 +298,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * {@inheritDoc}
     */
-   public E getTwinHalfEdge()
+   public PolytopeHalfEdgeBasics getTwinHalfEdge()
    {
       return twinEdge;
    }
@@ -312,7 +311,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @throws RuntimeException in case the origin of this specified next half edge is not the same as
     *            the destination of the this edge
     */
-   public void setNextHalfEdge(E nextHalfEdge)
+   public void setNextHalfEdge(PolytopeHalfEdgeBasics nextHalfEdge)
    {
       if (nextHalfEdge == null || (nextHalfEdge.getOriginVertex() == this.getDestinationVertex() && nextHalfEdge.getFace() == this.getFace()))
          setNextHalfEdgeUnsafe(nextHalfEdge);
@@ -326,7 +325,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param nextHalfEdge the half edge whose reference is to be stored in the next half edge field
     */
-   private void setNextHalfEdgeUnsafe(E nextHalfEdge)
+   private void setNextHalfEdgeUnsafe(PolytopeHalfEdgeBasics nextHalfEdge)
    {
       this.nextHalfEdge = nextHalfEdge;
    }
@@ -334,7 +333,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * {@inheritDoc}
     */
-   public E getNextHalfEdge()
+   public PolytopeHalfEdgeBasics getNextHalfEdge()
    {
       return nextHalfEdge;
    }
@@ -347,7 +346,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @throws RuntimeException in case the destination of this specified next half edge is not the same
     *            as the origin of the this edge
     */
-   public void setPreviousHalfEdge(E previousHalfEdge)
+   public void setPreviousHalfEdge(PolytopeHalfEdgeBasics previousHalfEdge)
    {
       if (previousHalfEdge == null || (previousHalfEdge.getDestinationVertex() == this.getOriginVertex() && previousHalfEdge.getFace() == this.getFace()))
          setPreviousHalfEdgeUnsafe(previousHalfEdge);
@@ -362,7 +361,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * @param previousHalfEdge the half edge whose reference is to be stored in the previous half edge
     *           field
     */
-   private void setPreviousHalfEdgeUnsafe(E previousHalfEdge)
+   private void setPreviousHalfEdgeUnsafe(PolytopeHalfEdgeBasics previousHalfEdge)
    {
       this.previousHalfEdge = previousHalfEdge;
    }
@@ -370,7 +369,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * {@inheritDoc}
     */
-   public E getPreviousHalfEdge()
+   public PolytopeHalfEdgeBasics getPreviousHalfEdge()
    {
       return previousHalfEdge;
    }
@@ -380,7 +379,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * 
     * @param face the face reference to be stored. Can be null
     */
-   public void setFace(F face)
+   public void setFace(ConvexPolytopeFaceBasics face)
    {
       this.face = face;
    }
@@ -388,7 +387,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
    /**
     * {@inheritDoc}
     */
-   public F getFace()
+   public ConvexPolytopeFaceBasics getFace()
    {
       return face;
    }
@@ -444,7 +443,7 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     * Copies all the references from the specified half edge to this half edge while updating the
     * associated objects
     */
-   public void set(E other)
+   public void set(PolytopeHalfEdgeBasics other)
    {
       setOriginVertex(other.getOriginVertex());
       setDestinationVertex(other.getDestinationVertex());
@@ -502,10 +501,10 @@ public abstract class PolytopeHalfEdgeBasics<V extends PolytopeVertexBasics<V, E
     */
    public void reverseEdge()
    {
-      V newDestinationVertex = this.originVertex;
+      PolytopeVertexBasics newDestinationVertex = this.originVertex;
       setOriginVertex(destinationVertex);
       setDestinationVertex(newDestinationVertex);
-      E newNextHalfEdge = this.previousHalfEdge;
+      PolytopeHalfEdgeBasics newNextHalfEdge = this.previousHalfEdge;
       setPreviousHalfEdgeUnsafe(nextHalfEdge);
       setNextHalfEdgeUnsafe(newNextHalfEdge);
    }

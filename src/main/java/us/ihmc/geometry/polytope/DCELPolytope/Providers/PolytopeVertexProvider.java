@@ -1,17 +1,15 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceBasics;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
 
-public interface PolytopeVertexProvider<A extends PolytopeVertexBasics<A, B, C>, B extends PolytopeHalfEdgeBasics<A, B, C>, C extends ConvexPolytopeFaceBasics<A, B, C>>
+public interface PolytopeVertexProvider
 {
-   A getVertex();
+   PolytopeVertexBasics getVertex();
 
-   A getVertex(double x, double y, double z);
+   PolytopeVertexBasics getVertex(double x, double y, double z);
 
-   A getVertex(double coords[]);
+   PolytopeVertexBasics getVertex(double coords[]);
 
-   A getVertex(Point3DReadOnly vertexToAdd);
+   PolytopeVertexBasics getVertex(Point3DReadOnly vertexToAdd);
 }

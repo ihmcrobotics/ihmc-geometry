@@ -11,7 +11,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
  * @author Apoorv S
  *
  */
-public class ExtendedPolytopeVertex extends PolytopeVertexBasics<ExtendedPolytopeVertex, PolytopeHalfEdge, ConvexPolytopeFace> implements Simplex
+public class ExtendedPolytopeVertex extends PolytopeVertexBasics implements Simplex
 {
    private double x, y, z;
 

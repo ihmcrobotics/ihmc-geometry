@@ -23,10 +23,11 @@ import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.ConvexPolytopeFace;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedPolytopeVertex;
-import us.ihmc.geometry.polytope.DCELPolytope.PolytopeHalfEdge;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeHalfEdgeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.PolytopeVertexBasics;
 
 public class ConvexPolytopeTest
 {
@@ -169,7 +170,7 @@ public class ConvexPolytopeTest
       polytope.addVertex(vertexThree, EPSILON);
       polytope.addVertex(vertexFour, EPSILON);
       polytope.addVertex(vertexFive, EPSILON);
-      List<PolytopeHalfEdge> visibleEdges = new ArrayList<>();
+      List<PolytopeHalfEdgeBasics> visibleEdges = new ArrayList<>();
       polytope.getVisibleSilhouette(vertexSix, visibleEdges, EPSILON);
    }
 
@@ -378,7 +379,7 @@ public class ConvexPolytopeTest
       assertEquals(3, vertexSeven.getNumberOfAssociatedEdges());
       assertEquals(3, vertexEight.getNumberOfAssociatedEdges());
 
-      List<ExtendedPolytopeVertex> vertices = polytope.getVertices();
+      List<PolytopeVertexBasics> vertices = polytope.getVertices();
 
       RigidBodyTransform transform = new RigidBodyTransform();
       transform.setTranslation(1.0, 2.0, 3.0);
@@ -423,7 +424,7 @@ public class ConvexPolytopeTest
       ExtendedConvexPolytope cubeOne = ConvexPolytopeConstructor.constructExtendedBoxWithCenterAtZero(100.0, 100.0, 0.5);
       assertEquals(8, cubeOne.getNumberOfVertices());
       assertEquals(12, cubeOne.getNumberOfEdges());
-      List<PolytopeHalfEdge> edges = cubeOne.getEdges();
+      List<PolytopeHalfEdgeBasics> edges = cubeOne.getEdges();
       assertEquals(24, edges.size());
    }
 
