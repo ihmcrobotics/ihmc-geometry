@@ -200,7 +200,7 @@ public class HybridGJKEPACollisionDetector
    {
       collisionVectorToPack.set(supportVectorDirection);
       collisionVectorToPack.normalize();
-      collisionVectorToPack.scale(simplex.getSmallestSimplexMemberReference(origin).getShortestDistanceTo(origin));
+      collisionVectorToPack.scale(simplex.getSmallestSimplexMemberReference(origin).distance(origin));
    }
 
    public void getCollisionPoints(Point3D pointOnAToPack, Point3D pointOnBToPack)

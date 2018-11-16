@@ -179,7 +179,7 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
    }
 
    @Override
-   public double getShortestDistanceTo(Point3DReadOnly point)
+   public double distance(Point3DReadOnly point)
    {
       return distance(point);
    }

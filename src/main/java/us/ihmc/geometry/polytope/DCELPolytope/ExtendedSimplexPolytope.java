@@ -60,9 +60,9 @@ public class ExtendedSimplexPolytope implements Simplex
       return polytope.isInteriorPoint(pointToCheck, epsilon);
    }
 
-   public double getShortestDistanceTo(Point3DReadOnly point)
+   public double distance(Point3DReadOnly point)
    {
-      return polytope.getShortestDistanceTo(point);
+      return polytope.distance(point);
    }
 
    public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)

@@ -11,7 +11,7 @@ public interface SimplexBasics
     * @param point the spatial point from which the distance to the simplex is to be computed
     * @return shortest distance from the specified point to the simplex
     */
-   double getShortestDistanceTo(Point3DReadOnly point);
+   double distance(Point3DReadOnly point);
 
    /**
     * Get a vector in the direction of the specified point from its closest point on the simplex

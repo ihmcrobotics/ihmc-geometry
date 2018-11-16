@@ -822,15 +822,15 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
    }
 
    @Override
-   public double getShortestDistanceTo(Point3DReadOnly point)
+   public double distance(Point3DReadOnly point)
    {
       if (isInteriorPoint(point, Epsilons.ONE_TRILLIONTH))
       {
-         return getFaceContainingPointClosestTo(point).getShortestDistanceTo(point);
+         return getFaceContainingPointClosestTo(point).distance(point);
       }
       else
       {
-         return getFaceContainingPointClosestTo(point).getShortestDistanceTo(point);
+         return getFaceContainingPointClosestTo(point).distance(point);
       }
    }
 
@@ -846,7 +846,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       unmarkAllFaces();
       ConvexPolytopeFaceBasics currentBestFace = faces.get(0);
       ConvexPolytopeFaceBasics faceUnderConsideration = currentBestFace;
-      double minDistance = faceUnderConsideration.getShortestDistanceTo(point);
+      double minDistance = faceUnderConsideration.distance(point);
       faceUnderConsideration.mark();
 
       for (int i = 0; i < faces.size(); i++)
@@ -855,7 +855,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
          {
             if (currentBestFace.getNeighbouringFace(j) != null && currentBestFace.getNeighbouringFace(j).isNotMarked())
             {
-               double distance = currentBestFace.getNeighbouringFace(j).getShortestDistanceTo(point);
+               double distance = currentBestFace.getNeighbouringFace(j).distance(point);
                if (distance < minDistance)
                {
                   minDistance = distance;

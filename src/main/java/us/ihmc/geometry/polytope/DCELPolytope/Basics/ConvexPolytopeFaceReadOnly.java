@@ -27,10 +27,12 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
    HalfEdge3DReadOnly getEdge(int index);
 
    /**
-    * Returns the first edge that is visible from the specified point. A face edge is considered
-    * visible if its origin and destination can be connected by a straight line to the specified point
-    * without crossing any other point First is defined in the counter clockwise sense w.r.t to the
-    * face normal
+    * Returns the first edge that is visible from the specified point.
+    * <p>
+    * A face edge is considered visible if its origin and destination can be connected by a straight
+    * line to the specified point without crossing any other point First is defined in the counter
+    * clockwise sense w.r.t to the face normal.
+    * </p>
     * 
     * @param point the point in the plane of the face w.r.t. which the visible edge is to be computed
     * @return a read only reference to the first visible half edge
@@ -223,7 +225,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     * @param point the point to which the distance is required
     * @return the shortest length from the specified point to the face
     */
-   double getShortestDistanceTo(Point3DReadOnly point);
+   double distance(Point3DReadOnly point);
 
    /**
     * Returns the edge closed to the point specified

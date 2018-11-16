@@ -69,14 +69,6 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly
    Vector3DReadOnly getEdgeVector();
 
    /**
-    * Returns a unit vector that represents the spatial direction that this half edge points in (from
-    * origin to destination)
-    * 
-    * @return a read only 3D unit vector
-    */
-   Vector3DReadOnly getNormalizedEdgeVector();
-
-   /**
     * Geometrically checks if the specified half edge is the twin of the current edge.
     * 
     * @param twinEdge the half edge that is to be checked
@@ -98,13 +90,4 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly
     * @return string containing details
     */
    String toString();
-
-   /**
-    * Get the shortest distance to the edge
-    * 
-    * @param point the point from which the distance to the line is to be computed
-    * @return shortest distance from the specified point to the edge
-    */
-   double getShortestDistanceTo(Point3DReadOnly point);
-
 }

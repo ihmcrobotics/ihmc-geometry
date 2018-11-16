@@ -75,7 +75,7 @@ public class PolytopeVertexTest
       Random random = new Random(123l);
       Vertex3D vertex = new Vertex3D(1.1241252, -15.12415, 86.12536);
       Point3D point = EuclidCoreRandomTools.nextPoint3D(random);
-      assertTrue(vertex.getShortestDistanceTo(point) == point.distance(vertex));
+      assertTrue(vertex.distance(point) == point.distance(vertex));
    }
 
    @Test(timeout = 1000)

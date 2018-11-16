@@ -23,7 +23,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * A template class for a DCEL face. A face is composed of
  * <li>{@code edges} list of half edges that make up this face
  * <li>{@code faceNormal} a vector normal to this face, can point in either direction
- * 
+ *
  * @author Apoorv S
  *
  * @param <V> Data structure representing a point in 3D space
@@ -68,7 +68,7 @@ public abstract class ConvexPolytopeFaceBasics
 
    /**
     * Copy constructor. Makes and stores copies of the specified face
-    * 
+    *
     * @param other the polytope that is to be copied Note: while the edges are copied the association
     *           between the edges is not. This will make the polytope inconsistent
     */
@@ -80,7 +80,7 @@ public abstract class ConvexPolytopeFaceBasics
    /**
     * Similar to the copy constructor. Creates and stores copies of the specified edges Note: while the
     * edges are copied the association between the edges is not
-    * 
+    *
     * @param edgeList list of edges to be copied
     */
    public ConvexPolytopeFaceBasics(List<HalfEdge3DBasics> edgeList)
@@ -90,18 +90,18 @@ public abstract class ConvexPolytopeFaceBasics
 
    /**
     * Forms a polytope based on the list of edges specified
-    * 
+    *
     * @param edgeList array of edges that will form the boundary of the specified polytope
     */
    public ConvexPolytopeFaceBasics(HalfEdge3DBasics[] edgeList)
    {
-      this.setEdgeList(edgeList);
+      setEdgeList(edgeList);
    }
 
    /**
     * Similar to the copy constructor. Creates and stores copies of the specified edges Note: while the
     * edges are copied the association between the edges is not
-    * 
+    *
     * @param edgeList array of edges to be copied
     */
    public ConvexPolytopeFaceBasics(HalfEdge3DReadOnly[] edgeListArray)
@@ -112,33 +112,34 @@ public abstract class ConvexPolytopeFaceBasics
    /**
     * Sets the face edge list to a copy of the edges in the list provided However, association of the
     * edges is lost
-    * 
+    *
     * @param edgeList
     */
    public void copyEdgeList(List<? extends HalfEdge3DReadOnly> edgeList)
    {
-      this.edges.clear();
+      edges.clear();
       for (int i = 0; i < edgeList.size(); i++)
-         this.edges.add(getHalfEdgeProvider().getHalfEdge(edgeList.get(i)));
+         edges.add(getHalfEdgeProvider().getHalfEdge(edgeList.get(i)));
    }
 
    public void copyEdgeList(HalfEdge3DReadOnly[] edgeListArray)
    {
       edges.clear();
       for (int i = 0; i < edgeListArray.length; i++)
-         this.edges.add(getHalfEdgeProvider().getHalfEdge(edgeListArray[i]));
+         edges.add(getHalfEdgeProvider().getHalfEdge(edgeListArray[i]));
    }
 
    public void setEdgeList(HalfEdge3DBasics[] edgeListArray)
    {
       edges.clear();
       for (int i = 0; i < edgeListArray.length; i++)
-         this.edges.add(edgeListArray[i]);
+         edges.add(edgeListArray[i]);
    }
 
    /**
     * {@inheritDoc}
     */
+   @Override
    public List<HalfEdge3DBasics> getEdgeList()
    {
       return edges;
@@ -147,6 +148,7 @@ public abstract class ConvexPolytopeFaceBasics
    /**
     * {@inheritDoc}
     */
+   @Override
    public HalfEdge3DBasics getEdge(int index)
    {
       return edges.get(index);
@@ -154,7 +156,7 @@ public abstract class ConvexPolytopeFaceBasics
 
    /**
     * Adds a vertex to the face and updates all the associations accordingly
-    * 
+    *
     * @param vertexToAdd the vertex that must be added to the face
     * @param epsilon
     */
@@ -241,7 +243,7 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    /**
-    * 
+    *
     * @param newEdge
     */
    public void addEdge(HalfEdge3DBasics newEdge)
@@ -262,6 +264,7 @@ public abstract class ConvexPolytopeFaceBasics
       }
    }
 
+   @Override
    public HalfEdge3DBasics getFirstVisibleEdge(Point3DReadOnly vertex)
    {
       if (edges.size() == 0)
@@ -275,11 +278,11 @@ public abstract class ConvexPolytopeFaceBasics
       for (int i = 0; i < getNumberOfEdges(); i++)
       {
          double dotProduct = getEdgeVisibilityProduct(vertex, edgeUnderConsideration);
-         if (dotProduct >= 0.0 && (previousDotProduct < 0.0))
+         if (dotProduct >= 0.0 && previousDotProduct < 0.0)
          {
             return edgeUnderConsideration;
          }
-         else if (dotProduct >= 0.0 && (previousDotProduct == 0.0))
+         else if (dotProduct >= 0.0 && previousDotProduct == 0.0)
          {
             return edgeUnderConsideration.getPreviousHalfEdge();
          }
@@ -292,6 +295,7 @@ public abstract class ConvexPolytopeFaceBasics
       return null;
    }
 
+   @Override
    public boolean isPointOnInteriorSideOfEdgeInternal(Point3DBasics point, int index)
    {
       updateFaceNormal();
@@ -303,6 +307,7 @@ public abstract class ConvexPolytopeFaceBasics
       return getEdgeVisibilityProduct(point, halfEdge) < 0;
    }
 
+   @Override
    public double getFaceVisibilityProduct(Point3DReadOnly point)
    {
       tempVector.sub(point, getEdge(0).getOriginVertex());
@@ -316,6 +321,7 @@ public abstract class ConvexPolytopeFaceBasics
       return tempVector.dot(getFaceNormal());
    }
 
+   @Override
    public boolean isPointInFacePlane(Point3DReadOnly vertexToCheck, double epsilon)
    {
       boolean isInFacePlane;
@@ -330,9 +336,10 @@ public abstract class ConvexPolytopeFaceBasics
       return isInFacePlane;
    }
 
+   @Override
    public boolean isInteriorPoint(Point3DReadOnly vertexToCheck, double epsilon)
    {
-      return (isPointInFacePlane(vertexToCheck, epsilon) && isInteriorPointInternal(vertexToCheck));
+      return isPointInFacePlane(vertexToCheck, epsilon) && isInteriorPointInternal(vertexToCheck);
    }
 
    private boolean isInteriorPointInternal(Point3DReadOnly vertexToCheck)
@@ -350,6 +357,7 @@ public abstract class ConvexPolytopeFaceBasics
       return result;
    }
 
+   @Override
    public Point3D getFaceCentroid()
    {
       updateFaceCentroid();
@@ -364,6 +372,7 @@ public abstract class ConvexPolytopeFaceBasics
       faceCentroid.scale(1.0 / edges.size());
    }
 
+   @Override
    public Vector3D getFaceNormal()
    {
       updateFaceNormal();
@@ -382,6 +391,7 @@ public abstract class ConvexPolytopeFaceBasics
       }
    }
 
+   @Override
    public int getNumberOfEdges()
    {
       return edges.size();
@@ -404,7 +414,7 @@ public abstract class ConvexPolytopeFaceBasics
    @Override
    public boolean epsilonEquals(ConvexPolytopeFaceReadOnly other, double epsilon)
    {
-      if (other.getNumberOfEdges() == this.getNumberOfEdges())
+      if (other.getNumberOfEdges() == getNumberOfEdges())
       {
          int index = findMatchingEdgeIndex(other.getEdge(0), epsilon);
          if (index != -1)
@@ -460,13 +470,13 @@ public abstract class ConvexPolytopeFaceBasics
 
    public void clearEdgeList()
    {
-      this.edges.clear();
+      edges.clear();
    }
 
    @Override
    public boolean containsNaN()
    {
-      boolean result = (edges.size() > 0 && edges.get(0).containsNaN());
+      boolean result = edges.size() > 0 && edges.get(0).containsNaN();
       for (int i = 1; !result && i < edges.size(); i++)
          result |= edges.get(i).getDestinationVertex().containsNaN();
       return result;
@@ -479,12 +489,14 @@ public abstract class ConvexPolytopeFaceBasics
          edges.get(i).setToNaN();
    }
 
+   @Override
    public double dotFaceNormal(Vector3DReadOnly direction)
    {
       updateFaceNormal();
       return direction.dot(faceNormal);
    }
 
+   @Override
    public boolean isFaceVisible(Point3DReadOnly point, double epsilon)
    {
       return getFaceVisibilityProduct(point) > epsilon;
@@ -497,6 +509,7 @@ public abstract class ConvexPolytopeFaceBasics
          edges.get(i).setToZero();
    }
 
+   @Override
    public double getMaxElement(int index)
    {
       HalfEdge3DBasics edgeReference = edges.get(0);
@@ -510,6 +523,7 @@ public abstract class ConvexPolytopeFaceBasics
       return maxElement;
    }
 
+   @Override
    public double getMinElement(int index)
    {
       HalfEdge3DBasics edgeReference = edges.get(0);
@@ -523,36 +537,43 @@ public abstract class ConvexPolytopeFaceBasics
       return minElement;
    }
 
+   @Override
    public double getMaxX()
    {
       return getMaxElement(0);
    }
 
+   @Override
    public double getMaxY()
    {
       return getMaxElement(1);
    }
 
+   @Override
    public double getMaxZ()
    {
       return getMaxElement(2);
    }
 
+   @Override
    public double getMinX()
    {
       return getMinElement(0);
    }
 
+   @Override
    public double getMinY()
    {
       return getMinElement(1);
    }
 
+   @Override
    public double getMinZ()
    {
       return getMinElement(2);
    }
 
+   @Override
    public ConvexPolytopeFaceBasics getNeighbouringFace(int index)
    {
       if (index > edges.size() || edges.get(index).getTwinHalfEdge() == null)
@@ -589,22 +610,24 @@ public abstract class ConvexPolytopeFaceBasics
 
    public void mark()
    {
-      this.marked = true;
+      marked = true;
    }
 
    public void unmark()
    {
-      this.marked = false;
+      marked = false;
    }
 
+   @Override
    public boolean isMarked()
    {
-      return this.marked;
+      return marked;
    }
 
+   @Override
    public boolean isNotMarked()
    {
-      return !this.marked;
+      return !marked;
    }
 
    @Override
@@ -621,26 +644,27 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    @Override
-   public double getShortestDistanceTo(Point3DReadOnly point)
+   public double distance(Point3DReadOnly point)
    {
       EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, edges.get(0).getOriginVertex(), getFaceNormal(), tempPoint);
       if (isInteriorPointInternal(tempPoint))
          return point.distance(tempPoint);
       else
-         return getEdgeClosestTo(tempPoint).getShortestDistanceTo(point);
+         return getEdgeClosestTo(tempPoint).distance(point);
    }
 
+   @Override
    public HalfEdge3DBasics getEdgeClosestTo(Point3DReadOnly point)
    {
       HalfEdge3DBasics edge = getFirstVisibleEdge(tempPoint);
       if (debug && edge == null)
          PrintTools.debug(toString() + "\n" + point + "\n" + tempPoint);
-      double shortestDistance = edge.getShortestDistanceTo(tempPoint);
+      double shortestDistance = edge.distance(tempPoint);
       double shortestDistanceCandidate = Double.NEGATIVE_INFINITY;
       while (shortestDistanceCandidate < shortestDistance)
       {
          edge = edge.getNextHalfEdge();
-         shortestDistanceCandidate = edge.getShortestDistanceTo(tempPoint);
+         shortestDistanceCandidate = edge.distance(tempPoint);
       }
       return edge.getPreviousHalfEdge();
    }
