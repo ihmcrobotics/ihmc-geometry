@@ -11,7 +11,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * @author Apoorv S
  *
  */
-public class ConvexPolytopeFace extends ConvexPolytopeFaceBasics implements Simplex
+public class ConvexPolytopeFace extends ConvexPolytopeFaceBasics
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 

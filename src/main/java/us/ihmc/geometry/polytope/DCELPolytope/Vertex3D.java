@@ -13,7 +13,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
  * @author Apoorv S
  *
  */
-public class Vertex3D extends Vertex3DBasics implements Simplex
+public class Vertex3D extends Vertex3DBasics
 {
    private double x, y, z;
 

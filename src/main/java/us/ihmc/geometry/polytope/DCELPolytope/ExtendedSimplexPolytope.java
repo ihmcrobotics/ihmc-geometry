@@ -12,9 +12,10 @@ import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.SimplexBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
-public class ExtendedSimplexPolytope implements Simplex
+public class ExtendedSimplexPolytope implements SimplexBasics
 {
    private double epsilon = Epsilons.ONE_TRILLIONTH;
    private ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
@@ -79,9 +80,9 @@ public class ExtendedSimplexPolytope implements Simplex
    }
 
    @Override
-   public Simplex getSmallestSimplexMemberReference(Point3DReadOnly point)
+   public SimplexBasics getSmallestSimplexMemberReference(Point3DReadOnly point)
    {
-      return (Simplex) polytope.getSmallestSimplexMemberReference(point);
+      return polytope.getSmallestSimplexMemberReference(point);
    }
 
    @Override
@@ -97,7 +98,7 @@ public class ExtendedSimplexPolytope implements Simplex
 
    public void getCollidingPointsOnSimplex(Point3DReadOnly point, Point3D pointOnA, Point3D pointOnB)
    {
-      Simplex member = getSmallestSimplexMemberReference(point);
+      SimplexBasics member = getSmallestSimplexMemberReference(point);
       // Assuming linearity between the simplex and polytope points
       if (member instanceof ConvexPolytopeFace)
       {
