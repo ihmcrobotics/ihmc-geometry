@@ -804,7 +804,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
       copyFaces(other.getFaces());
    }
 
-   private void copyFaces(List<? extends ConvexPolytopeFaceReadOnly> faces)
+   private void copyFaces(List<? extends Face3DReadOnly> faces)
    {
       //TODO implement this 
       throw new RuntimeException("Unimplemented feature");

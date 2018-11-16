@@ -3,7 +3,7 @@ package us.ihmc.geometry.polytope.DCELPolytope.CollisionDetection;
 import java.awt.Color;
 import java.util.List;
 
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
@@ -13,9 +13,9 @@ public interface PolytopeVisualizationListener extends PolytopeListener
 
    void setHighlightColor(Color color);
 
-   void highlightOnFaces(List<? extends ConvexPolytopeFaceReadOnly> faces);
+   void highlightOnFaces(List<? extends Face3DReadOnly> faces);
 
-   void highlightVisibleFaces(List<? extends ConvexPolytopeFaceReadOnly> faces);
+   void highlightVisibleFaces(List<? extends Face3DReadOnly> faces);
 
    void highlightEdges(List<? extends HalfEdge3DReadOnly> edges);
 
@@ -36,13 +36,13 @@ public interface PolytopeVisualizationListener extends PolytopeListener
    }
 
    @Override
-   default void updateOnFaceList(List<? extends ConvexPolytopeFaceReadOnly> onFaceList)
+   default void updateOnFaceList(List<? extends Face3DReadOnly> onFaceList)
    {
       highlightOnFaces(onFaceList);
    }
 
    @Override
-   default void updateVisibleFaceList(List<? extends ConvexPolytopeFaceReadOnly> visibleFaceList)
+   default void updateVisibleFaceList(List<? extends Face3DReadOnly> visibleFaceList)
    {
       highlightVisibleFaces(visibleFaceList);
    }

@@ -8,7 +8,7 @@ import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPolytopeFaceReadOnly>, Clearable
+public interface Face3DReadOnly extends EpsilonComparable<Face3DReadOnly>, Clearable
 {
    /**
     * Gets a list of all half edges that constitute the face
@@ -109,7 +109,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     * @return {@code true} is the face is geometrically similar to the specified face, {@code false}
     *         otherwise
     */
-   boolean epsilonEquals(ConvexPolytopeFaceReadOnly other, double epsilon);
+   boolean epsilonEquals(Face3DReadOnly other, double epsilon);
 
    /**
     * Returns the dot product of the specified vector with the face normal
@@ -196,7 +196,7 @@ public interface ConvexPolytopeFaceReadOnly extends EpsilonComparable<ConvexPoly
     *           {@code getNumberOfEdges()}
     * @return a read only reference to the adjacent face
     */
-   ConvexPolytopeFaceReadOnly getNeighbouringFace(int index);
+   Face3DReadOnly getNeighbouringFace(int index);
 
    /**
     * Check if the face is marked

@@ -33,7 +33,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           polytope
  */
 public abstract class ConvexPolytopeFaceBasics
-      implements SimplexBasics, SupportingVertexHolder, ConvexPolytopeFaceReadOnly, Clearable, Settable<ConvexPolytopeFaceReadOnly>, Transformable
+      implements SimplexBasics, SupportingVertexHolder, Face3DReadOnly, Clearable, Settable<Face3DReadOnly>, Transformable
 {
    private static final boolean debug = false;
 
@@ -413,7 +413,7 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    @Override
-   public boolean epsilonEquals(ConvexPolytopeFaceReadOnly other, double epsilon)
+   public boolean epsilonEquals(Face3DReadOnly other, double epsilon)
    {
       if (other.getNumberOfEdges() == getNumberOfEdges())
       {
@@ -463,7 +463,7 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    @Override
-   public void set(ConvexPolytopeFaceReadOnly other)
+   public void set(Face3DReadOnly other)
    {
       clearEdgeList();
       copyEdgeList(other.getEdgeList());

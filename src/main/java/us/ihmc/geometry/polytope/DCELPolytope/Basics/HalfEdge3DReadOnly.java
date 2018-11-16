@@ -59,7 +59,7 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly, SimplexBasics
     * 
     * @return a read only reference to the face
     */
-   ConvexPolytopeFaceReadOnly getFace();
+   Face3DReadOnly getFace();
 
    /**
     * Returns a vector that represents the spatial direction that this edge points in (from origin to

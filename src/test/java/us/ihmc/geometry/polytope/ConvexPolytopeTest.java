@@ -23,7 +23,7 @@ import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.ConvexPolytopeFace;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
 import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
@@ -584,7 +584,7 @@ public class ConvexPolytopeTest
          return;
       for (int j = 0; j < numberOfFaces; j++)
       {
-         ConvexPolytopeFaceReadOnly face = polytope.getFace(j);
+         Face3DReadOnly face = polytope.getFace(j);
          assertTrue(face.getNumberOfEdges() > 0);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
@@ -604,7 +604,7 @@ public class ConvexPolytopeTest
          return null;
       for (int j = 0; j < numberOfFaces; j++)
       {
-         ConvexPolytopeFaceReadOnly face = polytope.getFace(j);
+         Face3DReadOnly face = polytope.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             if (face.getEdge(i).getTwinHalfEdge() != null)
@@ -623,7 +623,7 @@ public class ConvexPolytopeTest
          return null;
       for (int j = 0; j < numberOfFaces; j++)
       {
-         ConvexPolytopeFaceReadOnly face = polytope.getFace(j);
+         Face3DReadOnly face = polytope.getFace(j);
          if (face.getNumberOfEdges() == 0)
             return null;
          for (int i = 0; i < face.getNumberOfEdges(); i++)

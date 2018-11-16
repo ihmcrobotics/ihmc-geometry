@@ -13,7 +13,7 @@ public interface ConvexPolytopeReadOnly extends EpsilonComparable<ConvexPolytope
     * 
     * @return a list of read only references to the faces of the polytope
     */
-   List<? extends ConvexPolytopeFaceReadOnly> getFaces();
+   List<? extends Face3DReadOnly> getFaces();
 
    /**
     * Get a list of half edges that are part of this polytope. List will contain the half edge and its
@@ -47,7 +47,7 @@ public interface ConvexPolytopeReadOnly extends EpsilonComparable<ConvexPolytope
     */
    default boolean isEmpty()
    {
-      List<? extends ConvexPolytopeFaceReadOnly> faces = getFaces();
+      List<? extends Face3DReadOnly> faces = getFaces();
       for (int i = 0; i < faces.size(); i++)
          if (faces.get(i).getNumberOfEdges() != 0)
             return false;
@@ -82,5 +82,5 @@ public interface ConvexPolytopeReadOnly extends EpsilonComparable<ConvexPolytope
     * @param index the index of the polytope. Should be smaller than {@code getNumberOfFaces()}
     * @return
     */
-   ConvexPolytopeFaceReadOnly getFace(int index);
+   Face3DReadOnly getFace(int index);
 }
