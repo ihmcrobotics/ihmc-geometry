@@ -1,11 +1,8 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
 import us.ihmc.euclid.geometry.interfaces.LineSegment3DBasics;
-import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
-import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
 
@@ -59,10 +56,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
     * values. Only recomputed when called through its getter
     */
    private Vector3D edgeVector = new Vector3D();
-   /**
-    * A temporary variable for storing results
-    */
-   private Point3D tempPoint = new Point3D();
 
    /**
     * Returns a object of type {@code PolytopeHalfEdgeProvider} that can be used to generate half edges
@@ -419,15 +412,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
    }
 
    /**
-    * {@inheritDoc}
-    */
-   @Override
-   public boolean isTwin(HalfEdge3DReadOnly twinEdge, double epsilon)
-   {
-      return epsilonEquals(twinEdge.getTwinHalfEdge(), epsilon);
-   }
-
-   /**
     * Copies all the references from the specified half edge to this half edge while updating the
     * associated objects
     */
@@ -479,12 +463,5 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
    {
       return "From: " + (originVertex == null ? "null" : originVertex.toString()) + ", To: "
             + (destinationVertex == null ? "null" : destinationVertex.toString());
-   }
-
-   @Override
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
-   {
-      orthogonalProjection(point, tempPoint);
-      supportVectorToPack.sub(point, tempPoint);
    }
 }

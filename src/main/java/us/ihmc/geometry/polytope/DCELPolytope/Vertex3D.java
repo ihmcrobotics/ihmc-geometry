@@ -32,7 +32,7 @@ public class Vertex3D extends Vertex3DBasics
       set(position);
    }
 
-   public Vertex3D(Vertex3D vertex)
+   public Vertex3D(Vertex3DBasics vertex)
    {
       set(vertex);
    }

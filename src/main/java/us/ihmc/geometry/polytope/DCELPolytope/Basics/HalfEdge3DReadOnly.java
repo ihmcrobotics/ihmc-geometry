@@ -2,6 +2,7 @@ package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
 import us.ihmc.euclid.geometry.interfaces.LineSegment3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly, SimplexBasics
@@ -86,6 +87,25 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly, SimplexBasics
          return this;
    }
 
+   @Override
+   default void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
+   {
+      double alpha = percentageAlongLineSegment(point);
+      if (alpha >= 1.0)
+      {
+         supportVectorToPack.sub(point, getDestinationVertex());
+      }
+      else if (alpha <= 0.0)
+      {
+         supportVectorToPack.sub(point, getOriginVertex());
+      }
+      else
+      {
+         supportVectorToPack.interpolate(getOriginVertex(), getDestinationVertex(), alpha);
+         supportVectorToPack.sub(point, supportVectorToPack);
+      }
+   }
+
    /**
     * Geometrically checks if the specified half edge is the twin of the current edge.
     * 
@@ -95,7 +115,10 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly, SimplexBasics
     *         origin and destination are in an {@code epsilon} vicinity of this half edges origin and
     *         destination respectively
     */
-   boolean isTwin(HalfEdge3DReadOnly twinEdge, double epsilon);
+   default boolean isTwin(HalfEdge3DReadOnly twinEdge, double epsilon)
+   {
+      return epsilonEquals(twinEdge.getTwinHalfEdge(), epsilon);
+   }
 
    default boolean epsilonEquals(HalfEdge3DReadOnly other, double epsilon)
    {
