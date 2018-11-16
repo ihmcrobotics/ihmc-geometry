@@ -32,7 +32,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * @param <F> A extension of this class denoting a collection of edges that constitute a face of the
  *           polytope
  */
-public abstract class ConvexPolytopeFaceBasics
+public abstract class Face3DBasics
       implements SimplexBasics, SupportingVertexHolder, Face3DReadOnly, Clearable, Settable<Face3DReadOnly>, Transformable
 {
    private static final boolean debug = false;
@@ -62,7 +62,7 @@ public abstract class ConvexPolytopeFaceBasics
    /**
     * Default constructor. Does not initialize anything
     */
-   public ConvexPolytopeFaceBasics()
+   public Face3DBasics()
    {
 
    }
@@ -73,7 +73,7 @@ public abstract class ConvexPolytopeFaceBasics
     * @param other the polytope that is to be copied Note: while the edges are copied the association
     *           between the edges is not. This will make the polytope inconsistent
     */
-   public ConvexPolytopeFaceBasics(ConvexPolytopeFaceBasics other)
+   public Face3DBasics(Face3DBasics other)
    {
       this(other.getEdgeList());
    }
@@ -84,7 +84,7 @@ public abstract class ConvexPolytopeFaceBasics
     *
     * @param edgeList list of edges to be copied
     */
-   public ConvexPolytopeFaceBasics(List<HalfEdge3DBasics> edgeList)
+   public Face3DBasics(List<HalfEdge3DBasics> edgeList)
    {
       this.copyEdgeList(edgeList);
    }
@@ -94,7 +94,7 @@ public abstract class ConvexPolytopeFaceBasics
     *
     * @param edgeList array of edges that will form the boundary of the specified polytope
     */
-   public ConvexPolytopeFaceBasics(HalfEdge3DBasics[] edgeList)
+   public Face3DBasics(HalfEdge3DBasics[] edgeList)
    {
       setEdgeList(edgeList);
    }
@@ -105,7 +105,7 @@ public abstract class ConvexPolytopeFaceBasics
     *
     * @param edgeList array of edges to be copied
     */
-   public ConvexPolytopeFaceBasics(HalfEdge3DReadOnly[] edgeListArray)
+   public Face3DBasics(HalfEdge3DReadOnly[] edgeListArray)
    {
       this.copyEdgeList(edgeListArray);
    }
@@ -575,7 +575,7 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    @Override
-   public ConvexPolytopeFaceBasics getNeighbouringFace(int index)
+   public Face3DBasics getNeighbouringFace(int index)
    {
       if (index > edges.size() || edges.get(index).getTwinHalfEdge() == null)
          return null;

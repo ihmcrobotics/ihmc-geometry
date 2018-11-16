@@ -1,8 +1,8 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Providers;
 
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DBasics;
 
 public interface ConvexPolytopeFaceProvider
 {
-   ConvexPolytopeFaceBasics getFace();
+   Face3DBasics getFace();
 }

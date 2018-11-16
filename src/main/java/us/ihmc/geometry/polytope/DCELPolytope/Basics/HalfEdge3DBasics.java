@@ -50,7 +50,7 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
    /**
     * The face that this edge is a part of
     */
-   private ConvexPolytopeFaceBasics face;
+   private Face3DBasics face;
    /**
     * A vector that represents the direction and lenght of the half edge. Not recomputed on change of
     * values. Only recomputed when called through its getter
@@ -112,7 +112,7 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
     * @param twinEdge the edge that is to be the twin of the new half edgegetShortestDistanceTo
     * @param face the face that the new half edge is to be a part of
     */
-   public HalfEdge3DBasics(HalfEdge3DBasics twinEdge, ConvexPolytopeFaceBasics face)
+   public HalfEdge3DBasics(HalfEdge3DBasics twinEdge, Face3DBasics face)
    {
       setTwinHalfEdge(twinEdge);
       setOriginVertex(twinEdge.getDestinationVertex());
@@ -138,7 +138,7 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
     * @param face the face that this half edge is a part of. Can be {@code null}
     */
    public HalfEdge3DBasics(Vertex3DBasics originVertex, Vertex3DBasics destinationVertex, HalfEdge3DBasics twinEdge, HalfEdge3DBasics nextHalfEdge,
-                           HalfEdge3DBasics previousHalfEdge, ConvexPolytopeFaceBasics face)
+                           HalfEdge3DBasics previousHalfEdge, Face3DBasics face)
    {
       setOriginVertex(originVertex);
       setDestinationVertex(destinationVertex);
@@ -375,7 +375,7 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
     *
     * @param face the face reference to be stored. Can be null
     */
-   public void setFace(ConvexPolytopeFaceBasics face)
+   public void setFace(Face3DBasics face)
    {
       this.face = face;
    }
@@ -384,7 +384,7 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
     * {@inheritDoc}
     */
    @Override
-   public ConvexPolytopeFaceBasics getFace()
+   public Face3DBasics getFace()
    {
       return face;
    }

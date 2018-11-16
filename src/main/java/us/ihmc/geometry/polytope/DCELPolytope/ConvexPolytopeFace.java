@@ -1,7 +1,7 @@
 package us.ihmc.geometry.polytope.DCELPolytope;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeFaceBasics;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeBuilder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
 
@@ -11,7 +11,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * @author Apoorv S
  *
  */
-public class ConvexPolytopeFace extends ConvexPolytopeFaceBasics
+public class ConvexPolytopeFace extends Face3DBasics
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 
