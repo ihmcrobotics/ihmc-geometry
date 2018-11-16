@@ -5,10 +5,7 @@ import java.util.List;
 
 import us.ihmc.commons.MathTools;
 import us.ihmc.euclid.tools.EuclidCoreIOTools;
-import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
-import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
 /**
  * Template data structure that defines a Doubly-connected edge list (DCEL) polytope vertex
@@ -24,7 +21,7 @@ import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
  * @param <E> Data structure representing edges formed by joining two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly, Point3DBasics
+public abstract class Vertex3DBasics implements Vertex3DReadOnly, Point3DBasics
 {
    /**
     * List of edges that start at this vertex. May be part of different faces
@@ -118,41 +115,9 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
     * {@inheritDoc}
     */
    @Override
-   public boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck)
-   {
-      return associatedEdges.contains(edgeToCheck);
-   }
-
-   /**
-    * {@inheritDoc}
-    */
-   @Override
-   public boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck, double epsilon)
-   {
-      for (int i = 0; i < associatedEdges.size(); i++)
-      {
-         if (associatedEdges.get(i).epsilonEquals(edgeToCheck, epsilon))
-            return true;
-      }
-      return false;
-   }
-
-   /**
-    * {@inheritDoc}
-    */
-   @Override
    public int getNumberOfAssociatedEdges()
    {
-      return associatedEdges.size();
-   }
-
-   /**
-    * {@inheritDoc}
-    */
-   @Override
-   public double dot(Vector3DReadOnly vector)
-   {
-      return getX() * vector.getX() + getY() * vector.getY() + getZ() * vector.getZ();
+      return getAssociatedEdges().size();
    }
 
    /**
@@ -176,24 +141,6 @@ public abstract class Vertex3DBasics implements SimplexBasics, Vertex3DReadOnly,
          isMarked |= associatedEdges.get(i).getFace().isMarked();
       }
       return isMarked;
-   }
-
-   @Override
-   public double distance(Point3DReadOnly point)
-   {
-      return distance(point);
-   }
-
-   @Override
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)
-   {
-      supportVectorToPack.sub(point, this);
-   }
-
-   @Override
-   public SimplexBasics getSmallestSimplexMemberReference(Point3DReadOnly point)
-   {
-      return this;
    }
 
    public void round(double epsilon)

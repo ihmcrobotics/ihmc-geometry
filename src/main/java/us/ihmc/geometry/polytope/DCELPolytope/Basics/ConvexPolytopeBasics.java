@@ -14,6 +14,7 @@ import us.ihmc.euclid.transform.interfaces.Transform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.CollisionDetection.PolytopeListener;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.ConvexPolytopeFaceProvider;
@@ -892,7 +893,7 @@ public abstract class ConvexPolytopeBasics implements ConvexPolytopeReadOnly, Si
    protected abstract ConvexPolytopeFaceProvider getConvexFaceProvider();
 
    @Override
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)
+   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
    {
       getFaceContainingPointClosestTo(point).getSupportVectorDirectionTo(point, supportVectorToPack);
    }

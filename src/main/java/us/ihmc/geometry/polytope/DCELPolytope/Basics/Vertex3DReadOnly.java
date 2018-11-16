@@ -3,9 +3,10 @@ package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 import java.util.List;
 
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface Vertex3DReadOnly extends Point3DReadOnly
+public interface Vertex3DReadOnly extends Point3DReadOnly, SimplexBasics
 {
    /**
     * Get list of edges that originate at this vertex
@@ -31,7 +32,10 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * @return {@code true} if the specified edge is on the associated edge list, {@code false}
     *         otherwise
     */
-   boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck);
+   default boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck)
+   {
+      return getAssociatedEdges().contains(edgeToCheck);
+   }
 
    /**
     * An associated edge is sufficiently close if its origin and destination are within a
@@ -42,7 +46,15 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
     * @return {@code true} if the specified edge is geometrically close to any of the associated edges.
     *         Otherwise {@code false}
     */
-   boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck, double epsilon);
+   default boolean isAssociatedWithEdge(HalfEdge3DReadOnly edgeToCheck, double epsilon)
+   {
+      for (int i = 0; i < getAssociatedEdges().size(); i++)
+      {
+         if (getAssociatedEdges().get(i).epsilonEquals(edgeToCheck, epsilon))
+            return true;
+      }
+      return false;
+   }
 
    /**
     * Returns the number of references held in the associated edge list
@@ -59,6 +71,29 @@ public interface Vertex3DReadOnly extends Point3DReadOnly
    default double dot(Vector3DReadOnly vector)
    {
       return getX() * vector.getX() + getY() * vector.getY() + getZ() * vector.getZ();
+   }
+
+   @Override
+   default double distance(Point3DReadOnly other)
+   {
+      return Point3DReadOnly.super.distance(other);
+   }
+
+   @Override
+   default void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
+   {
+      supportVectorToPack.sub(point, this);
+   }
+
+   @Override
+   default SimplexBasics getSmallestSimplexMemberReference(Point3DReadOnly point)
+   {
+      return this;
+   }
+
+   default boolean equals(Vertex3DReadOnly other)
+   {
+      return equals(other);
    }
 
    default boolean epsilonEquals(Vertex3DReadOnly other, double epsilon)

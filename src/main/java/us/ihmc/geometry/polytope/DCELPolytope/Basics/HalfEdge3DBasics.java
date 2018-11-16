@@ -1,12 +1,11 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
 import us.ihmc.euclid.geometry.interfaces.LineSegment3DBasics;
-import us.ihmc.euclid.geometry.tools.EuclidGeometryTools;
-import us.ihmc.euclid.transform.interfaces.Transform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
 
@@ -28,7 +27,7 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  *           two vertices
  * @param <F> A collection of edges that constitute a face of the polytope
  */
-public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegment3DBasics, SimplexBasics
+public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegment3DBasics
 {
    /**
     * Specifies the spatial location at which the half edge originates
@@ -419,20 +418,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
       return edgeVector;
    }
 
-   @Override
-   public void applyTransform(Transform transform)
-   {
-      originVertex.applyTransform(transform);
-      destinationVertex.applyTransform(transform);
-   }
-
-   @Override
-   public void applyInverseTransform(Transform transform)
-   {
-      originVertex.applyInverseTransform(transform);
-      destinationVertex.applyInverseTransform(transform);
-   }
-
    /**
     * {@inheritDoc}
     */
@@ -454,32 +439,6 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
       setNextHalfEdge(other.getNextHalfEdge());
       setPreviousHalfEdge(other.getPreviousHalfEdge());
       setFace(other.getFace());
-   }
-
-   @Override
-   public boolean containsNaN()
-   {
-      return originVertex.containsNaN() || destinationVertex.containsNaN();
-   }
-
-   /**
-    * {@inheritDoc} Also sets the {@code originVertex} and {@code destinationVertex} to NaN
-    */
-   @Override
-   public void setToNaN()
-   {
-      originVertex.setToNaN();
-      destinationVertex.setToNaN();
-   }
-
-   /**
-    * {@inheritDoc} Also sets the {@code originVertex} and {@code destinationVertex} to zero
-    */
-   @Override
-   public void setToZero()
-   {
-      originVertex.setToZero();
-      destinationVertex.setToZero();
    }
 
    /**
@@ -523,35 +482,9 @@ public abstract class HalfEdge3DBasics implements HalfEdge3DReadOnly, LineSegmen
    }
 
    @Override
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)
+   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
    {
-      double percentage = EuclidGeometryTools.percentageAlongLineSegment3D(point, originVertex, destinationVertex);
-      if (percentage <= 0.0)
-         originVertex.getSupportVectorDirectionTo(point, supportVectorToPack);
-      else if (percentage >= 1.0)
-         destinationVertex.getSupportVectorDirectionTo(point, supportVectorToPack);
-      else
-      {
-         tempPoint.interpolate(originVertex, destinationVertex, percentage);
-         supportVectorToPack.sub(point, tempPoint);
-      }
-   }
-
-   @Override
-   public SimplexBasics getSmallestSimplexMemberReference(Point3DReadOnly point)
-   {
-      double percentage = EuclidGeometryTools.percentageAlongLineSegment3D(point, originVertex, destinationVertex);
-      if (percentage <= 0.0)
-         return originVertex;
-      else if (percentage >= 1.0)
-         return destinationVertex;
-      else
-         return this;
-   }
-
-   @Override
-   public double distance(Point3DReadOnly point)
-   {
-      return HalfEdge3DReadOnly.super.distance(point);
+      orthogonalProjection(point, tempPoint);
+      supportVectorToPack.sub(point, tempPoint);
    }
 }

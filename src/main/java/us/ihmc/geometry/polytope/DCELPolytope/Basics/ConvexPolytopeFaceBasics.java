@@ -15,6 +15,7 @@ import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 import us.ihmc.geometry.polytope.SupportingVertexHolder;
 import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider;
@@ -657,8 +658,6 @@ public abstract class ConvexPolytopeFaceBasics
    public HalfEdge3DBasics getEdgeClosestTo(Point3DReadOnly point)
    {
       HalfEdge3DBasics edge = getFirstVisibleEdge(tempPoint);
-      if (debug && edge == null)
-         PrintTools.debug(toString() + "\n" + point + "\n" + tempPoint);
       double shortestDistance = edge.distance(tempPoint);
       double shortestDistanceCandidate = Double.NEGATIVE_INFINITY;
       while (shortestDistanceCandidate < shortestDistance)
@@ -670,7 +669,7 @@ public abstract class ConvexPolytopeFaceBasics
    }
 
    @Override
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)
+   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
    {
       EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, edges.get(0).getOriginVertex(), getFaceNormal(), tempPoint);
       if (isInteriorPointInternal(tempPoint))

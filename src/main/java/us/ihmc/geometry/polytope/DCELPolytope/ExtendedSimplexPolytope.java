@@ -11,6 +11,7 @@ import us.ihmc.euclid.geometry.tools.EuclidGeometryTools;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DReadOnly;
 
 public class ExtendedSimplexPolytope implements Simplex
@@ -60,12 +61,14 @@ public class ExtendedSimplexPolytope implements Simplex
       return polytope.isInteriorPoint(pointToCheck, epsilon);
    }
 
+   @Override
    public double distance(Point3DReadOnly point)
    {
       return polytope.distance(point);
    }
 
-   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack)
+   @Override
+   public void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack)
    {
       polytope.getSupportVectorDirectionTo(point, supportVectorToPack);
    }
@@ -75,11 +78,13 @@ public class ExtendedSimplexPolytope implements Simplex
       return polytope.isEmpty();
    }
 
+   @Override
    public Simplex getSmallestSimplexMemberReference(Point3DReadOnly point)
    {
       return (Simplex) polytope.getSmallestSimplexMemberReference(point);
    }
 
+   @Override
    public String toString()
    {
       return polytope.toString();
@@ -93,7 +98,7 @@ public class ExtendedSimplexPolytope implements Simplex
    public void getCollidingPointsOnSimplex(Point3DReadOnly point, Point3D pointOnA, Point3D pointOnB)
    {
       Simplex member = getSmallestSimplexMemberReference(point);
-      // Assuming linearity between the simplex and polytope points 
+      // Assuming linearity between the simplex and polytope points
       if (member instanceof ConvexPolytopeFace)
       {
          // TODO fix this nasty type casting
@@ -122,7 +127,7 @@ public class ExtendedSimplexPolytope implements Simplex
       }
       else if (member instanceof HalfEdge3D)
       {
-         // TODO fix this nasty type casting 
+         // TODO fix this nasty type casting
          SimplexVertex simplexVertex1 = (SimplexVertex) ((HalfEdge3D) member).getOriginVertex();
          Vertex3DReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
@@ -135,7 +140,7 @@ public class ExtendedSimplexPolytope implements Simplex
       }
       else if (member instanceof SimplexVertex)
       {
-         // TODO fix this nasty type casting 
+         // TODO fix this nasty type casting
          pointOnA.set(((SimplexVertex) member).getVertexOnPolytopeA());
          pointOnB.set(((SimplexVertex) member).getVertexOnPolytopeB());
       }
@@ -145,8 +150,8 @@ public class ExtendedSimplexPolytope implements Simplex
       }
    }
 
-   private void setByInterpolation(Point3D pointOnA, Vertex3DReadOnly polytopeAVertex1, Vertex3DReadOnly polytopeAVertex2,
-                                   Vertex3DReadOnly polytopeAVertex3, double a, double b)
+   private void setByInterpolation(Point3D pointOnA, Vertex3DReadOnly polytopeAVertex1, Vertex3DReadOnly polytopeAVertex2, Vertex3DReadOnly polytopeAVertex3,
+                                   double a, double b)
    {
       basisVector1.sub(polytopeAVertex1, polytopeAVertex2);
       basisVector2.sub(polytopeAVertex3, polytopeAVertex2);

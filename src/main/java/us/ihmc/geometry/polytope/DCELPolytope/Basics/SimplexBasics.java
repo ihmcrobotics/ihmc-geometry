@@ -1,7 +1,7 @@
 package us.ihmc.geometry.polytope.DCELPolytope.Basics;
 
-import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
+import us.ihmc.euclid.tuple3D.interfaces.Vector3DBasics;
 
 public interface SimplexBasics
 {
@@ -19,7 +19,7 @@ public interface SimplexBasics
     * @param point the point that the vector should point towards
     * @param supportVectorToPack the vector in which the computed result is to be stored
     */
-   void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3D supportVectorToPack);
+   void getSupportVectorDirectionTo(Point3DReadOnly point, Vector3DBasics supportVectorToPack);
 
    /**
     * The smallest simplex member on which the projection of the specified point lies. Generally a

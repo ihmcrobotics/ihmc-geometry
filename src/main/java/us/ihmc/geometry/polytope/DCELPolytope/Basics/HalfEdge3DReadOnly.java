@@ -4,7 +4,7 @@ import us.ihmc.euclid.geometry.interfaces.LineSegment3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
 import us.ihmc.euclid.tuple3D.interfaces.Vector3DReadOnly;
 
-public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly
+public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly, SimplexBasics
 {
    /**
     * Returns a reference to the origin vertex for this half edge
@@ -67,6 +67,24 @@ public interface HalfEdge3DReadOnly extends LineSegment3DReadOnly
     * @return a read only 3D vector
     */
    Vector3DReadOnly getEdgeVector();
+
+   @Override
+   default double distance(Point3DReadOnly point)
+   {
+      return LineSegment3DReadOnly.super.distance(point);
+   }
+
+   @Override
+   default SimplexBasics getSmallestSimplexMemberReference(Point3DReadOnly point)
+   {
+      double percentage = percentageAlongLineSegment(point);
+      if (percentage <= 0.0)
+         return getOriginVertex();
+      else if (percentage >= 1.0)
+         return getDestinationVertex();
+      else
+         return this;
+   }
 
    /**
     * Geometrically checks if the specified half edge is the twin of the current edge.
