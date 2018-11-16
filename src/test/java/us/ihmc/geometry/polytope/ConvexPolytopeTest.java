@@ -20,7 +20,7 @@ import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.ConvexPolytopeFace;
+import us.ihmc.geometry.polytope.DCELPolytope.Face3D;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
 import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DReadOnly;
@@ -55,7 +55,7 @@ public class ConvexPolytopeTest
       assertTrue(polytope.getNumberOfVertices() == 6);
       for (int j = 0; j < polytope.getNumberOfFaces(); j++)
       {
-         ConvexPolytopeFace face = polytope.getFace(j);
+         Face3D face = polytope.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             assertTrue("Null twin edge for edge: " + face.getEdge(i).toString() + " on face: " + face.toString(), face.getEdge(i).getTwinHalfEdge() != null);
@@ -95,7 +95,7 @@ public class ConvexPolytopeTest
 
       for (int j = 0; j < polytope.getNumberOfFaces(); j++)
       {
-         ConvexPolytopeFace face = polytope.getFace(j);
+         Face3D face = polytope.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             assertTrue("Null twin edge for edge: " + face.getEdge(i).toString() + " on face: " + face.toString(), face.getEdge(i).getTwinHalfEdge() != null);
@@ -198,12 +198,12 @@ public class ConvexPolytopeTest
       assertTrue(polytope.getNumberOfFaces() == 6);
       assertTrue(polytope.getNumberOfEdges() == 12);
       assertTrue(polytope.getNumberOfVertices() == 8);
-      ConvexPolytopeFace firstFace = polytope.getFace(0);
-      ConvexPolytopeFace secondFace = polytope.getFace(1);
-      ConvexPolytopeFace thirdFace = polytope.getFace(2);
-      ConvexPolytopeFace fourthFace = polytope.getFace(3);
-      ConvexPolytopeFace fifthFace = polytope.getFace(4);
-      ConvexPolytopeFace sixthFace = polytope.getFace(5);
+      Face3D firstFace = polytope.getFace(0);
+      Face3D secondFace = polytope.getFace(1);
+      Face3D thirdFace = polytope.getFace(2);
+      Face3D fourthFace = polytope.getFace(3);
+      Face3D fifthFace = polytope.getFace(4);
+      Face3D sixthFace = polytope.getFace(5);
 
       assertTrue(firstFace.getNumberOfEdges() == 4);
       assertTrue(secondFace.getNumberOfEdges() == 4);
@@ -213,7 +213,7 @@ public class ConvexPolytopeTest
       assertTrue(sixthFace.getNumberOfEdges() == 4);
       for (int j = 0; j < polytope.getNumberOfFaces(); j++)
       {
-         ConvexPolytopeFace face = polytope.getFace(j);
+         Face3D face = polytope.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             assertTrue("Null twin edge for edge: " + face.getEdge(i).toString() + " on face: " + face.toString(), face.getEdge(i).getTwinHalfEdge() != null);
@@ -242,10 +242,10 @@ public class ConvexPolytopeTest
       assertTrue(polytope.getNumberOfEdges() == 6);
       assertTrue(polytope.getNumberOfVertices() == 4);
 
-      ConvexPolytopeFace firstFace = polytope.getFace(0);
-      ConvexPolytopeFace secondFace = polytope.getFace(1);
-      ConvexPolytopeFace thirdFace = polytope.getFace(2);
-      ConvexPolytopeFace fourthFace = polytope.getFace(3);
+      Face3D firstFace = polytope.getFace(0);
+      Face3D secondFace = polytope.getFace(1);
+      Face3D thirdFace = polytope.getFace(2);
+      Face3D fourthFace = polytope.getFace(3);
       assertTrue(firstFace.getNumberOfEdges() == 3);
       assertTrue(secondFace.getNumberOfEdges() == 3);
       assertTrue(thirdFace.getNumberOfEdges() == 3);
@@ -295,11 +295,11 @@ public class ConvexPolytopeTest
       assertTrue(polytope.getNumberOfEdges() == 8);
       assertTrue(polytope.getNumberOfVertices() == 5);
 
-      ConvexPolytopeFace firstFace = polytope.getFace(0);
-      ConvexPolytopeFace secondFace = polytope.getFace(1);
-      ConvexPolytopeFace thirdFace = polytope.getFace(2);
-      ConvexPolytopeFace fourthFace = polytope.getFace(3);
-      ConvexPolytopeFace fifthFace = polytope.getFace(4);
+      Face3D firstFace = polytope.getFace(0);
+      Face3D secondFace = polytope.getFace(1);
+      Face3D thirdFace = polytope.getFace(2);
+      Face3D fourthFace = polytope.getFace(3);
+      Face3D fifthFace = polytope.getFace(4);
       assertTrue(firstFace.getNumberOfEdges() == 4);
       assertTrue(secondFace.getNumberOfEdges() == 3);
       assertTrue(thirdFace.getNumberOfEdges() == 3);
@@ -308,7 +308,7 @@ public class ConvexPolytopeTest
 
       for (int j = 0; j < polytope.getNumberOfFaces(); j++)
       {
-         ConvexPolytopeFace face = polytope.getFace(j);
+         Face3D face = polytope.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             assertTrue("Null twin edge for edge: " + face.getEdge(i).toString() + " on face: " + face.toString(), face.getEdge(i).getTwinHalfEdge() != null);

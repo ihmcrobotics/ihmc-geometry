@@ -20,7 +20,7 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testConstructorAndAddVertex()
    {
-      ConvexPolytopeFace face = new ConvexPolytopeFace();
+      Face3D face = new Face3D();
       Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
       Vertex3D vertex2 = new Vertex3D(0.0, 1.0, 0.0);
       Vertex3D vertex3 = new Vertex3D(1.0, 0.0, 0.0);
@@ -176,7 +176,7 @@ public class ConvexPolytopeFaceTest
       halfEdge3.setPreviousHalfEdge(halfEdge2);
       halfEdge4.setPreviousHalfEdge(halfEdge3);
       halfEdge5.setPreviousHalfEdge(halfEdge4);
-      ConvexPolytopeFace face = new ConvexPolytopeFace(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
+      Face3D face = new Face3D(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
       Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
       HalfEdge3D firstVisibleEdge = face.getFirstVisibleEdge(vertex6);
       assertTrue(firstVisibleEdge == halfEdge5);
@@ -210,7 +210,7 @@ public class ConvexPolytopeFaceTest
       halfEdge3.setPreviousHalfEdge(halfEdge2);
       halfEdge4.setPreviousHalfEdge(halfEdge3);
       halfEdge5.setPreviousHalfEdge(halfEdge4);
-      ConvexPolytopeFace face = new ConvexPolytopeFace(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
+      Face3D face = new Face3D(new HalfEdge3D[] {halfEdge1, halfEdge2, halfEdge3, halfEdge4, halfEdge5});
 
       List<HalfEdge3DBasics> visibleEdgeList = new ArrayList<>();
       Vertex3D vertex6 = new Vertex3D(-1.0, -1.0, 0.0);
@@ -231,7 +231,7 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testRepeatedPointAddition()
    {
-      ConvexPolytopeFace face = new ConvexPolytopeFace();
+      Face3D face = new Face3D();
       Vertex3D vertex1 = new Vertex3D(0.0, 0.0, 0.0);
       Vertex3D vertex2 = new Vertex3D(0.0, 1.0, 0.0);
       Vertex3D vertex3 = new Vertex3D(0.0, 1.0, 0.0);
@@ -245,7 +245,7 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testAdditionPrecision()
    {
-      ConvexPolytopeFace face = new ConvexPolytopeFace();
+      Face3D face = new Face3D();
       face.addVertex(new Vertex3D(0.0001111, 0.0002222, 0.0003333), epsilon);
       face.addVertex(new Vertex3D(1.0001111, 0.0002222, 0.0003333), epsilon);
       face.addVertex(new Vertex3D(1.0001111, 1.0002222, 0.0003333), epsilon);
@@ -258,7 +258,7 @@ public class ConvexPolytopeFaceTest
    @Test(timeout = 1000)
    public void testAFailingCase()
    {
-      ConvexPolytopeFace face = new ConvexPolytopeFace();
+      Face3D face = new Face3D();
 
       face.addVertex(new Vertex3D( -0.15000000000000002, 0.04200000000000001, 0.11500000000000002), epsilon);
       face.addVertex(new Vertex3D( -0.15000000000000002, 0.07500000000000001, -0.12000000000000002), epsilon);

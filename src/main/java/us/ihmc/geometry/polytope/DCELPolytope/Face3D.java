@@ -11,16 +11,16 @@ import us.ihmc.geometry.polytope.DCELPolytope.Providers.PolytopeHalfEdgeProvider
  * @author Apoorv S
  *
  */
-public class ConvexPolytopeFace extends Face3DBasics
+public class Face3D extends Face3DBasics
 {
    private final PolytopeHalfEdgeBuilder halfEdgeBuilder = new PolytopeHalfEdgeBuilder();
 
-   public ConvexPolytopeFace()
+   public Face3D()
    {
       super();
    }
 
-   public ConvexPolytopeFace(HalfEdge3D[] edges)
+   public Face3D(HalfEdge3D[] edges)
    {
       super(edges);
    }

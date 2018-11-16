@@ -100,21 +100,21 @@ public class ExtendedSimplexPolytope implements SimplexBasics
    {
       SimplexBasics member = getSmallestSimplexMemberReference(point);
       // Assuming linearity between the simplex and polytope points
-      if (member instanceof ConvexPolytopeFace)
+      if (member instanceof Face3D)
       {
          // TODO fix this nasty type casting
-         SimplexVertex simplexVertex1 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getOriginVertex();
+         SimplexVertex simplexVertex1 = (SimplexVertex) ((Face3D) member).getEdge(0).getOriginVertex();
          Vertex3DReadOnly polytopeAVertex1 = simplexVertex1.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex1 = simplexVertex1.getVertexOnPolytopeB();
-         SimplexVertex simplexVertex2 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(0).getDestinationVertex();
+         SimplexVertex simplexVertex2 = (SimplexVertex) ((Face3D) member).getEdge(0).getDestinationVertex();
          Vertex3DReadOnly polytopeAVertex2 = simplexVertex2.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex2 = simplexVertex2.getVertexOnPolytopeB();
-         SimplexVertex simplexVertex3 = (SimplexVertex) ((ConvexPolytopeFace) member).getEdge(1).getDestinationVertex();
+         SimplexVertex simplexVertex3 = (SimplexVertex) ((Face3D) member).getEdge(1).getDestinationVertex();
          Vertex3DReadOnly polytopeAVertex3 = simplexVertex3.getVertexOnPolytopeA();
          Vertex3DReadOnly polytopeBVertex3 = simplexVertex3.getVertexOnPolytopeB();
 
          // Computing the coordinate vector for the face basis (using the first two edges as the basis)
-         EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, simplexVertex2, ((ConvexPolytopeFace) member).getFaceNormal(), projection);
+         EuclidGeometryTools.orthogonalProjectionOnPlane3D(point, simplexVertex2, ((Face3D) member).getFaceNormal(), projection);
          for (int i = 0; i < 3; i++)
          {
             basis.set(i, 0, simplexVertex1.getElement(i) - simplexVertex2.getElement(i));

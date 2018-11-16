@@ -50,8 +50,8 @@ public class ExtendedConvexPolytope extends ConvexPolytopeBasics
    }
 
    @Override
-   public ConvexPolytopeFace getFace(int index)
+   public Face3D getFace(int index)
    {
-      return (ConvexPolytopeFace) super.getFace(index);
+      return (Face3D) super.getFace(index);
    }
 }

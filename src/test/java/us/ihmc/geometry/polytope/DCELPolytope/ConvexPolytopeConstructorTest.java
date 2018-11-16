@@ -28,7 +28,7 @@ public class ConvexPolytopeConstructorTest
       assertTrue(cylinder.getNumberOfFaces() == numberOfSide + 2);
       for (int j = 0; j < cylinder.getNumberOfFaces(); j++)
       {
-         ConvexPolytopeFace face = cylinder.getFace(j);
+         Face3D face = cylinder.getFace(j);
          for (int i = 0; i < face.getNumberOfEdges(); i++)
          {
             assertTrue("Null twin edge for edge: " + face.getEdge(i).toString() + " on face: " + face.toString(), face.getEdge(i).getTwinHalfEdge() != null);

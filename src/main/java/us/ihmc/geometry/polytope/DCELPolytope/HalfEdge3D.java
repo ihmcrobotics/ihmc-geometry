@@ -41,12 +41,12 @@ public class HalfEdge3D extends HalfEdge3DBasics
    }
 
    public HalfEdge3D(Vertex3D originVertex, Vertex3D destinationVertex, HalfEdge3D twinEdge,
-                           HalfEdge3D nextHalfEdge, HalfEdge3D previousHalfEdge, ConvexPolytopeFace face)
+                           HalfEdge3D nextHalfEdge, HalfEdge3D previousHalfEdge, Face3D face)
    {
       super(originVertex, destinationVertex, twinEdge, nextHalfEdge, previousHalfEdge, face);
    }
 
-   public HalfEdge3D(HalfEdge3D twinEdge, ConvexPolytopeFace face)
+   public HalfEdge3D(HalfEdge3D twinEdge, Face3D face)
    {
       super(twinEdge, face);
    }
