@@ -1,7 +1,6 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +19,11 @@ import us.ihmc.euclid.transform.RigidBodyTransform;
 import us.ihmc.euclid.tuple3D.Point3D;
 import us.ihmc.euclid.tuple3D.Vector3D;
 import us.ihmc.euclid.tuple3D.interfaces.Point3DReadOnly;
-import us.ihmc.geometry.polytope.DCELPolytope.Face3D;
 import us.ihmc.geometry.polytope.DCELPolytope.ExtendedConvexPolytope;
+import us.ihmc.geometry.polytope.DCELPolytope.Face3D;
 import us.ihmc.geometry.polytope.DCELPolytope.Vertex3D;
-import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.ConvexPolytopeReadOnly;
+import us.ihmc.geometry.polytope.DCELPolytope.Basics.Face3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DBasics;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.HalfEdge3DReadOnly;
 import us.ihmc.geometry.polytope.DCELPolytope.Basics.Vertex3DBasics;
@@ -33,7 +32,6 @@ public class ConvexPolytopeTest
 {
    private final static double EPSILON = 1e-15;
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 1000)
    public void testAdditionWithSquarePyramid()
    {
@@ -67,7 +65,6 @@ public class ConvexPolytopeTest
       }
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 10000)
    public void testPartialCylinder()
    {
@@ -341,7 +338,7 @@ public class ConvexPolytopeTest
    }
 
    @ContinuousIntegrationTest(estimatedDuration = 0.0)
-   @Test(timeout = 1000)
+   @Test(timeout = 30000)
    public void testConvexPolytopeWithAUnitCube()
    {
       ExtendedConvexPolytope polytope = new ExtendedConvexPolytope();
@@ -417,7 +414,6 @@ public class ConvexPolytopeTest
       assertTrue(supportingVertex == vertexThree);
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testPolytopeConstructor()
    {
@@ -428,7 +424,6 @@ public class ConvexPolytopeTest
       assertEquals(24, edges.size());
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testBoundingBoxes()
    {

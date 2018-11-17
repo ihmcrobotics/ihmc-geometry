@@ -1,11 +1,11 @@
 plugins {
-   id("us.ihmc.ihmc-build") version "0.15.1"
+   id("us.ihmc.ihmc-build") version "0.15.3"
    id("us.ihmc.ihmc-ci") version "1.1.6"
 }
 
 ihmc {
    group = "us.ihmc"
-   version = "0.12.3"
+   version = "0.12.4"
    vcsUrl = "https://github.com/ihmcrobotics/ihmc-geometry"
    openSource = true
 
@@ -14,7 +14,7 @@ ihmc {
 }
 
 mainDependencies {
-   compile group: "us.ihmc", name: "euclid", version: "0.9.3"
+   compile group: "us.ihmc", name: "euclid", version: "0.10.0"
    compile group: "org.ejml", name: "core", version: "0.30"
    compile group: "org.ejml", name: "dense64", version: "0.30"
    compile group: "us.ihmc", name: "ihmc-commons", version: "0.24.0"

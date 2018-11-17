@@ -12,13 +12,11 @@ public class GilbertJohnsonKeerthiCollisionDetectorAssertListener implements Gil
    @Override
    public void checkingIfPolytopesAreColliding(SupportingVertexHolder polytopeA, SupportingVertexHolder polytopeB)
    {
-      // TODO Auto-generated method stub
    }
 
    @Override
    public void addedVertexToSimplex(SimplexPolytope simplex, Point3D vertexOnSimplex, Point3DReadOnly vertexOnA, Point3DReadOnly vertexOnB)
    {
-      // TODO Auto-generated method stub
    }
 
    @Override
@@ -69,42 +67,36 @@ public class GilbertJohnsonKeerthiCollisionDetectorAssertListener implements Gil
    @Override
    public void foundCollision(SimplexPolytope simplex, Point3D pointOnAToPack, Point3D pointOnBToPack)
    {
-      // TODO Auto-generated method stub
 
    }
 
    @Override
    public void foundSupportPoints(SimplexPolytope simplex, Point3DReadOnly supportingPointOnA, Point3DReadOnly supportingPointOnB, Vector3D supportPointOnSimplex)
    {
-      // TODO Auto-generated method stub
 
    }
 
    @Override
    public void computeVDotPAndPercentCloser(double vDotP, double percentCloser)
    {
-      // TODO Auto-generated method stub
 
    }
 
    @Override
    public void metStoppingConditionForNoIntersection(double vDotP, double percentCloser, Point3D pointOnAToPack, Point3D pointOnBToPack)
    {
-      // TODO Auto-generated method stub
 
    }
 
    @Override
    public void tooManyIterationsStopping(SimplexPolytope simplex, Point3D pointOnAToPack, Point3D pointOnBToPack)
    {
-      // TODO Auto-generated method stub
 
    }
 
    @Override
    public void metStoppingConditionForNoIntersection(Point3D pointOnAToPack, Point3D pointOnBToPack)
    {
-      // TODO Auto-generated method stub
 
    }
 
