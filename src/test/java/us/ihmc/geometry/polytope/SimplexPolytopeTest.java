@@ -4,14 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import us.ihmc.continuousIntegration.ContinuousIntegrationAnnotations.ContinuousIntegrationTest;
 import us.ihmc.euclid.tools.EuclidCoreTestTools;
 import us.ihmc.euclid.tuple3D.Point3D;
 
 public class SimplexPolytopeTest
 {
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testGetClosestPointToOriginOnConvexHull()
    {
@@ -152,7 +150,6 @@ public class SimplexPolytopeTest
       assertTrue(simplex.containsPoint(pointFour));
    }
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testVornoiRegionChecks()
    {
@@ -334,7 +331,6 @@ public class SimplexPolytopeTest
    }
 
 
-   @ContinuousIntegrationTest(estimatedDuration = 0.0)
    @Test(timeout = 30000)
    public void testTroublesomeOnes()
    {
