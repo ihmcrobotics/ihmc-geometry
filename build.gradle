@@ -14,7 +14,7 @@ ihmc {
 }
 
 mainDependencies {
-   compile group: "us.ihmc", name: "euclid", version: "0.9.1"
+   compile group: "us.ihmc", name: "euclid", version: "0.10.0"
    compile group: "org.ejml", name: "core", version: "0.30"
    compile group: "org.ejml", name: "dense64", version: "0.30"
    compile group: "us.ihmc", name: "ihmc-commons", version: "0.24.0"
