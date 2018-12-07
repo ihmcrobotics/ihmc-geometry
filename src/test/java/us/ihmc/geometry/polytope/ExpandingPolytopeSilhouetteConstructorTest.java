@@ -1,10 +1,10 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.*;
+import static us.ihmc.robotics.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.ihmc.commons.MutationTestFacilitator;
 import us.ihmc.euclid.tuple3D.Point3D;
@@ -13,7 +13,7 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 public class ExpandingPolytopeSilhouetteConstructorTest
 {
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testSilhouetteConstructorWithTetrahedron()
    {
       Point3D pointOne = new Point3D(-1.0, -1.0, -1.0);
@@ -64,7 +64,7 @@ public class ExpandingPolytopeSilhouetteConstructorTest
       assertEquals(0, edge.getEdgeIndex());
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testSilhouetteConstructorWithIcoSphere()
    {
       IcoSphereCreator creator = new IcoSphereCreator();

@@ -1,8 +1,8 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.*;
+import static us.ihmc.robotics.Assert.*;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.ihmc.euclid.tools.EuclidCoreTestTools;
 import us.ihmc.euclid.tuple3D.Point3D;
@@ -10,7 +10,7 @@ import us.ihmc.euclid.tuple3D.Point3D;
 public class SimplexPolytopeTest
 {
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testGetClosestPointToOriginOnConvexHull()
    {
       SimplexPolytope simplex = new SimplexPolytope();
@@ -150,7 +150,7 @@ public class SimplexPolytopeTest
       assertTrue(simplex.containsPoint(pointFour));
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testVornoiRegionChecks()
    {
       SimplexPolytope simplex = new SimplexPolytope();
@@ -331,7 +331,7 @@ public class SimplexPolytopeTest
    }
 
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testTroublesomeOnes()
    {
       SimplexPolytope simplex = new SimplexPolytope();

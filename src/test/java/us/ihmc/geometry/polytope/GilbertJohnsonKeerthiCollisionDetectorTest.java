@@ -1,10 +1,10 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.*;
+import static us.ihmc.robotics.Assert.*;
 
 import java.util.Random;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.ihmc.commons.MutationTestFacilitator;
 import us.ihmc.commons.RandomNumbers;
@@ -19,7 +19,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
 {
    private static boolean VERBOSE = false;
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testComputeSupportPointOnMinkowskiDifference()
    {
       ConvexPolytope cubeOne = ConvexPolytopeConstructor.constructUnitCube();
@@ -47,7 +47,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       EuclidCoreTestTools.assertTuple3DEquals("", new Point3D(2.0, 2.0, 0.0), supportPoint, 1e-7);
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testIsIntersecting()
    {
       GilbertJohnsonKeerthiCollisionDetector detector = new GilbertJohnsonKeerthiCollisionDetector();
@@ -93,7 +93,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       polytope.applyTransform(transform);
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testIntersectingOnARotatingCube()
    {
       GilbertJohnsonKeerthiCollisionDetector detector = new GilbertJohnsonKeerthiCollisionDetector();
@@ -130,7 +130,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       }
    }
 
-   @Test(timeout = 70000)
+   @Test// timeout = 70000
    public void testExtensivelyPointToPolytope()
    {
       Random random = new Random(1776L);
@@ -300,7 +300,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       //      System.out.println("numberOutside = " + numberOutside);
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testExtensivelyPolytopeToPolytope()
    {
       Random random = new Random(1776L);
@@ -403,7 +403,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       assertTrue("numberNotColliding = " + numberNotColliding, numberNotColliding > 1000);
    }
 
-   @Test (timeout = 34000)
+   @Test// timeout = 34000
    public void testExtensivelyCylinderToPolytope()
    {
       Random random = new Random(1776L);
@@ -545,7 +545,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       }
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testTroublesomePointToLineSegments()
    {
       Point3D lineSegmentPointA = new Point3D(-125.59926862231721, -680.1428915432899, 298.6543939303482);
@@ -586,7 +586,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
 
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testTroublesomePointToTriangle()
    {
       Point3D trianglePointA = new Point3D(747.3053277443838, 870.081212940944, -887.5577972908313);
@@ -597,7 +597,7 @@ public class GilbertJohnsonKeerthiCollisionDetectorTest
       doPointToTriangleProjectionTest(trianglePointA, trianglePointB, trianglePointC, pointToProject, false);
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testTroublesomePointToTetragon()
    {
       Point3D tetragonPointA = new Point3D(-498.42171267030795, 940.7427864661465, 476.39846668568447);

@@ -1,10 +1,10 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.*;
+import static us.ihmc.robotics.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.ihmc.commons.MutationTestFacilitator;
 import us.ihmc.euclid.geometry.BoundingBox3D;
@@ -16,7 +16,7 @@ import us.ihmc.euclid.tuple3D.Vector3D;
 public class ConvexPolytopeTest
 {
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testConvexPolytopeWithAUnitCube()
    {
       ConvexPolytope polytope = new ConvexPolytope();
@@ -100,7 +100,7 @@ public class ConvexPolytopeTest
       assertTrue(supportingVertex == vertexThree.getPosition());
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testPolytopeConstructor()
    {
       ConvexPolytope cubeOne = ConvexPolytopeConstructor.constructBoxWithCenterAtZero(100.0, 100.0, 0.5);
@@ -111,7 +111,7 @@ public class ConvexPolytopeTest
       assertEquals(12, edges.size());
    }
    
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testBoundingBoxes()
    {
       ConvexPolytope polytope = new ConvexPolytope();

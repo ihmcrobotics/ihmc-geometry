@@ -1,17 +1,17 @@
 package us.ihmc.geometry.polytope;
 
-import static org.junit.Assert.*;
+import static us.ihmc.robotics.Assert.*;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import us.ihmc.euclid.tuple3D.Point3D;
 
 public class ExpandingPolytopeEntryFromSimpleMeshGeneratorTest
 {
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testExpandingPolytopeEntryFromSimpleMeshGeneratorWithTetrahedronCorrectlyOrdered()
    {
       SimpleTriangleMesh tetrahedron = new SimpleTriangleMesh();
@@ -51,7 +51,7 @@ public class ExpandingPolytopeEntryFromSimpleMeshGeneratorTest
       }
    }
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testExpandingPolytopeEntryFromSimpleMeshGeneratorWithTetrahedronIncorrectlyOrdered()
    {
       SimpleTriangleMesh tetrahedron = new SimpleTriangleMesh();
@@ -94,7 +94,7 @@ public class ExpandingPolytopeEntryFromSimpleMeshGeneratorTest
 
 
 
-   @Test(timeout = 30000)
+   @Test// timeout = 30000
    public void testExpandingPolytopeEntryFromSimpleMeshGeneratorWithIcoSpheres()
    {
       ExpandingPolytopeEntryFromSimpleMeshGenerator generator = new ExpandingPolytopeEntryFromSimpleMeshGenerator();
